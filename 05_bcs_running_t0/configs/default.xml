@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="BCS"/>
+	<feature automatic="selected" name="HMI"/>
+	<feature name="Status_LED"/>
+	<feature name="LED_PW"/>
+	<feature name="LED_CLS"/>
+	<feature name="LED_FP"/>
+	<feature automatic="selected" name="Door_System"/>
+	<feature automatic="selected" name="PW"/>
+	<feature automatic="selected" name="FP"/>
+	<feature automatic="selected" name="PW_Control"/>
+	<feature manual="selected" name="Manual_PW"/>
+	<feature automatic="unselected" name="Automatic_PW"/>
+	<feature name="Security"/>
+	<feature name="CLS"/>
+	<feature name="RCK"/>
+	<feature automatic="unselected" name="Control_Automatic_PW"/>
+</configuration>

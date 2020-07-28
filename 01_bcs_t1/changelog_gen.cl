@@ -1,0 +1,244 @@
+Changelogs for: deltas
+
+addSWBlocks{
+	WiperSystem
+	LEDFrostProtection
+	LEDClean
+	LEDWiper
+	Wip_Speed_Panel
+	Wip_Function_Panel
+	ScreenWashController
+	WindShieldTemperatureControl
+	RainSensorController
+	WiperController
+	ScreenWashNozzle
+	HighQualityWiper
+	LowQualityWiper
+	HighQualityRainSensor
+	LowQualityRainSensor
+	ScreenWashSensor
+	WindShieldTemperatureSensor
+	WiperSystem
+	ScreenWashController_1
+	WindShieldTemperatureControl_1
+	RainSensorController_1
+	WiperController_1
+	ScreenWashNozzle
+	HighQualityWiper
+	LowQualityWiper
+	HighQualityRainSensor
+	LowQualityRainSensor
+	ScreenWashSensor
+	WindShieldtemperatureSensor
+	LEDFrostProtection
+	LEDClean
+	LEDWiper
+	Wip_Speed_Panel
+	Wip_Function_Panel
+	Impl_WiperController
+	Impl_ScreenWashController
+	Impl_RainSensorController
+	Impl_WindShieldTemperatureCo
+}
+
+removeSWBlock{
+}
+
+updateSWBlock{
+	System_Software_Architecture(ComposedOfChange)
+	HumanMachineInterface_1(SoftwarePortsChange)
+}
+
+addSWPort{
+	wip_func_auto_but(WiperSystem)
+	wip_func_clean_but(WiperSystem)
+	wip_func_disable_but(WiperSystem)
+	wip_func_perm_but(WiperSystem)
+	wip_func_enable_but(WiperSystem)
+	wip_speed_3_but(WiperSystem)
+	wip_speed_l2_but(WiperSystem)
+	wip_speed_l1_but(WiperSystem)
+	ledWiper_on(WiperSystem)
+	ledWiper_off(WiperSystem)
+	ledFrostProtecction_off(WiperSystem)
+	ledFrostPRotection_on(WiperSystem)
+	ledClean_off(WiperSystem)
+	ledClean_on(WiperSystem)
+	wip_auto_but(HumanMachineInterface_1)
+	wip_l1_but(HumanMachineInterface_1)
+	wip_l2_but(HumanMachineInterface_1)
+	wip_l3_but(HumanMachineInterface_1)
+	wip_enable_but(HumanMachineInterface_1)
+	wip_disable_but(HumanMachineInterface_1)
+	wip_perm_but(HumanMachineInterface_1)
+	wip_clean_but(HumanMachineInterface_1)
+	wip_func_auto_but(HumanMachineInterface_1)
+	Sender_Portprototyp146(HumanMachineInterface_1)
+	wip_func_clean_but(HumanMachineInterface_1)
+	wip_speed_l1_but(HumanMachineInterface_1)
+	wip_speed_l2_but(HumanMachineInterface_1)
+	wip_speed_l3_but(HumanMachineInterface_1)
+	wip_func_enable_but(HumanMachineInterface_1)
+	wip_func_perm_but(HumanMachineInterface_1)
+	wip_func_disable_but(HumanMachineInterface_1)
+	wip_func_clean_but(ScreenWashController_1)
+	Receiver_Portprototyp216(ScreenWashController_1)
+	Receiver_Portprototyp215(ScreenWashController_1)
+	sense_screenWashFill(ScreenWashController_1)
+	useScreenWash(ScreenWashController_1)
+	screenWashRefilled(ScreenWashController_1)
+	screenWashLow(ScreenWashController_1)
+	sense_windShieldTemperature(WindShieldTemperatureControl_1)
+	no_frost_detected(WindShieldTemperatureControl_1)
+	frost_detected(WindShieldTemperatureControl_1)
+	sense_heavyRainDetected(RainSensorController_1)
+	sense_littleRainDetected(RainSensorController_1)
+	sense_rainDetected(RainSensorController_1)
+	sense_noRain(RainSensorController_1)
+	rainSensor_WiperOff(RainSensorController_1)
+	rainSensor_WipeFast(RainSensorController_1)
+	rainSensor_WipeSlow(RainSensorController_1)
+	screenWashRefilled(WiperController_1)
+	screenWashLow(WiperController_1)
+	rainSensor_WipeFast(WiperController_1)
+	rainSensor_WipeSlow(WiperController_1)
+	rainSensor_WiperOff(WiperController_1)
+	useScreenWash_1(WiperController_1)
+	wip_func_auto_but(WiperController_1)
+	wip_func_perm_but(WiperController_1)
+	wip_func_disable_but(WiperController_1)
+	wip_func_enable_but(WiperController_1)
+	wip_speed_l3_but(WiperController_1)
+	wip_speed_l2_but(WiperController_1)
+	wip_speed_l1_but(WiperController_1)
+	no_frost_detected(WiperController_1)
+	frost_detected(WiperController_1)
+	useScreenWash(WiperController_1)
+	ledClean_off(WiperController_1)
+	ledClean_on(WiperController_1)
+	autoWiping_off(WiperController_1)
+	autoWiping_on(WiperController_1)
+	ledFrostProtection_off(WiperController_1)
+	ledFrostProtection_on(WiperController_1)
+	wipe_clean(WiperController_1)
+	wipe_fast_speed(WiperController_1)
+	wipe_medium_speed(WiperController_1)
+	wipe_slow_speed(WiperController_1)
+	Receiver_Portprototyp203(ScreenWashNozzle)
+	useScreenWash(ScreenWashNozzle)
+	wipe_fast(HighQualityWiper)
+	wipe_medium(HighQualityWiper)
+	wipe_slow(HighQualityWiper)
+	wipe_clean(HighQualityWiper)
+	Receiver_Portprototyp193(LowQualityWiper)
+	wipe_slow(LowQualityWiper)
+	wipe_clean(LowQualityWiper)
+	sense_heavyRainDetected(HighQualityRainSensor)
+	sense_littleRainDetected(HighQualityRainSensor)
+	sense_noRain(HighQualityRainSensor)
+	sense_rainDetected(LowQualityRainSensor)
+	sense_noRain(LowQualityRainSensor)
+	sense_screenWashFill(ScreenWashSensor)
+	sense_windShieldTemperature(WindShieldtemperatureSensor)
+	ledFrostProtection_off(LEDFrostProtection)
+	ledFrostProtection_on(LEDFrostProtection)
+	ledClean_off(LEDClean)
+	ledClean_on(LEDClean)
+	ledWiper_off(LEDWiper)
+	ledWiper_on(LEDWiper)
+	wip_l3_but(Wip_Speed_Panel)
+	wip_l2_but(Wip_Speed_Panel)
+	wip_l1_but(Wip_Speed_Panel)
+	wip_auto_but(Wip_Function_Panel)
+	wip_clean_but(Wip_Function_Panel)
+	wip_perm_but(Wip_Function_Panel)
+	wip_disable_but(Wip_Function_Panel)
+	wip_enable_but(Wip_Function_Panel)
+}
+
+removeSWPort{
+}
+
+updateSWPort{
+}
+
+addHardwareBlock{
+	ECU5_Wiper
+	ScreenWashNozzle
+	LowQualityWiper
+	LED_Wiper
+	LED_Clean
+	Wiper_Speed_But
+	Wiper_Function_But
+	WindShieldTemperatureSensor
+	ScreenWashSensor
+	LowQualityRainSensor
+	HighQualityRainSensor
+	LED_Frost
+	HighQualityWiper
+}
+
+removeHardwareBlock{
+}
+
+updateHardwareBlock{
+}
+
+addHardwarePort{
+}
+
+removeHardwarePort{
+}
+
+updateHardwarePort{
+}
+
+addOther{
+	wipe_clean(InterfaceImpl)
+	wipe_fast_speed(InterfaceImpl)
+	wipe_medium_speed(InterfaceImpl)
+	wipe_slow_speed(InterfaceImpl)
+	ledWiper_off(InterfaceImpl)
+	ledWiper_on(InterfaceImpl)
+	ledFrostProtection_off(InterfaceImpl)
+	ledFrostProtection_on(InterfaceImpl)
+	ledClean_off(InterfaceImpl)
+	ledClean_on(InterfaceImpl)
+	useScreenWash(InterfaceImpl)
+	screenWashRefilled(InterfaceImpl)
+	screenWashLow(InterfaceImpl)
+	rainSensor_WipeFast(InterfaceImpl)
+	rainSensor_WipeSlow(InterfaceImpl)
+	rainSensor_WiperOff(InterfaceImpl)
+	clean_screen(InterfaceImpl)
+	noFrost(InterfaceImpl)
+	wip_func_auto_but(InterfaceImpl)
+	wip_func_perm_but(InterfaceImpl)
+	wip_func_disable_but(InterfaceImpl)
+	wip_func_enable_but(InterfaceImpl)
+	wip_func_clean_but(InterfaceImpl)
+	wip_speed_l3_but(InterfaceImpl)
+	wip_speed_l2_but(InterfaceImpl)
+	wip_speed_l1_but(InterfaceImpl)
+	windShieldTemperature(InterfaceImpl)
+	heavyRain_detected(InterfaceImpl)
+	littleRain_detected(InterfaceImpl)
+	rainDetected(InterfaceImpl)
+	noRain_detected(InterfaceImpl)
+	screenWashFill(InterfaceImpl)
+	wip_auto_but(InterfaceImpl)
+	wip_clean_but(InterfaceImpl)
+	wip_perm_but(InterfaceImpl)
+	wip_disable_but(InterfaceImpl)
+	wip_enable_but(InterfaceImpl)
+	wip_l3_but(InterfaceImpl)
+	wip_l2_but(InterfaceImpl)
+	wip_l1_but(InterfaceImpl)
+	frost(InterfaceImpl)
+}
+
+removeOther{
+}
+
+updateOther{
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="BodyComfortSystem"/>
+	<feature automatic="selected" name="Wiper"/>
+	<feature name="Clean"/>
+	<feature automatic="selected" name="Sensor"/>
+	<feature manual="selected" name="Low_Quality_Sensor"/>
+	<feature automatic="unselected" name="High_Quality_Sensor"/>
+	<feature name="Frost_Protection"/>
+	<feature name="Clean_Protection"/>
+	<feature name="Sensor_Protection"/>
+	<feature name="Permanent_Protection"/>
+	<feature name="Permanent"/>
+	<feature name="Intensity"/>
+	<feature automatic="selected" name="Wiper_Quality"/>
+	<feature manual="selected" name="Low_Quality_Wiper"/>
+	<feature automatic="unselected" name="High_Quality_Wiper"/>
+	<feature automatic="selected" name="HMI"/>
+	<feature name="StatusLED"/>
+	<feature name="LED_Wiper"/>
+	<feature name="LED_Frost_Protection"/>
+	<feature name="LED_Clean"/>
+	<feature name="LED_FP"/>
+	<feature name="LED_PW"/>
+	<feature name="LED_EM"/>
+	<feature name="LED_AS"/>
+	<feature name="LED_CLS"/>
+	<feature name="LED_Heatable"/>
+	<feature automatic="selected" name="DoorSystem"/>
+	<feature automatic="selected" name="EM"/>
+	<feature automatic="selected" name="Electric"/>
+	<feature name="Heatable"/>
+	<feature automatic="selected" name="PW"/>
+	<feature automatic="selected" name="FP"/>
+	<feature automatic="selected" name="PW_Control"/>
+	<feature automatic="unselected" name="Manual_PW"/>
+	<feature manual="selected" name="Automatic_PW"/>
+	<feature name="Security"/>
+	<feature name="CLS"/>
+	<feature name="Automatic_Locking"/>
+	<feature name="RCK"/>
+	<feature name="Control_Automatic_PW"/>
+	<feature name="Safety_Function"/>
+	<feature name="Adjust_EM"/>
+	<feature name="Control_AS"/>
+	<feature name="AS"/>
+	<feature name="Interior_Monitoring"/>
+	<feature name="Seat"/>
+</configuration>
