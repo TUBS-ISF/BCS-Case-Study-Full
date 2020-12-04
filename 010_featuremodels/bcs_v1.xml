@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<extendedFeatureModel>
+	<properties>
+		<graphics key="showhiddenfeatures" value="true"/>
+		<graphics key="legendautolayout" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="vertical"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="4"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="BodyComfortSystem">
+			<graphics key="collapsed" value="false"/>
+			<and mandatory="true" name="Wiper">
+				<feature name="Clean"/>
+				<alt mandatory="true" name="Sensor">
+					<feature name="Low_Quality_Sensor"/>
+					<feature name="High_Quality_Sensor"/>
+				</alt>
+				<and name="Frost_Protection">
+					<feature name="Clean_Protection"/>
+					<feature mandatory="true" name="Sensor_Protection"/>
+					<feature name="Permanent_Protection"/>
+				</and>
+				<and name="Permanent">
+					<feature name="Intensity"/>
+				</and>
+				<alt mandatory="true" name="Wiper_Quality">
+					<feature name="Low_Quality_Wiper"/>
+					<feature name="High_Quality_Wiper"/>
+				</alt>
+			</and>
+			<and mandatory="true" name="HMI">
+				<or name="StatusLED">
+					<feature name="LED_Wiper"/>
+					<feature name="LED_Frost_Protection"/>
+					<feature name="LED_Clean"/>
+					<feature name="LED_FP"/>
+					<feature name="LED_PW"/>
+					<feature name="LED_EM"/>
+					<feature name="LED_AS"/>
+					<feature name="LED_CLS"/>
+					<feature name="LED_Heatable"/>
+				</or>
+			</and>
+			<and mandatory="true" name="DoorSystem">
+				<and mandatory="true" name="EM">
+					<feature mandatory="true" name="Electric"/>
+					<feature name="Heatable"/>
+				</and>
+				<and mandatory="true" name="PW">
+					<feature mandatory="true" name="FP"/>
+					<alt abstract="true" mandatory="true" name="PW_Control">
+						<feature name="Manual_PW"/>
+						<feature name="Automatic_PW"/>
+					</alt>
+				</and>
+			</and>
+			<and name="Security">
+				<and name="CLS">
+					<feature name="Automatic_Locking"/>
+				</and>
+				<and name="RCK">
+					<feature name="Control_Automatic_PW"/>
+					<feature name="Safety_Function"/>
+					<feature name="Adjust_EM"/>
+					<feature name="Control_AS"/>
+				</and>
+				<and name="AS">
+					<feature name="Interior_Monitoring"/>
+				</and>
+			</and>
+		</and>
+	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>LED_AS</var>
+				<var>AS</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>LED_Heatable</var>
+				<var>Heatable</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Control_Automatic_PW</var>
+				<not>
+					<var>Manual_PW</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>LED_CLS</var>
+				<var>CLS</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>RCK</var>
+				<var>CLS</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Control_AS</var>
+				<var>AS</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Clean_Protection</var>
+				<var>Clean</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Permanent_Protection</var>
+				<var>Permanent</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>LED_Frost_Protection</var>
+				<var>Frost_Protection</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>LED_Clean</var>
+				<var>Clean</var>
+			</imp>
+		</rule>
+	</constraints>
+</extendedFeatureModel>
