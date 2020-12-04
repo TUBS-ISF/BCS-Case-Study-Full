@@ -1,0 +1,14 @@
+
+Testcase MSC20 {
+	ENV -> P1.activate_as -> P1.HMI
+	P1.HMI -> P1.as_activated -> P1.AS
+	P1.AS -> P1.as_active_on -> ENV
+	ENV -> tick -> P1.HMI
+	ENV -> tick -> P1.AS
+	ENV -> P1.im_alarm_detected -> P1.AS
+	P1.AS -> P1.as_im_alarm_on -> ENV
+	ENV -> P1.deactivate_as -> P1.HMI
+	P1.HMI -> P1.as_deactivated -> P1.AS
+	P1.AS -> P1.as_active_off -> ENV
+	P1.AS -> P1.as_im_alarm_off ->ENV 
+}

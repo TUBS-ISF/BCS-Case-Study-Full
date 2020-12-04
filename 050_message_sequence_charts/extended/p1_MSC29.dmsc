@@ -1,0 +1,11 @@
+Testcase P1MSC29 {
+	ENV -> P1.pw_but_mv_up -> P1.HMI
+	P1.HMI -> P1.pw_but_up -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	ENV -> P1.finger_detected -> P1.FP
+	P1.FP -> P1.fp_on -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	P1.FP -> P1.fp_on -> ENV
+	ENV -> P1.pw_but_mv_up -> P1.HMI
+	P1.HMI -> P1.pw_but_up -> P1.AutoPW
+}

@@ -1,0 +1,21 @@
+Testcase P10MSC2{
+	ENV -> P10.em_but_mv_up -> P10.HMI
+	P10.HMI -> P10.em_but_up -> P10.EM
+	P10.EM -> P10.em_mv_up -> ENV
+	P10.EM -> P10.em_pos_vert_pend -> P10.LED_EMB
+	P10.LED_EMB -> P10.led_em_bottom_off -> ENV
+	P10.EM -> P10.em_pos_vert_pend -> P10.LED_EMT
+	ENV -> P10.em_pos_vert_top -> P10.EM
+	P10.EM -> P10.em_pos_vert_top -> P10.LED_EMT
+	P10.LED_EMT -> P10.led_em_top_on -> ENV
+	ENV -> P10.em_but_mv_dn -> P10.HMI
+	P10.HMI -> P10.em_but_down -> P10.EM
+	P10.EM -> P10.em_mv_down -> ENV
+	P10.EM -> P10.em_pos_vert_pend -> P10.LED_EMT
+	P10.LED_EMT -> P10.led_em_top_off -> ENV
+	P10.EM -> P10.em_pos_vert_pend -> P10.LED_EMB
+	P10.LED_EMB -> P10.led_em_bottom_off -> ENV
+	ENV -> P10.em_pos_bottom -> P10.EM
+	P10.EM -> P10.em_pos_vert_bottom -> P10.LED_EMB
+	P10.LED_EMB -> P10.led_em_bottom_on -> ENV
+}

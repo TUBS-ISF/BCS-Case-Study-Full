@@ -1,0 +1,7 @@
+ Testcase P1MSC32 {
+	ENV -> P1.em_too_cold -> P1.EMH
+	P1.EMH -> P1.heating_on -> ENV
+	ENV -> tick -> P1.EMH
+	ENV -> P1.time_heating_elapsed -> P1.EMH
+	P1.EMH -> P1.heating_off -> ENV
+}

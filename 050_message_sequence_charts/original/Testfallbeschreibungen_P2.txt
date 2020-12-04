@@ -1,0 +1,150 @@
+Testcase MSC28{
+	ENV -> P2.cls_unlock -> P2.AutoPW
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_dn -> ENV
+	ENV -> P2.pw_rm_up -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_up -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_stop -> ENV
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_dn -> ENV
+	ENV -> P2.pw_but_up -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_stop -> ENV
+	ENV -> P2.cls_lock -> P2.AutoPW 
+	P2.AutoPW -> P2.pw_auto_mv_up -> ENV
+	ENV -> P2.fp_on -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_stop -> ENV
+	ENV -> P2.pw_rm_up -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_up -> P2.AutoPW
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.RCK_Ctrl -> P2.pw_but_dn -> ENV
+}
+
+Testcase MSC29 {
+	ENV -> P2.cls_unlock -> P2.AutoPW
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_dn -> ENV
+	ENV -> P2.pw_rm_up -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_up -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_stop -> ENV
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_dn -> ENV
+	ENV -> P2.pw_but_up -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_stop -> ENV
+	ENV -> P2.cls_lock -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_up -> ENV
+	ENV -> P2.finger_detected -> P2.FP
+	P2.FP -> P2.fp_on -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_stop -> ENV
+	ENV -> P2.pw_rm_up -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_up -> P2.AutoPW
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.FP
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.FP -> P2.fp_off -> P2.AutoPW
+	ENV -> P2.pw_rm_up -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_up -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_up -> ENV
+}
+
+Testcase MSC30{
+	ENV -> P2.rck_but_unlock -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_unlock -> P2.CLS
+	P2.RCK_Ctrl -> P2.rck_unlock -> ENV
+	P2.CLS -> P2.cls_unlock -> P2.AutoPW
+	P2.CLS -> P2.cls_unlock -> ENV
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_dn -> ENV
+	ENV -> P2.pw_but_up -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_stop -> ENV
+	ENV -> P2.pw_but_up -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_up -> ENV
+	ENV -> P2.rck_but_lock -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_lock -> P2.CLS
+	P2.CLS -> P2.cls_lock -> P2.AutoPW
+	P2.CLS -> P2.cls_lock -> ENV
+	P2.AutoPW -> P2.pw_auto_mv_up -> ENV
+	ENV -> P2.finger_detected -> P2.FP
+	P2.FP -> P2.fp_on -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_stop -> ENV
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.FP
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.FP -> P2.fp_off -> P2.AutoPW
+	ENV -> P2.pw_rm_up -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_up -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_up -> ENV 
+}
+
+Testcase MSC31 {
+	ENV -> P2.rck_but_unlock -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_unlock -> P2.CLS
+	P2.RCK_Ctrl -> P2.rck_unlock -> ENV
+	P2.CLS -> P2.cls_unlock -> ENV
+	ENV -> tick -> P2.RCK_Ctrl
+	ENV -> tick -> P2.CLS
+	ENV -> P2.time_rck_sf_elapsed -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_lock -> P2.CLS
+	P2.RCK_Ctrl -> P2.rck_lock -> ENV
+	P2.CLS -> P2.cls_lock -> ENV
+}
+
+Testcase MSC32 {
+	ENV -> P2.rck_but_unlock -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_unlock -> P2.AS
+	P2.RCK_Ctrl -> P2.rck_unlock -> ENV
+	P2.AS -> P2.as_active_off -> ENV
+	ENV -> tick -> P2.RCK_Ctrl 
+	ENV -> tick -> P2.AS
+	ENV -> P2.time_rck_sf_elapsed -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_lock -> P2.AS
+	P2.RCK_Ctrl -> P2.rck_lock -> ENV
+	P2.AS -> P2.as_active_on -> ENV  
+}
+
+Testcase MSC33 {
+	ENV -> P2.rck_but_unlock -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_unlock -> P2.CLS
+	P2.RCK_Ctrl -> P2.rck_unlock -> P2.AS
+	P2.CLS -> P2.cls_unlock -> ENV
+	P2.AS -> P2.as_active_off -> ENV
+	ENV -> tick -> P2.RCK_Ctrl
+	ENV -> tick -> P2.CLS
+	ENV -> tick -> P2.AS
+	ENV -> P2.time_rck_sf_elapsed -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_lock -> P2.CLS
+	P2.RCK_Ctrl -> P2.rck_lock -> P2.AS
+	P2.CLS -> P2.cls_lock -> ENV
+	P2.AS -> P2.as_active_on -> ENV
+}
+
+Testcase MSC34 {
+	ENV -> P2.rck_but_unlock -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_unlock -> P2.CLS
+	P2.RCK_Ctrl -> P2.rck_unlock -> ENV
+	P2.CLS -> P2.cls_unlock -> ENV
+	ENV -> tick -> P2.RCK_Ctrl
+	ENV -> tick -> P2.CLS
+	ENV -> P2.door_open -> P2.RCK_Ctrl
+	ENV -> tick -> P2.RCK_Ctrl
+	ENV -> tick -> P2.CLS
+	ENV -> P2.rck_but_lock -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_lock -> P2.CLS
+	P2.RCK_Ctrl -> P2.rck_lock -> ENV
+	P2.CLS -> P2.cls_lock -> ENV
+	ENV -> P2.rck_but_unlock -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_unlock -> P2.CLS
+	P2.RCK_Ctrl -> P2.rck_unlock -> ENV
+	P2.CLS -> P2.cls_unlock -> ENV
+	ENV -> tick -> P2.RCK_Ctrl
+	ENV -> tick -> P2.CLS
+	ENV -> P2.time_rck_sf_elapsed -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_lock -> P2.CLS
+	P2.RCK_Ctrl -> P2.rck_lock -> ENV
+	P2.CLS -> P2.cls_lock -> ENV
+}

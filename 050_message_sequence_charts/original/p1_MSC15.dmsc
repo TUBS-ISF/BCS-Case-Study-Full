@@ -1,0 +1,22 @@
+Testcase MSC15 {
+	ENV -> P1.em_but_mv_left -> P1.HMI
+	P1.HMI -> P1.em_but_left -> P1.EMH
+	P1.EMH -> P1.em_mv_left -> ENV
+	ENV -> P1.em_pos_left -> P1.EMH
+	ENV -> P1.em_but_mv_up -> P1.HMI
+	P1.HMI -> P1.em_but_up -> P1.EMH
+	P1.EMH -> P1.em_mv_up -> ENV
+	ENV -> P1.em_pos_top -> P1.EMH
+	ENV -> P1.em_too_cold -> P1.EMH
+	P1.EMH -> P1.heating_on -> ENV
+	ENV -> P1.em_but_mv_right -> P1.HMI
+	P1.HMI -> P1.em_but_right -> P1.EMH
+	P1.EMH -> P1.em_mv_right -> ENV
+	ENV -> P1.em_pos_right -> P1.EMH
+	ENV -> P1.em_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.em_but_down -> P1.EMH
+	P1.EMH -> P1.em_mv_down -> ENV
+	ENV -> P1.em_pos_bottom -> P1.EMH
+	ENV -> P1.time_heating_elapsed -> P1.EMH
+	P1.EMH -> P1.heating_off -> ENV
+}

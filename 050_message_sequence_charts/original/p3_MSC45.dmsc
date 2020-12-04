@@ -1,0 +1,14 @@
+Testcase MSC45{
+	ENV -> P3.rck_but_lock -> P3.RCK_Ctrl
+	P3.RCK_Ctrl -> P3.rck_lock -> P3.CLS
+	P3.RCK_Ctrl -> P3.rck_lock -> ENV
+	P3.CLS -> P3.cls_lock -> P3.LED_CLS
+	P3.CLS -> P3.cls_lock -> ENV
+	P3.LED_CLS -> P3.led_cls_on -> ENV
+	ENV -> P3.rck_but_unlock -> P3.RCK_Ctrl
+	P3.RCK_Ctrl -> P3.rck_unlock -> P3.CLS
+	P3.RCK_Ctrl -> P3.rck_unlock -> ENV
+	P3.CLS -> P3.cls_unlock -> P3.LED_CLS
+	P3.CLS -> P3.cls_unlock -> ENV
+	P3.LED_CLS -> P3.led_cls_off -> ENV
+}

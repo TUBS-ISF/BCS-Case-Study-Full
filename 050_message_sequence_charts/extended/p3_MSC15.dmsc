@@ -1,0 +1,22 @@
+Testcase P3MSC15 {
+	ENV -> P3.em_but_mv_up -> P3.HMI
+	P3.HMI -> P3.em_but_up -> P3.EMH
+	P3.EMH -> P3.em_mv_up -> ENV
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMB
+	P3.LED_EMB -> P3.led_em_bottom_off -> ENV 
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMT
+	P3.LED_EMT -> P3.led_em_top_off -> ENV
+	ENV -> P3.em_pos_top -> P3.EMH
+	P3.EMH -> P3.em_pos_vert_top -> P3.LED_EMT
+	P3.LED_EMT -> P3.led_em_top_on -> ENV
+	ENV -> P3.em_but_mv_dn -> P3.HMI
+	P3.HMI -> P3.em_but_down -> P3.EMH
+	P3.EMH -> P3.em_mv_down -> ENV
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMT
+	P3.LED_EMT -> P3.led_em_top_off -> ENV
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMB
+	P3.LED_EMB -> P3.led_em_bottom_off -> ENV
+	ENV -> P3.em_pos_bottom -> P3.EMH
+	P3.EMH -> P3.em_pos_vert_bottom -> P3.LED_EMB
+	P3.LED_EMB -> P3.led_em_bottom_on -> ENV
+}

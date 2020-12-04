@@ -1,0 +1,15 @@
+Testcase P3MSC5 {
+	ENV -> P3.key_pos_lock -> P3.CLS
+	P3.CLS -> P3.cls_lock -> P3.ManPW
+	P3.CLS -> P3.cls_lock -> P3.LED_CLS
+	P3.LED_CLS -> P3.led_cls_on -> ENV
+	P3.CLS -> P3.cls_lock -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	ENV -> P3.key_pos_unlock -> P3.CLS
+	P3.CLS -> P3.cls_unlock -> P3.ManPW
+	P3.CLS -> P3.cls_unlock -> P3.LED_CLS
+	P3.LED_CLS -> P3.led_cls_off -> ENV 
+	P3.CLS -> P3.cls_unlock -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+}

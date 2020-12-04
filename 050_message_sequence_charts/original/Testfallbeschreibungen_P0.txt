@@ -1,0 +1,103 @@
+Testcase MSC1 {
+	ENV -> P0.finger_detected -> P0.FP
+	P0.FP -> P0.fp_on -> P0.ManPW
+	ENV -> P0.pw_but_mv_dn -> P0.HMI
+	P0.HMI -> P0.pw_but_dn -> P0.FP
+	P0.FP -> P0.fp_off -> P0.ManPW
+	P0.HMI -> P0.pw_but_dn -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_dn -> ENV
+}
+
+Testcase MSC2 {
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.finger_detected -> P0.FP
+	P0.FP -> P0.fp_on -> P0.ManPW
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+	ENV -> P0.pw_but_mv_dn -> P0.HMI
+	P0.HMI -> P0.pw_but_dn -> P0.FP
+	P0.FP -> P0.fp_off -> P0.ManPW
+	P0.HMI -> P0.pw_but_dn -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_dn -> ENV
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+}
+
+Testcase MSC3 {
+	ENV -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_but_up -> ENV
+	ENV -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_but_up -> ENV
+	ENV -> P0.finger_detected -> P0.FP
+	P0.FP -> P0.fp_on -> P0.ManPW
+	ENV -> P0.pw_but_up -> P0.ManPW
+	ENV -> P0.pw_but_dn -> P0.FP
+	P0.FP -> P0.fp_off -> P0.ManPW
+	ENV -> P0.pw_but_dn -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_dn -> ENV
+	ENV -> P0.pw_but_dn -> P0.FP
+	ENV -> P0.pw_but_dn -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_dn -> ENV
+	ENV -> P0.pw_pos_dn -> P0.ManPW
+	ENV -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.pw_pos_up -> P0.ManPW
+	}
+
+Testcase MSC4 {
+	ENV -> P0.em_but_mv_left -> P0.HMI
+	P0.HMI -> P0.em_but_left -> P0.EM
+	P0.EM -> P0.em_mv_left -> ENV
+	ENV -> P0.em_pos_left -> P0.EM
+	ENV -> P0.em_but_mv_up -> P0.HMI
+	P0.HMI -> P0.em_but_up -> P0.EM
+	P0.EM -> P0.em_mv_up -> ENV
+	ENV -> P0.em_pos_top -> P0.EM
+	ENV -> P0.em_but_mv_right -> P0.HMI
+	P0.HMI -> P0.em_but_right -> P0.EM
+	P0.EM -> P0.em_mv_right -> ENV
+	ENV -> P0.em_pos_right -> P0.EM
+	ENV -> P0.em_but_mv_dn -> P0.HMI
+	P0.HMI -> P0.em_but_down -> P0.EM
+	P0.EM -> P0.em_mv_down -> ENV
+	ENV -> P0.em_pos_bottom -> P0.EM
+}
+
+Testcase MSC5 {
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.pw_but_mv_dn -> P0.HMI
+	P0.HMI -> P0.pw_but_dn -> ENV
+	P0.HMI -> P0.pw_but_dn -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_dn -> ENV
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+}
+
+Testcase MSC6 {
+	ENV -> P0.finger_detected -> P0.FP
+	P0.FP -> P0.fp_on -> ENV
+	ENV-> P0.pw_but_mv_dn ->P0.HMI
+	P0.HMI -> P0.pw_but_dn -> P0.FP
+	P0.HMI -> P0.pw_but_dn -> ENV
+	P0.FP -> P0.fp_off -> ENV 	
+}

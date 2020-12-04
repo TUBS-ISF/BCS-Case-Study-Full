@@ -1,0 +1,7 @@
+Testcase P1MSC25 {
+	ENV -> P1.key_pos_unlock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> P1.AutoPW
+	P1.CLS -> P1.cls_unlock -> ENV
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+}

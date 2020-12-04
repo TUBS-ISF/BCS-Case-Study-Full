@@ -1,0 +1,17 @@
+Testcase P3MSC10 {
+	ENV -> P3.rck_but_unlock -> P3.RCK_Ctrl
+	P3.RCK_Ctrl -> P3.rck_unlock -> P3.CLS
+	P3.CLS -> P3.cls_unlock -> P3.ManPW
+	P3.CLS -> P3.cls_unlock -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	ENV -> P3.pw_pos_dn -> P3.ManPW
+	ENV -> P3.rck_but_lock -> P3.RCK_Ctrl
+	P3.RCK_Ctrl -> P3.rck_lock -> P3.CLS
+	P3.CLS -> P3.cls_lock -> P3.ManPW
+	P3.CLS -> P3.cls_lock -> ENV
+	ENV -> P3.pw_but_up -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_up -> ENV
+}

@@ -1,0 +1,348 @@
+Testcase MSC35 {
+	ENV -> P3.em_but_mv_left -> P3.HMI
+	P3.HMI -> P3.em_but_left -> P3.EMH
+	P3.EMH -> P3.em_mv_left -> ENV
+	P3.EMH -> P3.em_pos_hor_pend -> P3.LED_EML
+	P3.LED_EML -> P3.led_em_left_off -> ENV
+	P3.EMH -> P3.em_pos_hor_pend -> P3.LED_EMR
+	P3.LED_EMR -> P3.led_em_right_off -> ENV
+	ENV -> P3.em_pos_left -> P3.EMH
+	P3.EMH -> P3.em_pos_hor_left -> P3.LED_EML
+	P3.LED_EML -> P3.led_em_left_on -> ENV
+	ENV -> P3.em_but_mv_up -> P3.HMI
+	P3.HMI -> P3.em_but_up -> P3.EMH
+	P3.EMH -> P3.em_mv_up -> ENV
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMB
+	P3.LED_EMB -> P3.led_em_bottom_off -> ENV 
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMT
+	P3.LED_EMT -> P3.led_em_top_off -> ENV
+	ENV -> P3.em_pos_top -> P3.EMH
+	P3.EMH -> P3.em_pos_vert_top -> P3.LED_EMT
+	P3.LED_EMT -> P3.led_em_top_on -> ENV
+	ENV -> P3.em_too_cold -> P3.EMH
+	P3.EMH -> P3.heating_on -> ENV
+	P3.EMH -> P3.heating_on -> P3.LED_EMH
+	P3.LED_EMH -> P3.led_em_heating_on -> ENV
+	ENV -> P3.em_but_mv_right -> P3.HMI
+	P3.HMI -> P3.em_but_right -> P3.EMH
+	P3.EMH -> P3.em_mv_right -> ENV
+	P3.EMH -> P3.em_pos_hor_pend -> P3.LED_EML
+	P3.LED_EML -> P3.led_em_left_off -> ENV
+	P3.EMH -> P3.em_pos_hor_pend -> P3.LED_EMR
+	P3.LED_EMR -> P3.led_em_right_off -> ENV
+	ENV -> P3.em_pos_right -> P3.EMH
+	P3.EMH -> P3.em_pos_hor_right -> P3.LED_EMR
+	P3.LED_EMR -> P3.led_em_right_on -> ENV
+	ENV -> P3.em_but_mv_up -> P3.HMI
+	P3.HMI -> P3.em_but_down -> P3.EMH
+	P3.EMH -> P3.em_mv_down -> ENV
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMT
+	P3.LED_EMT -> P3.led_em_top_off -> ENV
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMB
+	P3.LED_EMB -> P3.led_em_bottom_off -> ENV
+	ENV -> P3.em_pos_bottom -> P3.EMH
+	P3.EMH -> P3.em_pos_vert_bottom -> P3.LED_EMB
+	P3.LED_EMB -> P3.led_em_bottom_on -> ENV
+	ENV -> P3.time_heating_elapsed -> P3.EMH
+	P3.EMH -> P3.heating_off -> ENV 
+	P3.EMH -> P3.heating_off -> P3.LED_EMH
+    P3.LED_EMH -> P3.led_em_heating_off -> ENV
+	}
+Testcase MSC36 {
+	ENV -> P3.pw_but_mv_up -> P3.HMI
+	P3.HMI -> P3.pw_but_up -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_up -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_up_on -> ENV
+	P3.ManPW -> P3.pw_mv_up -> ENV
+	ENV -> P3.pw_but_mv_up -> P3.HMI
+	P3.HMI -> P3.pw_but_up -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_up -> ENV
+	P3.ManPW -> P3.pw_mv_up -> P3.LED_ManPW
+	ENV -> P3.finger_detected -> P3.FP
+	P3.FP -> P3.fp_on -> P3.ManPW
+	ENV -> P3.pw_but_mv_up -> P3.HMI
+	P3.HMI -> P3.pw_but_up -> P3.ManPW
+	ENV -> P3.release_pw_but -> P3.HMI
+	P3.HMI -> P3.release_pw_but -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_up_off -> ENV
+	ENV -> P3.pw_but_mv_dn -> P3.HMI
+	P3.HMI -> P3.pw_but_dn -> P3.FP
+	P3.FP -> P3.fp_off -> P3.ManPW	
+	P3.HMI -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	P3.ManPW -> P3.pw_mv_dn -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_dn_on -> ENV
+	ENV -> P3.release_pw_but_dn -> P3.HMI
+	P3.HMI -> P3.release_pw_but -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_dn_off -> ENV
+	ENV -> P3.pw_but_mv_up -> P3.HMI
+	P3.HMI -> P3.pw_but_up -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_up -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_up_on -> ENV
+	P3.ManPW -> P3.pw_mv_up -> ENV
+}
+
+Testcase MSC37 {
+	ENV -> P3.activate_as -> P3.HMI
+	P3.HMI -> P3.as_activated -> P3.AS
+	ENV -> P3.key_pos_lock -> P3.AS
+	P3.AS -> P3.as_active_on -> P3.LED_ASAC
+	P3.LED_ASAC -> P3.led_as_active_on -> ENV
+	P3.AS -> P3.as_active_on -> ENV
+	ENV -> tick -> P3.HMI
+	ENV -> tick -> P3.AS
+	ENV -> P3.as_alarm_detected -> P3.AS
+	P3.AS -> P3.as_alarm_on -> P3.LED_ASAL
+	P3.LED_ASAL -> P3.led_as_alarm_on -> ENV
+	P3.AS -> P3.as_alarm_on -> ENV
+	ENV -> tick -> P3.HMI
+	ENV -> tick -> P3.AS
+	ENV -> P3.time_alarm_elapsed -> P3.AS
+	P3.AS -> P3.as_alarm_was_detected -> P3.LED_ASAD
+	P3.LED_ASAD -> P3.led_as_alarm_detected_on -> ENV
+	P3.AS -> P3.as_alarm_off -> P3.LED_ASAL
+	P3.AS -> P3.as_alarm_off -> ENV
+	P3.LED_ASAL -> P3.led_as_alarm_off -> ENV
+	ENV -> P3.key_pos_unlock -> P3.AS
+	P3.AS -> P3.as_active_off -> P3.LED_ASAC
+	P3.LED_ASAC -> P3.led_as_active_off -> ENV
+	P3.AS -> P3.as_active_off -> ENV
+	ENV -> P3.confirm_alarm -> P3.HMI
+	P3.HMI -> P3.as_alarm_was_confirmed -> P3.LED_ASAD
+	P3.LED_ASAD -> P3.led_as_alarm_detected_off -> ENV   
+}
+
+Testcase MSC38{
+	ENV -> P3.key_pos_lock -> P3.CLS
+	P3.CLS -> P3.cls_lock -> P3.LED_CLS
+	P3.CLS -> P3.cls_lock -> ENV
+	P3.LED_CLS -> P3.led_cls_on -> ENV
+	ENV -> P3.key_pos_unlock -> P3.CLS
+	P3.CLS -> P3.cls_unlock -> P3.LED_CLS
+	P3.CLS -> P3.cls_unlock -> ENV
+	P3.LED_CLS -> P3.led_cls_off -> ENV
+}
+
+Testcase MSC39{
+	ENV -> P3.key_pos_lock -> P3.CLS
+	P3.CLS -> P3.cls_lock -> P3.ManPW
+	P3.CLS -> P3.cls_lock -> P3.LED_CLS
+	P3.LED_CLS -> P3.led_cls_on -> ENV
+	P3.CLS -> P3.cls_lock -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	ENV -> P3.key_pos_unlock -> P3.CLS
+	P3.CLS -> P3.cls_unlock -> P3.ManPW
+	P3.CLS -> P3.cls_unlock -> P3.LED_CLS
+	P3.LED_CLS -> P3.led_cls_off -> ENV 
+	P3.CLS -> P3.cls_unlock -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+}
+
+Testcase MSC40 {
+	ENV -> P3.key_pos_lock -> P3.CLS
+	P3.CLS -> P3.cls_lock -> P3.ManPW
+	P3.CLS -> P3.cls_lock -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	ENV -> P3.key_pos_unlock -> P3.CLS
+	P3.CLS -> P3.cls_unlock -> P3.ManPW 
+	P3.CLS -> P3.cls_unlock -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+}
+
+Testcase MSC41 {
+	ENV -> P3.key_pos_unlock -> P3.CLS
+	P3.CLS -> P3.cls_unlock -> P3.ManPW 
+	P3.CLS -> P3.cls_unlock -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	ENV -> P3.pw_pos_dn -> P3.ManPW
+	ENV -> P3.key_pos_lock -> P3.CLS
+	P3.CLS -> P3.cls_lock -> P3.ManPW
+	P3.CLS -> P3.cls_lock -> ENV
+	ENV -> P3.pw_but_up -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_up -> ENV
+	ENV -> P3.finger_detected -> P3.FP
+	P3.FP -> P3.fp_on -> P3.ManPW
+	P3.FP -> P3.fp_on -> ENV
+	ENV -> P3.pw_but_dn -> P3.FP
+	P3.FP -> P3.fp_off -> P3.ManPW
+	P3.FP -> P3.fp_off -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	ENV -> P3.key_pos_unlock -> P3.CLS
+	P3.CLS -> P3.cls_unlock -> P3.ManPW
+	P3.CLS -> P3.cls_unlock -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+}
+
+Testcase MSC42{
+	ENV -> P3.key_pos_lock -> P3.CLS
+	P3.CLS -> P3.cls_lock -> P3.ManPW
+	P3.CLS -> P3.cls_lock -> ENV
+	ENV -> P3.pw_but_mv_dn -> P3.HMI
+	P3.HMI -> P3.pw_but_dn -> P3.ManPW
+	ENV -> P3.key_pos_unlock -> P3.CLS
+	P3.CLS -> P3.cls_unlock -> P3.ManPW
+	P3.CLS -> P3.cls_unlock -> ENV
+	ENV -> P3.pw_but_mv_dn -> P3.HMI
+	P3.HMI -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+}
+
+Testcase MSC43{
+	ENV -> P3.key_pos_unlock -> P3.CLS
+	P3.CLS -> P3.cls_unlock -> P3.ManPW
+	P3.CLS -> P3.cls_unlock -> ENV
+	ENV -> P3.pw_but_mv_dn -> P3.HMI
+	P3.HMI -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	ENV -> P3.pw_but_mv_dn -> P3.HMI
+	P3.HMI -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	ENV -> P3.pw_pos_dn -> P3.ManPW
+	ENV -> P3.key_pos_lock -> P3.CLS
+	P3.CLS -> P3.cls_lock -> P3.ManPW
+	P3.CLS -> P3.cls_lock -> ENV
+	ENV -> P3.pw_but_mv_up -> P3.HMI
+	P3.HMI -> P3.pw_but_up -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_up -> ENV
+	ENV -> P3.finger_detected -> P3.FP
+	P3.FP -> P3.fp_on -> P3.ManPW
+	P3.FP -> P3.fp_on -> ENV  
+	ENV -> P3.pw_but_mv_dn -> P3.HMI
+	P3.HMI -> P3.pw_but_dn -> P3.FP
+	P3.FP -> P3.fp_off -> P3.ManPW
+	P3.FP -> P3.fp_off -> ENV
+	ENV -> P3.pw_but_mv_dn -> P3.HMI
+	P3.HMI -> P3.pw_but_dn -> P3.ManPW
+	ENV -> P3.key_pos_unlock -> P3.CLS 
+	P3.CLS -> P3.cls_unlock -> P3.ManPW
+	P3.CLS -> P3.cls_unlock -> ENV
+	ENV -> P3.pw_but_mv_dn -> P3.HMI
+	P3.HMI -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV  
+}
+
+Testcase MSC44 {
+	ENV -> P3.rck_but_unlock -> P3.RCK_Ctrl
+	P3.RCK_Ctrl -> P3.rck_unlock -> P3.CLS
+	P3.CLS -> P3.cls_unlock -> P3.ManPW
+	P3.CLS -> P3.cls_unlock -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	ENV -> P3.pw_pos_dn -> P3.ManPW
+	ENV -> P3.rck_but_lock -> P3.RCK_Ctrl
+	P3.RCK_Ctrl -> P3.rck_lock -> P3.CLS
+	P3.CLS -> P3.cls_lock -> P3.ManPW
+	P3.CLS -> P3.cls_lock -> ENV
+	ENV -> P3.pw_but_up -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_up -> ENV
+	ENV -> P3.finger_detected -> P3.FP
+	P3.FP -> P3.fp_on -> P3.ManPW
+	P3.FP -> P3.fp_on -> ENV
+	ENV -> P3.pw_but_dn -> P3.FP
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.FP -> P3.fp_off -> P3.ManPW
+	P3.FP -> P3.fp_off -> ENV
+	ENV -> P3.key_pos_unlock -> P3.CLS 
+	P3.CLS -> P3.cls_unlock -> P3.ManPW
+	P3.CLS -> P3.cls_unlock -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV 
+}
+
+Testcase MSC45{
+	ENV -> P3.rck_but_lock -> P3.RCK_Ctrl
+	P3.RCK_Ctrl -> P3.rck_lock -> P3.CLS
+	P3.RCK_Ctrl -> P3.rck_lock -> ENV
+	P3.CLS -> P3.cls_lock -> P3.LED_CLS
+	P3.CLS -> P3.cls_lock -> ENV
+	P3.LED_CLS -> P3.led_cls_on -> ENV
+	ENV -> P3.rck_but_unlock -> P3.RCK_Ctrl
+	P3.RCK_Ctrl -> P3.rck_unlock -> P3.CLS
+	P3.RCK_Ctrl -> P3.rck_unlock -> ENV
+	P3.CLS -> P3.cls_unlock -> P3.LED_CLS
+	P3.CLS -> P3.cls_unlock -> ENV
+	P3.LED_CLS -> P3.led_cls_off -> ENV
+}
+
+Testcase MSC46 {
+	ENV -> P3.pw_but_up -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_up -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_up_on -> ENV
+	P3.ManPW -> P3.pw_mv_up -> ENV
+	ENV -> P3.pw_but_up -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_up -> ENV
+	P3.ManPW -> P3.pw_mv_up -> P3.LED_ManPW
+	ENV -> P3.fp_on -> P3.ManPW
+	ENV -> P3.pw_but_up -> P3.ManPW
+	ENV -> P3.release_pw_but -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_up_off -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	ENV -> P3.fp_off -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	P3.ManPW -> P3.pw_mv_dn -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_dn_on -> ENV
+	ENV -> P3.release_pw_but -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_dn_off -> ENV 
+}
+
+Testcase MSC47{
+	ENV -> P3.em_but_mv_left -> P3.HMI
+	P3.HMI -> P3.em_but_left -> P3.EMH
+	P3.EMH -> P3.em_mv_left -> ENV
+	P3.EMH -> P3.em_pos_hor_pend -> P3.LED_EML
+	P3.LED_EML -> P3.led_em_left_off -> ENV
+	P3.EMH -> P3.em_pos_hor_pend -> P3.LED_EMR
+	P3.LED_EMR -> P3.led_em_right_off -> ENV
+	ENV -> P3.em_pos_left -> P3.EMH
+	P3.EMH -> P3.em_pos_hor_left -> P3.LED_EML
+	P3.LED_EML -> P3.led_em_left_on -> ENV
+	ENV -> P3.em_but_mv_up -> P3.HMI
+	P3.HMI -> P3.em_but_up -> P3.EMH
+	P3.EMH -> P3.em_mv_up -> ENV
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMB
+	P3.LED_EMB -> P3.led_em_bottom_off -> ENV 
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMT
+	P3.LED_EMT -> P3.led_em_top_off -> ENV
+	ENV -> P3.em_pos_top -> P3.EMH
+	P3.EMH -> P3.em_pos_vert_top -> P3.LED_EMT
+	P3.LED_EMT -> P3.led_em_top_on -> ENV
+	ENV -> P3.em_but_mv_right -> P3.HMI
+	P3.HMI -> P3.em_but_right -> P3.EMH
+	P3.EMH -> P3.em_mv_right -> ENV
+	P3.EMH -> P3.em_pos_hor_pend -> P3.LED_EML
+	P3.LED_EML -> P3.led_em_left_off -> ENV
+	P3.EMH -> P3.em_pos_hor_pend -> P3.LED_EMR
+	P3.LED_EMR -> P3.led_em_right_off -> ENV
+	ENV -> P3.em_pos_right -> P3.EMH
+	P3.EMH -> P3.em_pos_hor_right -> P3.LED_EMR
+	P3.LED_EMR -> P3.led_em_right_on -> ENV
+	ENV -> P3.em_but_mv_up -> P3.HMI
+	P3.HMI -> P3.em_but_down -> P3.EMH
+	P3.EMH -> P3.em_mv_down -> ENV
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMT
+	P3.LED_EMT -> P3.led_em_top_off -> ENV
+	P3.EMH -> P3.em_pos_vert_pend -> P3.LED_EMB
+	P3.LED_EMB -> P3.led_em_bottom_off -> ENV
+	ENV -> P3.em_pos_bottom -> P3.EMH
+	P3.EMH -> P3.em_pos_vert_bottom -> P3.LED_EMB
+	P3.LED_EMB -> P3.led_em_bottom_on -> ENV
+}
+
+Testcase MSC48 { 
+	ENV -> P3.finger_detected -> P3.FP
+	P3.FP -> P3.fp_on -> P3.ManPW
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	ENV -> P3.pw_but_dn -> P3.FP
+	P3.FP -> P3.fp_off -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	P3.ManPW -> P3.pw_mv_dn -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_dn_on -> ENV    
+}

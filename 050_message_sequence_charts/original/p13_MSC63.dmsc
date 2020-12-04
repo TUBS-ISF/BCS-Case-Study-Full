@@ -1,0 +1,12 @@
+Testcase MSC63 {
+	ENV -> P13.em_too_cold -> P13.EMH
+	P13.EMH -> P13.heating_on -> ENV
+	P13.EMH -> P13.heating_on -> P13.LED_EMH
+	P13.LED_EMH -> P13.led_em_heating_on -> ENV
+	ENV -> tick -> P13.EMH
+	ENV -> tick -> P13.LED_EMH 
+	ENV -> P13.time_heating_elapsed -> P13.EMH
+	P13.EMH -> P13.heating_off -> ENV
+	P13.EMH -> P13.heating_off -> P13.LED_EMH
+	P13.LED_EMH -> P13.led_em_heating_off -> ENV
+}

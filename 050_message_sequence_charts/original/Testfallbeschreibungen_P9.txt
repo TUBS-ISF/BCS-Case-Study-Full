@@ -1,0 +1,40 @@
+Testcase MSC60{
+	ENV -> P9.rck_but_unlock -> P9.RCK_Ctrl
+	P9.RCK_Ctrl -> P9.rck_unlock -> P9.CLS
+	P9.RCK_Ctrl -> P9.rck_unlock -> P9.AS
+	P9.CLS -> P9.cls_unlock -> ENV
+	P9.AS -> P9.as_active_on -> ENV
+	ENV -> tick -> P9.RCK_Ctrl
+	ENV -> tick -> P9.CLS
+	ENV -> tick -> P9.AS
+	ENV -> P9.time_rck_sf_elapsed -> P9.RCK_Ctrl
+	P9.RCK_Ctrl -> P9.rck_lock -> P9.CLS
+	P9.RCK_Ctrl -> P9.rck_lock -> P9.AS
+	P9.CLS -> P9.cls_lock -> ENV
+	P9.AS -> P9.as_active_on -> ENV
+	ENV -> tick -> P9.RCK_Ctrl
+	ENV -> tick -> P9.CLS
+	ENV -> tick -> P9.AS
+	ENV -> P9.im_alarm_detected -> P9.AS
+	P9.AS -> P9.as_im_alarm_on -> ENV
+	P9.AS -> P9.as_alarm_on -> ENV
+} 
+
+Testcase MSC61 {
+	ENV -> P9.key_pos_lock -> P9.CLS
+	P9.CLS -> P9.cls_lock -> P9.LED_AutoPW
+	P9.CLS -> P9.cls_lock -> P9.AutoPW
+	P9.AutoPW -> P9.pw_auto_mv_up -> P9.LED_AutoPW
+	P9.LED_AutoPW -> P9.led_pw_up_on -> ENV
+	P9.LED_AutoPW -> P9.led_pw_cls_up_on -> ENV
+	P9.AutoPW -> P9.pw_auto_mv_up -> ENV
+	P9.AutoPW -> P9.pw_auto_mv_up -> ENV
+	P9.AutoPW -> P9.pw_auto_mv_up -> P9.LED_AutoPW
+	P9.AutoPW -> P9.pw_auto_mv_up -> ENV
+	P9.AutoPW -> P9.pw_auto_mv_up -> P9.LED_AutoPW
+	ENV -> P9.pw_pos_up -> P9.AutoPW
+	P9.AutoPW -> P9.pw_auto_mv_stop -> P9.LED_AutoPW
+	P9.AutoPW -> P9.pw_auto_mv_stop -> ENV
+	P9.LED_AutoPW -> P9.led_pw_up_off -> ENV
+	P9.LED_AutoPW -> P9.led_pw_cls_up_off -> ENV
+}

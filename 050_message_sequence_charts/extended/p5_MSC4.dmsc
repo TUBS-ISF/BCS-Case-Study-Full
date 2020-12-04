@@ -1,0 +1,22 @@
+Testcase P5MSC4 {
+	ENV -> P5.as_activated -> P5.AS
+	ENV -> P5.key_pos_lock -> P5.AS
+	P5.AS -> P5.as_active_on -> ENV
+	P5.AS -> P5.as_active_on -> P5.LED_ASAC
+	P5.LED_ASAC -> P5.led_as_active_on -> ENV
+	ENV -> tick -> P5.AS
+	ENV -> P5.im_alarm_detected -> P5.AS
+	P5.AS -> P5.as_im_alarm_on -> ENV
+	P5.AS -> P5.as_im_alarm_on -> P5.LED_ASIM
+	P5.LED_ASIM -> P5.led_as_im_alarm_on -> ENV
+	P5.AS -> P5.as_alarm_on -> ENV
+	ENV -> P5.key_pos_unlock -> P5.AS
+	P5.AS -> P5.as_im_alarm_off -> ENV
+	P5.AS -> P5.as_im_alarm_off -> P5.LED_ASIM
+	P5.LED_ASIM -> P5.led_as_im_alarm_off -> ENV
+	P5.AS -> P5.as_alarm_off -> ENV
+	P5.AS -> P5.as_active_off -> ENV
+	P5.AS -> P5.as_active_off -> P5.LED_ASAC
+	P5.LED_ASAC -> P5.led_as_active_off -> ENV
+	P5.AS -> P5.as_active_off -> ENV
+}

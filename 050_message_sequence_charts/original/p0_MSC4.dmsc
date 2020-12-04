@@ -1,0 +1,18 @@
+Testcase MSC4 {
+	ENV -> P0.em_but_mv_left -> P0.HMI
+	P0.HMI -> P0.em_but_left -> P0.EM
+	P0.EM -> P0.em_mv_left -> ENV
+	ENV -> P0.em_pos_left -> P0.EM
+	ENV -> P0.em_but_mv_up -> P0.HMI
+	P0.HMI -> P0.em_but_up -> P0.EM
+	P0.EM -> P0.em_mv_up -> ENV
+	ENV -> P0.em_pos_top -> P0.EM
+	ENV -> P0.em_but_mv_right -> P0.HMI
+	P0.HMI -> P0.em_but_right -> P0.EM
+	P0.EM -> P0.em_mv_right -> ENV
+	ENV -> P0.em_pos_right -> P0.EM
+	ENV -> P0.em_but_mv_dn -> P0.HMI
+	P0.HMI -> P0.em_but_down -> P0.EM
+	P0.EM -> P0.em_mv_down -> ENV
+	ENV -> P0.em_pos_bottom -> P0.EM
+}

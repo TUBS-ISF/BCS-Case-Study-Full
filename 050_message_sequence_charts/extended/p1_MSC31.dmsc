@@ -1,0 +1,6 @@
+ Testcase P1MSC31 {
+	ENV -> P1.em_but_mv_up -> P1.HMI
+	P1.HMI -> P1.em_but_up -> P1.EMH
+	P1.EMH -> P1.em_mv_up -> ENV
+	ENV -> P1.em_pos_top -> P1.EMH
+}

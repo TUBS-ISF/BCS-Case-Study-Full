@@ -1,0 +1,8 @@
+Testcase P1MSC37 {
+	ENV -> P1.pw_but_mv_up -> P1.HMI
+	P1.HMI -> P1.pw_but_up -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+}

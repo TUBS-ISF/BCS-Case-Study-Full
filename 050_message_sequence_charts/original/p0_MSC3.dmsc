@@ -1,0 +1,22 @@
+Testcase MSC3 {
+	ENV -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.finger_detected -> P0.FP
+	P0.FP -> P0.fp_on -> P0.ManPW
+	ENV -> P0.pw_but_up -> P0.ManPW
+	ENV -> P0.pw_but_dn -> P0.FP
+	P0.FP -> P0.fp_off -> P0.ManPW
+	ENV -> P0.pw_but_dn -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_dn -> ENV
+	ENV -> P0.pw_but_dn -> P0.FP
+	ENV -> P0.pw_but_dn -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_dn -> ENV
+	ENV -> P0.pw_pos_dn -> P0.ManPW
+	ENV -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.pw_pos_up -> P0.ManPW
+}

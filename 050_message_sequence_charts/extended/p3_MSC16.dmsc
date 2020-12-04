@@ -1,0 +1,10 @@
+Testcase P3MSC16 {
+	ENV -> P3.em_too_cold -> P3.EMH
+	P3.EMH -> P3.heating_on -> ENV
+	P3.EMH -> P3.heating_on -> P3.LED_EMH
+	P3.LED_EMH -> P3.led_em_heating_on -> ENV
+	ENV -> P3.time_heating_elapsed -> P3.EMH
+	P3.EMH -> P3.heating_off -> ENV 
+	P3.EMH -> P3.heating_off -> P3.LED_EMH
+    P3.LED_EMH -> P3.led_em_heating_off -> ENV
+}

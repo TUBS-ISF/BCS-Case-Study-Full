@@ -1,0 +1,12 @@
+Testcase P1MSC23 {
+	ENV -> P1.finger_detected -> P1.FP
+	P1.FP -> P1.fp_on -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	ENV -> P1.pw_but_dn -> P1.FP
+	P1.FP -> P1.fp_off -> P1.AutoPW
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	ENV -> P1.pw_pos_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+}

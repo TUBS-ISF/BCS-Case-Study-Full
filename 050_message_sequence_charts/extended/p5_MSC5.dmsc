@@ -1,0 +1,12 @@
+Testcase P5MSC5 {
+	ENV -> P5.finger_detected -> P5.FP
+	P5.FP -> P5.fp_on -> P5.LED_FP 
+	P5.FP -> P5.fp_on -> P5.ManPW
+	P5.LED_FP -> P5.led_fp_on -> ENV
+	ENV -> P5.pw_but_dn -> P5.FP
+	ENV -> P5.pw_but_dn -> P5.ManPW
+	P5.FP -> P5.fp_off -> P5.LED_FP
+	P5.FP -> P5.fp_off -> P5.ManPW
+	P5.ManPW -> P5.pw_mv_dn -> ENV
+	P5.LED_FP -> P5.led_fp_off -> ENV
+}

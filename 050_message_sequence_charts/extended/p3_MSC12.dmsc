@@ -1,0 +1,20 @@
+Testcase P3MSC12 {
+	ENV -> P3.pw_but_up -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_up -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_up_on -> ENV
+	P3.ManPW -> P3.pw_mv_up -> ENV
+	ENV -> P3.pw_but_up -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_up -> ENV
+	P3.ManPW -> P3.pw_mv_up -> P3.LED_ManPW
+	ENV -> P3.fp_on -> P3.ManPW
+	ENV -> P3.pw_but_up -> P3.ManPW
+	ENV -> P3.release_pw_but -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_up_off -> ENV
+	ENV -> P3.pw_but_dn -> P3.ManPW
+	ENV -> P3.fp_off -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	P3.ManPW -> P3.pw_mv_dn -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_dn_on -> ENV
+	ENV -> P3.release_pw_but -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_dn_off -> ENV 
+}

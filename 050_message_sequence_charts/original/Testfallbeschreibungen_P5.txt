@@ -1,0 +1,86 @@
+Testcase MSC49 {
+	ENV -> P5.finger_detected -> P5.FP
+	P5.FP -> P5.fp_on -> P5.LED_FP 
+	P5.FP -> P5.fp_on -> P5.ManPW
+	P5.LED_FP -> P5.led_fp_on -> ENV
+	ENV -> P5.pw_but_dn -> P5.ManPW
+	ENV -> P5.pw_but_dn -> P5.FP
+	P5.ManPW -> P5.pw_mv_dn -> ENV
+	P5.ManPW -> P5.pw_mv_dn -> P5.LED_ManPW
+	P5.LED_ManPW -> P5.led_pw_dn_on -> ENV
+	P5.FP -> P5.fp_off -> P5.LED_FP
+	P5.FP -> P5.fp_off -> P5.ManPW
+	P5.LED_FP -> P5.led_fp_off -> ENV
+}
+
+Testcase MSC50 {
+	ENV -> P5.finger_detected -> P5.FP
+	P5.FP -> P5.fp_on -> P5.LED_FP 
+	P5.FP -> P5.fp_on -> P5.ManPW
+	P5.LED_FP -> P5.led_fp_on -> ENV
+	ENV -> P5.pw_but_mv_dn -> P5.HMI
+	P5.HMI -> P5.pw_but_dn -> P5.FP 
+	P5.HMI -> P5.pw_but_dn -> P5.ManPW
+	P5.ManPW -> P5.pw_mv_dn -> ENV
+	P5.ManPW -> P5.pw_mv_dn -> P5.LED_ManPW
+	P5.LED_ManPW -> P5.led_pw_dn_on -> ENV
+	P5.FP -> P5.fp_off -> P5.LED_FP
+	P5.FP -> P5.fp_off -> P5.ManPW
+	P5.LED_FP -> P5.led_fp_off -> ENV
+}
+
+Testcase MSC51 {
+	ENV -> P5.activate_as -> P5.HMI
+	P5.HMI -> P5.as_activated -> P5.AS
+	ENV -> P5.key_pos_lock -> P5.AS
+	P5.AS -> P5.as_active_on -> ENV
+	ENV -> tick -> P5.HMI
+	ENV -> tick -> P5.AS
+	ENV -> P5.im_alarm_detected -> P5.AS
+	P5.AS -> P5.as_im_alarm_on -> ENV
+	P5.AS -> P5.as_im_alarm_on -> P5.LED_ASIM
+	P5.LED_ASIM -> P5.led_as_im_alarm_on -> ENV
+	P5.AS -> P5.as_alarm_on -> ENV
+	ENV -> P5.key_pos_unlock -> P5.AS
+	P5.AS -> P5.as_im_alarm_off -> ENV
+	P5.AS -> P5.as_im_alarm_off -> P5.LED_ASIM
+	P5.LED_ASIM -> P5.led_as_im_alarm_off -> ENV
+	P5.AS -> P5.as_alarm_off -> ENV
+	P5.AS -> P5.as_active_off -> ENV
+}
+Testcase MSC52 {
+	ENV -> P5.activate_as -> P5.HMI
+	P5.HMI -> P5.as_activated -> P5.AS
+	ENV -> P5.key_pos_lock -> P5.AS
+	P5.AS -> P5.as_active_on -> ENV
+	P5.AS -> P5.as_active_on -> P5.LED_ASAC
+	P5.LED_ASAC -> P5.led_as_active_on -> ENV
+	ENV -> tick -> P5.HMI
+	ENV -> tick -> P5.AS
+	ENV -> P5.im_alarm_detected -> P5.AS
+	P5.AS -> P5.as_im_alarm_on -> ENV
+	P5.AS -> P5.as_im_alarm_on -> P5.LED_ASIM
+	P5.LED_ASIM -> P5.led_as_im_alarm_on -> ENV
+	P5.AS -> P5.as_alarm_on -> ENV
+	ENV -> P5.key_pos_unlock -> P5.AS
+	P5.AS -> P5.as_im_alarm_off -> ENV
+	P5.AS -> P5.as_im_alarm_off -> P5.LED_ASIM
+	P5.LED_ASIM -> P5.led_as_im_alarm_off -> ENV
+	P5.AS -> P5.as_alarm_off -> ENV
+	P5.AS -> P5.as_active_off -> ENV
+	P5.AS -> P5.as_active_off -> P5.LED_ASAC
+	P5.LED_ASAC -> P5.led_as_active_off -> ENV
+	P5.AS -> P5.as_active_off -> ENV
+}
+Testcase MSC53 {
+	ENV -> P5.finger_detected -> P5.FP
+	P5.FP -> P5.fp_on -> P5.LED_FP 
+	P5.FP -> P5.fp_on -> P5.ManPW
+	P5.LED_FP -> P5.led_fp_on -> ENV
+	ENV -> P5.pw_but_dn -> P5.FP
+	ENV -> P5.pw_but_dn -> P5.ManPW
+	P5.FP -> P5.fp_off -> P5.LED_FP
+	P5.FP -> P5.fp_off -> P5.ManPW
+	P5.ManPW -> P5.pw_mv_dn -> ENV
+	P5.LED_FP -> P5.led_fp_off -> ENV
+}

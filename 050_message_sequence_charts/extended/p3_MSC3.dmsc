@@ -1,0 +1,12 @@
+Testcase P3MSC3 {
+	ENV -> P3.activate_as -> P3.HMI
+	P3.HMI -> P3.as_activated -> P3.AS
+	ENV -> P3.key_pos_lock -> P3.AS
+	P3.AS -> P3.as_active_on -> P3.LED_ASAC
+	P3.LED_ASAC -> P3.led_as_active_on -> ENV
+	P3.AS -> P3.as_active_on -> ENV
+	ENV -> P3.key_pos_unlock -> P3.AS
+	P3.AS -> P3.as_active_off -> P3.LED_ASAC
+	P3.LED_ASAC -> P3.led_as_active_off -> ENV
+	P3.AS -> P3.as_active_off -> ENV
+}

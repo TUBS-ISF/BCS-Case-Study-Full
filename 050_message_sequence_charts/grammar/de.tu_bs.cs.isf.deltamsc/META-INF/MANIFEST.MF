@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: de.tu_bs.cs.isf.deltamsc
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: de.tu_bs.cs.isf.deltamsc; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+ org.xtext.deltarx;bundle-version="1.0.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types,
+ org.eclipse.emf.mwe2.launch;bundle-version="2.9.0",
+ org.eclipse.xtext.xbase.ide;bundle-version="2.10.0",
+ org.eclipse.xtext.generator;bundle-version="2.10.0"
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: de.tu_bs.cs.isf.deltamsc,
+ de.tu_bs.cs.isf.deltamsc.services,
+ de.tu_bs.cs.isf.deltamsc.deltaMSC,
+ de.tu_bs.cs.isf.deltamsc.deltaMSC.impl,
+ de.tu_bs.cs.isf.deltamsc.deltaMSC.util,
+ de.tu_bs.cs.isf.deltamsc.serializer,
+ de.tu_bs.cs.isf.deltamsc.parser.antlr,
+ de.tu_bs.cs.isf.deltamsc.parser.antlr.internal,
+ de.tu_bs.cs.isf.deltamsc.validation,
+ de.tu_bs.cs.isf.deltamsc.scoping,
+ de.tu_bs.cs.isf.deltamsc.generator,
+ de.tu_bs.cs.isf.deltamsc.formatting

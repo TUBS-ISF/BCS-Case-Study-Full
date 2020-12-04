@@ -1,0 +1,18 @@
+Testcase P3MSC19 {
+	ENV -> P3.activate_as -> P3.HMI
+	P3.HMI -> P3.as_activated -> P3.AS
+	ENV -> P3.key_pos_lock -> P3.AS
+	P3.AS -> P3.as_active_on -> ENV
+	ENV -> tick -> P3.HMI
+	ENV -> tick -> P3.AS
+	ENV -> P3.as_alarm_detected -> P3.AS
+	P3.AS -> P3.as_alarm_on -> P3.LED_ASAL
+	P3.LED_ASAL -> P3.led_as_alarm_on -> ENV
+	P3.AS -> P3.as_alarm_on -> ENV
+	ENV -> tick -> P3.HMI
+	ENV -> tick -> P3.AS
+	ENV -> P3.time_alarm_elapsed -> P3.AS
+	P3.AS -> P3.as_alarm_off -> P3.LED_ASAL
+	P3.AS -> P3.as_alarm_off -> ENV
+	P3.LED_ASAL -> P3.led_as_alarm_off -> ENV
+}

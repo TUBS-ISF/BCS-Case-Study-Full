@@ -1,0 +1,8 @@
+Testcase P0MSC6 {
+	ENV -> P0.finger_detected -> P0.FP
+	P0.FP -> P0.fp_on -> ENV
+	ENV-> P0.pw_but_mv_dn ->P0.HMI
+	P0.HMI -> P0.pw_but_dn -> P0.FP
+	P0.HMI -> P0.pw_but_dn -> ENV
+	P0.FP -> P0.fp_off -> ENV 	
+}

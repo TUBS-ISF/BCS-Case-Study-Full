@@ -1,0 +1,409 @@
+Testcase MSC7 {
+	ENV -> P1.finger_detected -> P1.FP
+	P1.FP-> P1.fp_on -> P1.LED_FP
+	P1.FP -> P1.fp_on -> ENV
+	P1.LED_FP -> P1.led_fp_on -> ENV
+	ENV -> P1.pw_but_dn -> P1.FP
+	P1.FP -> P1.fp_off -> P1.LED_FP
+	P1.FP -> P1.fp_off -> ENV
+	P1.LED_FP -> P1.led_fp_off -> ENV       
+}
+
+Testcase MSC8 {
+	ENV -> P1.key_pos_lock -> P1.CLS
+	P1.CLS -> P1.cls_lock -> P1.AutoPW
+	P1.CLS -> P1.cls_lock -> ENV
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	ENV -> P1.key_pos_unlock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> P1.AutoPW
+	P1.CLS -> P1.cls_unlock -> ENV
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+}
+
+Testcase MSC9 {
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	ENV -> P1.finger_detected -> P1.FP
+	P1.FP -> P1.fp_on -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	ENV -> P1.pw_but_up -> P1.AutoPW
+	ENV -> P1.pw_but_dn -> P1.FP
+	P1.FP -> P1.fp_off -> P1.AutoPW
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	ENV -> P1.pw_pos_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+}
+
+Testcase MSC10 {
+	ENV -> P1.key_pos_unlock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> P1.AutoPW
+	P1.CLS -> P1.cls_unlock -> ENV
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	ENV -> P1.pw_pos_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	ENV -> P1.key_pos_lock -> P1.CLS
+	//P1.CLS -> P1.pw_but_up -> P1.AutoPW
+	P1.CLS -> P1.cls_lock -> P1.AutoPW
+	P1.CLS -> P1.cls_lock -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	ENV -> P1.finger_detected -> P1.FP
+	P1.FP -> P1.fp_on -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	P1.FP -> P1.fp_on -> ENV
+	ENV -> P1.pw_but_dn -> P1.FP
+	P1.FP -> P1.fp_off -> P1.AutoPW
+	P1.FP -> P1.fp_off -> ENV
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	ENV -> P1.key_pos_lock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> P1.AutoPW
+	P1.CLS -> P1.cls_unlock -> ENV
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+}
+
+Testcase MSC11 {
+	ENV -> P1.key_pos_lock -> P1.CLS
+	P1.CLS -> P1.cls_lock -> P1.AutoPW
+	P1.CLS -> P1.cls_lock -> ENV
+	ENV -> P1.pw_but_mv_dn , P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.AutoPW
+	ENV -> P1.key_pos_unlock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> P1.AutoPW
+	P1.CLS -> P1.cls_unlock -> ENV
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+}
+
+Testcase MSC12 {
+	ENV -> P1.finger_detected -> P1.FP
+	P1.FP -> P1.fp_on -> P1.LED_FP
+	P1.FP -> P1.fp_on -> ENV
+	P1.LED_FP -> P1.led_fp_on -> ENV
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.FP
+	P1.FP -> P1.fp_off -> P1.LED_FP
+	P1.HMI -> P1.pw_pos_dn -> ENV
+	P1.FP -> P1.fp_off -> ENV
+	P1.LED_FP -> P1.led_fp_off -> ENV
+}
+
+Testcase MSC13{
+	ENV -> P1.key_pos_unlock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> P1.AutoPW
+	P1.CLS -> P1.cls_unlock -> ENV
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	ENV -> P1.pw_pos_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	//P1.CLS -> P1.pw_but_up -> P1.AutoPW
+	P1.CLS -> P1.cls_lock -> P1.AutoPW
+	P1.CLS -> P1.cls_lock -> ENV
+	P1.AutoPW  -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW  -> P1.pw_auto_mv_up -> ENV
+	ENV -> P1.finger_detected -> P1.FP
+	P1.FP -> P1.fp_on -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	P1.FP -> P1.fp_on -> ENV
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.FP
+	P1.FP -> P1.fp_off -> P1.AutoPW
+	P1.FP -> P1.fp_off -> ENV
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.AutoPW
+	ENV -> P1.key_pos_unlock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> P1.AutoPW
+	P1.CLS -> P1.cls_unlock -> ENV
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+}
+
+Testcase MSC14 {
+	ENV -> P1.pw_but_mv_up -> P1.HMI
+	P1.HMI -> P1.pw_but_up -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	ENV -> P1.finger_detected -> P1.FP
+	P1.FP -> P1.fp_on -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	P1.FP -> P1.fp_on -> ENV
+	ENV -> P1.pw_but_mv_up -> P1.HMI
+	P1.HMI -> P1.pw_but_up -> P1.AutoPW
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.AutoPW
+	P1.FP -> P1.fp_off -> P1.AutoPW
+	P1.FP -> P1.fp_off -> ENV
+	P1.HMI -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	ENV -> P1.pw_but_mv_up -> P1.HMI
+	P1.HMI -> P1.pw_but_up -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	ENV -> P1.pw_but_mv_up -> P1.HMI
+	P1.HMI -> P1.pw_but_up -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+}
+
+Testcase MSC15 {
+	ENV -> P1.em_but_mv_left -> P1.HMI
+	P1.HMI -> P1.em_but_left -> P1.EMH
+	P1.EMH -> P1.em_mv_left -> ENV
+	ENV -> P1.em_pos_left -> P1.EMH
+	ENV -> P1.em_but_mv_up -> P1.HMI
+	P1.HMI -> P1.em_but_up -> P1.EMH
+	P1.EMH -> P1.em_mv_up -> ENV
+	ENV -> P1.em_mv_up -> P1.EMH
+	ENV -> P1.em_too_cold -> P1.EMH
+	P1.EMH -> P1.heating_on -> ENV
+	ENV -> P1.em_but_mv_right -> P1.HMI
+	P1.HMI -> P1.em_but_right -> P1.EMH
+	P1.EMH -> P1.em_mv_right -> ENV
+	ENV -> P1.em_pos_right -> P1.EMH
+	ENV -> P1.em_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.em_but_down -> P1.EMH
+	P1.EMH -> P1.em_mv_down -> ENV
+	ENV -> P1.em_pos_bottom -> P1.EMH
+	ENV -> P1.time_heating_elapsed -> P1.EMH
+	P1.EMH -> P1.heating_off -> ENV
+}
+
+Testcase MSC16 {
+	ENV -> P1.rck_but_unlock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_unlock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> P1.AutoPW
+	P1.CLS -> P1.cls_unlock -> ENV
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	ENV -> P1.pw_pos_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	ENV -> P1.rck_but_lock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_lock -> P1.CLS
+	P1.CLS -> P1.cls_lock -> P1.AutoPW
+	P1.CLS -> P1.cls_lock -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	ENV -> P1.finger_detected -> P1.FP
+	P1.FP -> P1.fp_on -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	P1.FP -> P1.fp_on -> ENV
+	ENV -> P1.pw_but_dn-> P1.FP
+	P1.FP -> P1.fp_off -> P1.AutoPW
+	P1.FP -> P1.fp_off -> ENV
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	ENV -> P1.key_pos_unlock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> P1.AutoPW
+	P1.CLS -> P1.cls_unlock -> ENV
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV 
+}
+
+Testcase MSC17{
+	ENV -> P1.rck_but_lock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_lock -> P1.CLS
+	P1.CLS -> P1.cls_lock -> ENV
+	ENV -> P1.rck_but_unlock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_unlock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> ENV 
+}
+
+Testcase MSC18{
+	ENV -> P1.rck_but_unlock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_unlock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> P1.AutoPW
+	P1.CLS -> P1.cls_unlock -> ENV
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	ENV -> P1.pw_pos_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	ENV -> P1.rck_but_lock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_lock -> P1.CLS
+	P1.CLS -> P1.cls_lock -> P1.AutoPW
+	P1.CLS -> P1.cls_lock -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	ENV -> P1.finger_detected -> P1.FP
+	P1.FP -> P1.fp_on -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	P1.FP -> P1.fp_on -> ENV
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.FP
+	P1.FP -> P1.fp_off -> P1.AutoPW
+	P1.FP -> P1.fp_off -> ENV
+	P1.HMI -> P1.pw_but_dn -> P1.AutoPW
+	ENV -> P1.key_pos_unlock -> P1.CLS
+	P1.CLS -> P1.cls_unlock -> P1.AutoPW
+	P1.CLS -> P1.cls_unlock -> ENV
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+}
+
+Testcase MSC19 {
+	ENV -> P1.activate_as -> P1.HMI
+	P1.HMI -> P1.as_activated -> P1.AS
+	P1.AS -> P1.as_active_on -> ENV
+	ENV -> tick -> P1.HMI
+	ENV -> tick -> P1.AS
+	ENV -> P1.as_alarm_detected -> P1.AS
+	P1.AS -> P1.as_alarm_on -> ENV
+	ENV -> P1.deactivate_as -> P1.HMI
+	P1.HMI -> P1.as_deactivated -> P1.AS
+	P1.AS -> P1.as_active_off -> ENV
+	P1.AS -> P1.as_alarm_off -> ENV
+}
+
+Testcase MSC20 {
+	ENV -> P1.activate_as -> P1.HMI
+	P1.HMI -> P1.as_activated -> P1.AS
+	P1.AS -> P1.as_active_on -> ENV
+	ENV -> tick -> P1.HMI
+	ENV -> tick -> P1.AS
+	ENV -> P1.im_alarm_detected -> P1.AS
+	P1.AS -> P1.as_im_alarm_on -> ENV
+	ENV -> P1.deactivate_as -> P1.HMI
+	P1.HMI -> P1.as_deactivated -> P1.AS
+	P1.AS -> P1.as_active_off -> ENV
+	P1.AS -> P1.as_im_alarm_off ->ENV 
+}
+
+Testcase MSC21 {
+	ENV -> P1.activate_as -> P1.HMI
+	P1.HMI -> P1.as_activated -> P1.AS
+	P1.AS -> P1.as_active_on -> ENV
+	ENV -> tick -> P1.HMI
+	ENV -> tick -> P1.AS
+	ENV -> P1.as_alarm_detected -> P1.AS
+	P1.AS -> P1.as_alarm_on -> ENV
+	ENV -> P1.key_pos_unlock -> P1.AS
+	P1.AS -> P1.as_alarm_off -> ENV
+	P1.AS -> P1.as_active_off -> ENV
+}
+
+Testcase MSC22 {
+	ENV -> P1.activate_as -> P1.HMI
+	P1.HMI -> P1.as_activated -> P1.AS
+	ENV -> P1.key_pos_lock -> P1.AS
+	P1.AS -> P1.as_active_on -> ENV
+	ENV -> tick -> P1.HMI
+	ENV -> tick -> P1.AS
+	ENV -> P1.as_alarm_detected -> P1.AS
+	P1.AS -> P1.as_alarm_on -> ENV
+	ENV -> P1.time_alarm_elapsed -> P1.AS
+	P1.AS -> P1.as_alarm_was_detected -> ENV
+	P1.AS -> P1.as_alarm_off -> ENV
+	ENV -> P1.key_pos_unlock -> P1.AS
+	P1.AS -> P1.as_active_off -> ENV
+	ENV -> P1.deactivate_as -> P1.HMI
+	P1.HMI -> P1.as_deactivated ->  P1.AS
+}
+
+Testcase MSC23{
+	ENV -> P1.finger_detected -> P1.FP
+	P1.FP -> P1.fp_on -> P1.LED_FP 
+	P1.LED_FP -> P1.led_fp_on -> ENV
+	P1.FP -> P1.fp_on -> P1.AutoPW
+	P1.AutoPW ->  P1.pw_auto_mv_stop -> ENV
+	ENV -> P1.pw_but_dn -> P1.AutoPW
+	ENV -> P1.pw_but_dn -> P1.FP
+	P1.AutoPW -> P1.pw_auto_mv_dn -> ENV
+	P1.FP -> P1.fp_off -> P1.LED_FP
+	P1.FP -> P1.fp_off -> P1.AutoPW
+	P1.LED_FP -> P1.led_fp_off -> ENV
+}
+
+Testcase MSC24 {
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_up -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_stop -> ENV
+	ENV -> P1.pw_but_mv_up -> P1.HMI
+	P1.HMI -> P1.pw_but_up -> P1.AutoPW
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+	P1.AutoPW -> P1.pw_auto_mv_up -> ENV
+}
+
+Testcase MSC25 {
+	ENV -> P1.rck_but_unlock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_unlock -> P1.AS
+	P1.RCK_Ctrl -> P1.rck_unlock -> ENV
+	P1.AS -> P1.as_active_off -> ENV
+	ENV -> P1.rck_but_lock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_lock -> P1.AS
+	P1.RCK_Ctrl -> P1.rck_lock -> ENV
+	P1.AS -> P1.as_active_on -> ENV
+}
+
+Testcase MSC26 {
+	ENV -> P1.rck_but_lock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_lock -> P1.AS
+	P1.RCK_Ctrl -> P1.rck_lock -> ENV
+	P1.AS -> P1.as_active_on -> ENV
+	ENV -> tick -> P1.RCK_Ctrl
+	ENV -> tick -> P1.AS
+	ENV -> P1.im_alarm_detected -> P1.AS
+	P1.AS -> P1.as_im_alarm_on -> ENV
+	P1.AS -> P1.as_alarm_on -> ENV
+	ENV -> P1.rck_but_unlock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_unlock -> P1.AS
+	P1.RCK_Ctrl -> P1.rck_unlock -> ENV
+	P1.AS -> P1.as_im_alarm_off -> ENV
+	P1.AS -> P1.as_alarm_off -> ENV
+	P1.AS -> P1.as_active_off -> ENV
+}
+
+Testcase MSC27 {
+	ENV -> P1.rck_but_unlock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_unlock -> P1.AS
+	P1.RCK_Ctrl -> P1.rck_unlock -> ENV
+	P1.AS -> P1.as_active_off -> ENV
+	ENV ->  P1.deactivate_as -> P1.HMI
+	P1.HMI -> P1.as_deactivated -> P1.AS
+	ENV -> P1.activate_as -> P1.HMI
+	P1.HMI -> P1.as_activated -> P1.AS
+	ENV -> P1.rck_but_lock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_lock -> P1.AS
+	P1.RCK_Ctrl -> P1.rck_lock -> ENV
+	P1.AS -> P1.as_active_on -> ENV
+}
+
+Testcase MSC64 {
+	ENV -> P1.activate_as -> P1.HMI
+	P1.HMI -> P1.as_activated -> P1.AS
+	ENV -> P1.key_pos_lock -> P1.AS
+	P1.AS -> P1.as_active_on -> ENV
+	ENV -> tick -> P1.HMI
+	ENV -> tick -> P1.AS
+	ENV -> P1.as_alarm_detected -> P1.AS
+	P1.AS -> P1.as_alarm_on -> ENV
+	ENV -> P1.time_alarm_elapsed -> P1.AS
+	P1.AS -> P1.as_alarm_was_detected -> ENV
+	P1.AS -> P1.as_im_alarm_off -> ENV
+	P1.AS -> P1.as_alarm_off -> ENV
+	ENV -> P1.key_pos_unlock -> P1.AS
+	P1.AS -> P1.as_active_off -> ENV
+	ENV -> P1.deactivate_as -> P1.HMI
+	P1.HMI -> P1.as_deactivated -> P1.AS
+}

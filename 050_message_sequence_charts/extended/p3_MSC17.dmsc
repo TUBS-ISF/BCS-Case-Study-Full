@@ -1,0 +1,12 @@
+Testcase P3MSC17 {
+	ENV -> P3.pw_but_mv_dn -> P3.HMI
+	P3.HMI -> P3.pw_but_dn -> P3.FP
+	P3.FP -> P3.fp_off -> P3.ManPW	
+	P3.HMI -> P3.pw_but_dn -> P3.ManPW
+	P3.ManPW -> P3.pw_mv_dn -> ENV
+	P3.ManPW -> P3.pw_mv_dn -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_dn_on -> ENV
+	ENV -> P3.release_pw_but_dn -> P3.HMI
+	P3.HMI -> P3.release_pw_but -> P3.LED_ManPW
+	P3.LED_ManPW -> P3.led_pw_dn_off -> ENV
+}

@@ -1,0 +1,12 @@
+Testcase P2MSC4 {
+	ENV -> P2.rck_but_unlock -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_unlock -> P2.CLS
+	P2.RCK_Ctrl -> P2.rck_unlock -> ENV
+	P2.CLS -> P2.cls_unlock -> ENV
+	ENV -> tick -> P2.RCK_Ctrl
+	ENV -> tick -> P2.CLS
+	ENV -> P2.time_rck_sf_elapsed -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.rck_lock -> P2.CLS
+	P2.RCK_Ctrl -> P2.rck_lock -> ENV
+	P2.CLS -> P2.cls_lock -> ENV
+}

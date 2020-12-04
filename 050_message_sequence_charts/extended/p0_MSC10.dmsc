@@ -1,0 +1,6 @@
+Testcase P0MSC10 {
+	ENV -> P0.em_but_mv_right -> P0.HMI
+	P0.HMI -> P0.em_but_right -> P0.EM
+	P0.EM -> P0.em_mv_right -> ENV
+	ENV -> P0.em_pos_right -> P0.EM
+}

@@ -1,0 +1,18 @@
+Testcase P9MSC2 {
+	ENV -> P9.key_pos_unlock -> P9.CLS
+	P9.CLS -> P9.cls_unlock -> P9.LED_AutoPW
+	P9.CLS -> P9.cls_unlock -> P9.AutoPW
+	ENV -> P9.key_pos_lock -> P9.CLS
+	P9.CLS -> P9.cls_lock -> P9.LED_AutoPW
+	P9.CLS -> P9.cls_lock -> P9.AutoPW
+	P9.AutoPW -> P9.pw_auto_mv_up -> P9.LED_AutoPW
+	P9.LED_AutoPW -> P9.led_pw_up_on -> ENV
+	P9.LED_AutoPW -> P9.led_pw_cls_up_on -> ENV
+	P9.AutoPW -> P9.pw_auto_mv_up -> ENV
+	P9.AutoPW -> P9.pw_auto_mv_up -> P9.LED_AutoPW
+	ENV -> P9.pw_pos_up -> P9.AutoPW
+	P9.AutoPW -> P9.pw_auto_mv_stop -> P9.LED_AutoPW
+	P9.AutoPW -> P9.pw_auto_mv_stop -> ENV
+	P9.LED_AutoPW -> P9.led_pw_up_off -> ENV
+	P9.LED_AutoPW -> P9.led_pw_cls_up_off -> ENV
+}

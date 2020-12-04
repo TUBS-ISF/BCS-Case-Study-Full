@@ -1,0 +1,15 @@
+Testcase P2MSC2 {
+	ENV -> P2.key_pos_lock -> P2.CLS
+	P2.CLS -> P2.cls_lock -> P2.AutoPW
+	P2.CLS -> P2.cls_lock -> ENV
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	ENV -> P2.pw_rm_up -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_up -> P2.AutoPW
+	ENV -> P2.key_pos_unlock -> P2.CLS
+	P2.CLS -> P2.cls_unlock -> P2.AutoPW
+	P2.CLS -> P2.cls_unlock -> ENV
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_dn -> ENV
+}

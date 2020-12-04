@@ -1,0 +1,13 @@
+Testcase P8MSC2{
+	ENV -> P8.pw_but_mv_up -> P8.HMI
+	P8.HMI -> P8.pw_but_up -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_on -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	ENV -> P8.pw_pos_up -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_stop -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_stop -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_off -> ENV
+}

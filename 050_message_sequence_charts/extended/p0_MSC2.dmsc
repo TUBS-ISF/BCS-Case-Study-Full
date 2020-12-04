@@ -1,0 +1,12 @@
+Testcase P0MSC2 {
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+	P0.ManPW -> P0.pw_mv_up -> ENV
+	ENV -> P0.finger_detected -> P0.FP
+	P0.FP -> P0.fp_on -> P0.ManPW
+	ENV -> P0.pw_but_mv_up -> P0.HMI
+	P0.HMI -> P0.pw_but_up -> P0.ManPW
+}

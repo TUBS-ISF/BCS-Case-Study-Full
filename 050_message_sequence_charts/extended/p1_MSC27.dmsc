@@ -1,0 +1,8 @@
+Testcase P1MSC27 {
+	ENV -> P1.pw_but_mv_dn -> P1.HMI
+	P1.HMI -> P1.pw_but_dn -> P1.FP
+	P1.FP -> P1.fp_off -> P1.LED_FP
+	P1.HMI -> P1.pw_but_dn -> ENV
+	P1.FP -> P1.fp_off -> ENV
+	P1.LED_FP -> P1.led_fp_off -> ENV
+}

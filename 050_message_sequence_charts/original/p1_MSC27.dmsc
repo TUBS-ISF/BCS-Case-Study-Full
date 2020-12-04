@@ -1,0 +1,14 @@
+Testcase MSC27 {
+	ENV -> P1.rck_but_unlock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_unlock -> P1.AS
+	P1.RCK_Ctrl -> P1.rck_unlock -> ENV
+	P1.AS -> P1.as_active_off -> ENV
+	ENV ->  P1.deactivate_as -> P1.HMI
+	P1.HMI -> P1.as_deactivated -> P1.AS
+	ENV -> P1.activate_as -> P1.HMI
+	P1.HMI -> P1.as_activated -> P1.AS
+	ENV -> P1.rck_but_lock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_lock -> P1.AS
+	P1.RCK_Ctrl -> P1.rck_lock -> ENV
+	P1.AS -> P1.as_active_on -> ENV
+}

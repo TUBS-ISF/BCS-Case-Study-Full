@@ -1,0 +1,8 @@
+Testcase P1MSC12 {
+	ENV -> P1.activate_as -> P1.HMI
+	P1.HMI -> P1.as_activated -> P1.AS
+	P1.AS -> P1.as_active_on -> ENV
+	ENV -> P1.deactivate_as -> P1.HMI
+	P1.HMI -> P1.as_deactivated -> P1.AS
+	P1.AS -> P1.as_active_off -> ENV
+}

@@ -1,0 +1,6 @@
+Testcase P2MSC8 {
+	ENV -> P2.car_drives -> P2.CLS
+	P2.CLS -> P2.car_lock -> ENV
+	ENV -> P2.door_open -> P2.CLS
+	P2.CLS -> P2.car_unlock -> ENV
+}

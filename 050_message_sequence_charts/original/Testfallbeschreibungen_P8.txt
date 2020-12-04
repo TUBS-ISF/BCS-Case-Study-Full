@@ -1,0 +1,156 @@
+Testcase MSC54{
+	ENV -> P8.pw_but_up -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_on -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	ENV -> P8.pw_pos_up -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_stop -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_off -> ENV
+	ENV -> P8.pw_but_dn -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_dn -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_dn_on -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> P8.LED_AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	ENV -> P8.pw_pos_dn -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_stop -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_dn_off -> ENV
+}
+
+Testcase MSC55{
+	ENV -> P8.pw_but_mv_up -> P8.HMI
+	P8.HMI -> P8.pw_but_up -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_on -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	ENV -> P8.pw_pos_up -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_stop -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_stop -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_off -> ENV
+	ENV -> P8.pw_but_mv_dn -> P8.HMI
+	P8.HMI -> P8.pw_but_dn -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_dn -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_dn_on -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> P8.LED_AutoPW
+	ENV -> P8.pw_pos_dn -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_stop -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_stop -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_dn_off -> ENV
+	ENV -> P8.pw_but_mv_up -> P8.HMI
+	P8.HMI -> P8.pw_but_up -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_on -> ENV
+}
+
+Testcase MSC56{
+	ENV -> P8.pw_but_mv_up -> P8.HMI
+	P8.HMI -> P8.pw_but_up -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_on -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	ENV -> P8.finger_detected -> P8.FP
+	P8.FP -> P8.fp_on -> P8.AutoPW
+	P8.FP -> P8.fp_on -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_stop -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_stop -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_off -> ENV
+	ENV -> P8.pw_but_mv_up -> P8.HMI
+	P8.HMI -> P8.pw_but_up -> P8.AutoPW
+	ENV -> P8.pw_but_mv_dn -> P8.HMI
+	P8.HMI -> P8.pw_but_dn -> P8.FP
+	P8.FP -> P8.fp_off -> P8.AutoPW
+	P8.FP -> P8.fp_off -> ENV
+	P8.HMI -> P8.pw_but_dn -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_dn -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_dn_on -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> P8.LED_AutoPW
+	ENV -> P8.pw_pos_dn -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_stop -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_stop -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_dn_off -> ENV
+	ENV -> P8.pw_but_mv_up -> P8.HMI
+	P8.HMI -> P8.pw_but_up -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_on -> ENV
+	
+}
+
+Testcase MSC57{
+	ENV -> P8.pw_but_up -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_on -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	ENV -> P8.finger_detected -> P8.FP
+	P8.FP -> P8.fp_on -> P8.AutoPW
+	P8.FP -> P8.fp_on -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_stop -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_stop -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_off -> ENV
+	ENV -> P8.pw_but_up -> P8.AutoPW
+	ENV -> P8.pw_but_dn -> P8.FP
+	P8.FP -> P8.fp_off -> P8.AutoPW
+	P8.FP -> P8.fp_off -> ENV
+	ENV -> P8.pw_but_dn -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_dn -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_dn_on -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> P8.LED_AutoPW
+	ENV -> P8.pw_pos_dn -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_stop -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_stop -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_dn_off -> ENV
+	ENV -> P8.pw_but_up -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_up -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_up -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_up_on -> ENV
+}
+
+Testcase MSC58{
+	ENV -> P8.finger_detected -> P8.FP
+	P8.FP -> P8.fp_on -> P8.LED_FP
+	P8.FP -> P8.fp_on -> P8.AutoPW
+	P8.LED_FP -> P8.led_fp_on -> ENV
+	ENV -> P8.pw_but_dn -> P8.AutoPW
+	ENV -> P8.pw_but_dn -> P8.FP
+	P8.FP -> P8.fp_off -> P8.LED_FP
+	P8.FP -> P8.fp_off -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_dn -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_dn_on -> ENV
+	P8.LED_FP -> P8.led_fp_off -> ENV
+}
+
+Testcase MSC59{
+	ENV -> P8.finger_detected -> P8.FP
+	P8.FP -> P8.fp_on -> P8.LED_FP
+	P8.FP -> P8.fp_on -> P8.AutoPW
+	P8.LED_FP -> P8.led_fp_on -> ENV
+	ENV -> P8.pw_but_mv_dn -> P8.HMI
+	P8.HMI -> P8.pw_but_dn -> P8.AutoPW
+	P8.HMI -> P8.pw_but_dn -> P8.FP
+	P8.FP -> P8.fp_off -> P8.LED_FP
+	P8.FP -> P8.fp_off -> P8.AutoPW
+	P8.AutoPW -> P8.pw_auto_mv_dn -> ENV
+	P8.AutoPW -> P8.pw_auto_mv_dn -> P8.LED_AutoPW
+	P8.LED_AutoPW -> P8.led_pw_dn_on -> ENV
+	P8.LED_FP -> P8.led_fp_off -> ENV
+}

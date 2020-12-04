@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="deltaMSC" nsURI="http://www.tu_bs.de/cs/isf/deltamsc/DeltaMSC"
+    nsPrefix="deltaMSC">
+  <eClassifiers xsi:type="ecore:EClass" name="DeltaMSC">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testcases" upperBound="-1"
+        eType="#//Testcase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Input">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="first" eType="ecore:EClass platform:/resource/org.xtext.deltarx/src-gen/org/xtext/deltarx/Deltarx.ecore#//Component"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signal" eType="ecore:EClass platform:/resource/org.xtext.deltarx/src-gen/org/xtext/deltarx/Deltarx.ecore#//Signal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="second" eType="ecore:EClass platform:/resource/org.xtext.deltarx/src-gen/org/xtext/deltarx/Deltarx.ecore#//Component"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Testcase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filename" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
+        eType="#//Input" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

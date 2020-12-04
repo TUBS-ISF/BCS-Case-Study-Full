@@ -1,0 +1,16 @@
+Testcase P2MSC11 {
+	ENV -> P2.cls_lock -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_up -> ENV
+	ENV -> P2.finger_detected -> P2.FP
+	P2.FP -> P2.fp_on -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_stop -> ENV
+	ENV -> P2.pw_rm_up -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_up -> P2.AutoPW
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.FP
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.FP -> P2.fp_off -> P2.AutoPW
+	ENV -> P2.pw_rm_up -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_up -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_up -> ENV
+}

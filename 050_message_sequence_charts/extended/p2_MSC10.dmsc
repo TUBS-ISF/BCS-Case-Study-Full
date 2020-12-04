@@ -1,0 +1,14 @@
+Testcase P2MSC10 {
+	ENV -> P2.cls_unlock -> P2.AutoPW
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_dn -> ENV
+	ENV -> P2.pw_rm_up -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_up -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_stop -> ENV
+	ENV -> P2.pw_rm_dn -> P2.RCK_Ctrl
+	P2.RCK_Ctrl -> P2.pw_but_dn -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_dn -> ENV
+	ENV -> P2.pw_but_up -> P2.AutoPW
+	P2.AutoPW -> P2.pw_auto_mv_stop -> ENV
+}

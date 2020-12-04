@@ -1,0 +1,10 @@
+Testcase MSC38{
+	ENV -> P3.key_pos_lock -> P3.CLS
+	P3.CLS -> P3.cls_lock -> P3.LED_CLS
+	P3.CLS -> P3.cls_lock -> ENV
+	P3.LED_CLS -> P3.led_cls_on -> ENV
+	ENV -> P3.key_pos_unlock -> P3.CLS
+	P3.CLS -> P3.cls_unlock -> P3.LED_CLS
+	P3.CLS -> P3.cls_unlock -> ENV
+	P3.LED_CLS -> P3.led_cls_off -> ENV
+}

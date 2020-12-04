@@ -1,0 +1,6 @@
+Testcase P1MSC35 {
+	ENV -> P1.rck_but_lock -> P1.RCK_Ctrl
+	P1.RCK_Ctrl -> P1.rck_lock -> P1.CLS
+	P1.CLS -> P1.cls_lock -> P1.AutoPW
+	P1.CLS -> P1.cls_lock -> ENV
+}

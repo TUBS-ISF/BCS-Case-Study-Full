@@ -1,0 +1,18 @@
+grammar de.tu_bs.cs.isf.deltamsc.DeltaMSC with org.eclipse.xtext.common.Terminals
+
+generate deltaMSC "http://www.tu_bs.de/cs/isf/deltamsc/DeltaMSC"
+
+import "http://www.xtext.org/example/deltarx/Deltarx" as arx
+
+DeltaMSC:
+	testcases += Testcase*;
+	
+Input:
+	(first=[arx::Component | QualifiedName] | 'ENV')  ('->'| ',') (signal=[arx::Signal | QualifiedName] | 'tick') ('->'| ',') (second=[arx::Component | QualifiedName] | 'ENV');
+	
+Testcase:
+	'Testcase' filename = ID '{' inputs+=Input*'}'
+;
+	
+QualifiedName:
+	(ID ('.' ID)*);
