@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated statecharts -->
+      <package
+            uri="http://www.tu-braunschweig.de/isf/familymining/stateoriented"
+            class="de.tu_bs.cs.isf.familymining.models.stateoriented.StateChartsPackage"
+            genModel="model/statecharts.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.factory_override">
+      <factory
+            class="de.tu_bs.cs.isf.familymining.models.stateoriented.impl.custom.StateChartsFactoryImplCustom"
+            uri="http://www.tu-braunschweig.de/isf/familymining/stateoriented">
+      </factory>
+   </extension>
+
+</plugin>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.tu_bs.cs.isf.familymining.models.base/src-gen"
+    editDirectory="/de.tu_bs.cs.isf.familymining.models.base.edit/src-gen" editorDirectory="/de.tu_bs.cs.isf.familymining.models.base.editor/src-gen"
+    modelPluginID="de.tu_bs.cs.isf.familymining.models.base" modelName="Base" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="/de.tu_bs.cs.isf.familymining.models.base.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>base.ecore</foreignModel>
+  <genPackages prefix="Base" basePackage="de.tu_bs.cs.isf.familymining.models" disposableProviderFactory="true"
+      ecorePackage="base.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="base.ecore#//Variability">
+      <genEnumLiterals ecoreEnumLiteral="base.ecore#//Variability/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="base.ecore#//Variability/MANDATORY"/>
+      <genEnumLiterals ecoreEnumLiteral="base.ecore#//Variability/ALTERNATIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="base.ecore#//Variability/OPTIONAL"/>
+      <genEnumLiterals ecoreEnumLiteral="base.ecore#//Variability/OPTIONAL_ALTERNATIVE"/>
+    </genEnums>
+    <genClasses ecoreClass="base.ecore#//StringToStringMapEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute base.ecore#//StringToStringMapEntry/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute base.ecore#//StringToStringMapEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="base.ecore#//StringToAlternativeAttributeValuesMap">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference base.ecore#//StringToAlternativeAttributeValuesMap/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference base.ecore#//StringToAlternativeAttributeValuesMap/key"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="base.ecore#//ParameterizedElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference base.ecore#//ParameterizedElement/parameters"/>
+      <genOperations ecoreOperation="base.ecore#//ParameterizedElement/setParameter">
+        <genParameters ecoreParameter="base.ecore#//ParameterizedElement/setParameter/key"/>
+        <genParameters ecoreParameter="base.ecore#//ParameterizedElement/setParameter/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="base.ecore#//ParameterizedElement/getParameter">
+        <genParameters ecoreParameter="base.ecore#//ParameterizedElement/getParameter/key"/>
+      </genOperations>
+      <genOperations ecoreOperation="base.ecore#//ParameterizedElement/removeParameter">
+        <genParameters ecoreParameter="base.ecore#//ParameterizedElement/removeParameter/key"/>
+      </genOperations>
+      <genOperations ecoreOperation="base.ecore#//ParameterizedElement/containsParameter">
+        <genParameters ecoreParameter="base.ecore#//ParameterizedElement/containsParameter/key"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="base.ecore#//VariableModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute base.ecore#//VariableModel/baseModel"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="base.ecore#//VariableElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute base.ecore#//VariableElement/alternativeGroupId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute base.ecore#//VariableElement/containingModels"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference base.ecore#//VariableElement/alternativeAttributeValues"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute base.ecore#//VariableElement/variability"/>
+      <genOperations ecoreOperation="base.ecore#//VariableElement/isContainedInModel">
+        <genParameters ecoreParameter="base.ecore#//VariableElement/isContainedInModel/model"/>
+      </genOperations>
+      <genOperations ecoreOperation="base.ecore#//VariableElement/isMandatory"/>
+      <genOperations ecoreOperation="base.ecore#//VariableElement/isAlternative"/>
+      <genOperations ecoreOperation="base.ecore#//VariableElement/isOptional"/>
+      <genOperations ecoreOperation="base.ecore#//VariableElement/isOptionalAlternative"/>
+      <genOperations ecoreOperation="base.ecore#//VariableElement/isVariabilitySet"/>
+      <genOperations ecoreOperation="base.ecore#//VariableElement/addAttributeMap">
+        <genParameters ecoreParameter="base.ecore#//VariableElement/addAttributeMap/modelName"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="base.ecore#//Entity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute base.ecore#//Entity/id"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="base.ecore#//ModelEntity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute base.ecore#//ModelEntity/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="base.ecore#//ContainerEntity"/>
+    <genClasses image="false" ecoreClass="base.ecore#//NodeEntity"/>
+    <genClasses image="false" ecoreClass="base.ecore#//EdgeEntity"/>
+  </genPackages>
+</genmodel:GenModel>

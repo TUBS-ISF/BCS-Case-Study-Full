@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="ASCII"?>
+<de.tu_bs.cs.isf.familymining.models:StateChart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:de.tu_bs.cs.isf.familymining.models="http://www.tu-braunschweig.de/isf/familymining/stateoriented" id="d170d898-36fb-4ac2-ae37-965b5ec6f7ae" name="P1" stateCount="34" regionCount="18" transitionCount="63">
+  <rootRegion id="af580c85-f440-45aa-99bf-b8fd8d960226" name="RootRegion">
+    <initialStates id="77bb92c6-3530-4a60-aa72-b421ffcab1e7" parent="af580c85-f440-45aa-99bf-b8fd8d960226" name="Root">
+      <regions id="9d58ff8a-6623-4617-b8ab-8e8be3fbf5ce" parent="77bb92c6-3530-4a60-aa72-b421ffcab1e7" name="BCS_HMI">
+        <initialStates id="9a7a9641-8e96-4813-8369-984ad8b86e46" parent="9d58ff8a-6623-4617-b8ab-8e8be3fbf5ce" name="HMI">
+          <regions id="8d28e26d-fcae-4970-a384-336dd6dfda02" parent="9a7a9641-8e96-4813-8369-984ad8b86e46" name="HMI_Controller">
+            <initialStates id="52a24902-80eb-404b-9e74-ee2b2e28ebe6" parent="8d28e26d-fcae-4970-a384-336dd6dfda02" name="Controller"/>
+          </regions>
+          <regions id="58c51202-1e27-4896-a717-8660ea52ea65" parent="9a7a9641-8e96-4813-8369-984ad8b86e46" name="BSM_LED">
+            <initialStates id="67f2a51d-571b-491e-b1b3-61b3ad2c816d" parent="58c51202-1e27-4896-a717-8660ea52ea65" name="LED">
+              <regions id="36f83db4-0753-472b-a002-bf11e05d72a2" parent="67f2a51d-571b-491e-b1b3-61b3ad2c816d" name="LED">
+                <initialStates id="27e0a219-6251-4458-b935-b8ae30047b37" parent="36f83db4-0753-472b-a002-bf11e05d72a2" name="LED_FP">
+                  <regions id="c837ee8e-9b7c-4d5b-8c8c-7fba586dde5d" parent="27e0a219-6251-4458-b935-b8ae30047b37" name="LED_FP">
+                    <initialStates id="bcddcfaf-59a9-4089-b5ae-950323cd8c79" parent="c837ee8e-9b7c-4d5b-8c8c-7fba586dde5d" name="FP_on_LED_off" outgoingTransitions="4471028d-a123-4d8e-b409-95e30b356fde">
+                      <incomingTransitions id="6e6e9f25-98c8-4ddd-91f5-10361c8afee1" source="778e7b0e-f382-417e-92ff-0aa4ada0eda4" target="bcddcfaf-59a9-4089-b5ae-950323cd8c79" name="[fp_on==false]/GEN(led_fp_off);">
+                        <label id="f7b66578-ca60-4c12-9150-6115c2f9615f">
+                          <conditions>fp_on==false</conditions>
+                          <transitionActions id="63ace9b0-45d8-4800-985f-171c49986625" code="GEN(led_fp_off)"/>
+                        </label>
+                      </incomingTransitions>
+                    </initialStates>
+                    <states id="778e7b0e-f382-417e-92ff-0aa4ada0eda4" parent="c837ee8e-9b7c-4d5b-8c8c-7fba586dde5d" name="FP_on_LED_on" outgoingTransitions="6e6e9f25-98c8-4ddd-91f5-10361c8afee1">
+                      <incomingTransitions id="4471028d-a123-4d8e-b409-95e30b356fde" source="bcddcfaf-59a9-4089-b5ae-950323cd8c79" target="778e7b0e-f382-417e-92ff-0aa4ada0eda4" name="[fp_on==true]/GEN(led_fp_on);">
+                        <label id="8d96636f-26d0-44e7-b100-9599407578b0">
+                          <conditions>fp_on==true</conditions>
+                          <transitionActions id="ea4756c7-f580-4c9b-ae37-0d204bcd20cc" code="GEN(led_fp_on)"/>
+                        </label>
+                      </incomingTransitions>
+                    </states>
+                  </regions>
+                </initialStates>
+              </regions>
+            </initialStates>
+          </regions>
+        </initialStates>
+      </regions>
+      <regions id="9b495c01-0c37-46db-ae6f-f7efd8b6537f" parent="77bb92c6-3530-4a60-aa72-b421ffcab1e7" name="BCS_FP">
+        <initialStates id="4e6b4b67-6ccb-4f66-b969-8457b415fd45" parent="9b495c01-0c37-46db-ae6f-f7efd8b6537f" name="FP">
+          <regions id="9032704b-a36d-4b13-aa2e-e7d35ed9e5b4" parent="4e6b4b67-6ccb-4f66-b969-8457b415fd45" name="FP">
+            <initialStates id="62658f2b-86bd-4d73-ac94-aa8a9341a64f" parent="9032704b-a36d-4b13-aa2e-e7d35ed9e5b4" name="FP_off" outgoingTransitions="60fb5dd6-9ebc-4f90-9e09-f4ad6cfad013">
+              <incomingTransitions id="d1a97a91-25ac-449e-9184-b47c2d2ff7b7" source="4a6dae53-902b-4d59-8042-b10e61ff3a41" target="62658f2b-86bd-4d73-ac94-aa8a9341a64f" name="pw_but_dn/fp_on=false;">
+                <label id="79fb587c-51c7-4704-8211-d741663ea0d0">
+                  <events>pw_but_dn</events>
+                  <transitionActions id="7fa98e1c-e107-4374-8b9e-5938bd29107f" code="fp_on=false"/>
+                </label>
+              </incomingTransitions>
+            </initialStates>
+            <states id="4a6dae53-902b-4d59-8042-b10e61ff3a41" parent="9032704b-a36d-4b13-aa2e-e7d35ed9e5b4" name="FP_on" outgoingTransitions="d1a97a91-25ac-449e-9184-b47c2d2ff7b7">
+              <incomingTransitions id="60fb5dd6-9ebc-4f90-9e09-f4ad6cfad013" source="62658f2b-86bd-4d73-ac94-aa8a9341a64f" target="4a6dae53-902b-4d59-8042-b10e61ff3a41" name="fp_finger_detected/pw_auto_mv=0;fp_on=true;">
+                <label id="e0a01898-3e48-49a8-90f6-89e5b81719c2">
+                  <events>fp_finger_detected</events>
+                  <transitionActions id="3f8aac65-5e21-4e9f-8ce4-d38a0402a5d8" code="pw_auto_mv=0"/>
+                  <transitionActions id="c59494e4-d05f-4344-a9eb-fc7e3de84cef" code="fp_on=true"/>
+                </label>
+              </incomingTransitions>
+            </states>
+          </regions>
+        </initialStates>
+      </regions>
+      <regions id="5c28cb23-6c93-4be5-935e-731000b9a300" parent="77bb92c6-3530-4a60-aa72-b421ffcab1e7" name="BCS_EM">
+        <initialStates id="1c58fa81-2822-4bb8-a3b8-4feb460190ae" parent="5c28cb23-6c93-4be5-935e-731000b9a300" name="EM">
+          <regions id="2de3d2da-1b87-4425-81cc-2fb2bc64741f" parent="1c58fa81-2822-4bb8-a3b8-4feb460190ae" name="EM">
+            <initialStates id="43ece124-3948-4fbf-b90b-b5c959ccc0e2" parent="2de3d2da-1b87-4425-81cc-2fb2bc64741f" name="em_pending" outgoingTransitions="23cdf3ac-44b6-4227-a94e-85038d34dcc0 3ebdcb65-b0e9-4456-b018-887559e50ed1 190c1f74-52cb-4216-858e-a350d3994eda 83b24026-8e0f-4887-acb7-8755c06d724b 6f98df4d-fd9c-465e-8f5f-316dd7ebe7c2 b2ae4448-342a-48e6-aa04-a87279d30f95 d686c90f-1b38-4064-8a25-d227b7519081 177bd7b3-d90c-47f5-9cdb-c174f26459d1">
+              <incomingTransitions id="9d10b04e-7b07-4e9f-b7eb-429748f01995" source="90f020d8-dfdc-449d-b4f5-67237825085b" target="43ece124-3948-4fbf-b90b-b5c959ccc0e2" name="em_but_down/GEN(em_mv_down);em_pos_vert=0;">
+                <label id="4cfbc108-bcc9-4796-af70-dcc83fc8986b">
+                  <events>em_but_down</events>
+                  <transitionActions id="964e5dc9-84b7-44f3-a901-60dee3ac2b2d" code="GEN(em_mv_down)"/>
+                  <transitionActions id="c227ad8f-3a75-4f48-9390-ac5acf4a7f09" code="em_pos_vert=0"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="2ff30fa6-e43f-4534-8251-17d84663c2a8" source="15b084e9-5009-4cf6-89ac-724483dbb1f5" target="43ece124-3948-4fbf-b90b-b5c959ccc0e2" name="em_but_right/GEN(em_mv_right);em_pos_hor=0;">
+                <label id="56cb8028-3b5f-48c3-ade3-565b28d41781">
+                  <events>em_but_right</events>
+                  <transitionActions id="97b332ae-8b91-407c-8c4d-5f296d79b237" code="GEN(em_mv_right)"/>
+                  <transitionActions id="86a360fe-b109-4d22-86df-97b8eda2b45a" code="em_pos_hor=0"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="190c1f74-52cb-4216-858e-a350d3994eda" source="43ece124-3948-4fbf-b90b-b5c959ccc0e2" target="43ece124-3948-4fbf-b90b-b5c959ccc0e2" name="em_but_up/GEN(em_mv_up);">
+                <label id="a88fa537-385c-4184-878f-693dd08b58e2">
+                  <events>em_but_up</events>
+                  <transitionActions id="43b6498c-5472-4333-9ad0-5dd94c4f84c9" code="GEN(em_mv_up)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="83b24026-8e0f-4887-acb7-8755c06d724b" source="43ece124-3948-4fbf-b90b-b5c959ccc0e2" target="43ece124-3948-4fbf-b90b-b5c959ccc0e2" name="em_but_right/GEN(em_mv_right);">
+                <label id="4a666982-c6b0-4b9a-aa88-3084e6902b13">
+                  <events>em_but_right</events>
+                  <transitionActions id="3dd8e407-1ae6-4512-ab8a-026ed2d22be6" code="GEN(em_mv_right)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="6f98df4d-fd9c-465e-8f5f-316dd7ebe7c2" source="43ece124-3948-4fbf-b90b-b5c959ccc0e2" target="43ece124-3948-4fbf-b90b-b5c959ccc0e2" name="em_but_down/GEN(em_mv_down);">
+                <label id="c5e00cd1-cfbe-440b-a0d3-4f4345601f02">
+                  <events>em_but_down</events>
+                  <transitionActions id="56d33978-848a-4de1-9af9-b74b156725d9" code="GEN(em_mv_down)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="b2ae4448-342a-48e6-aa04-a87279d30f95" source="43ece124-3948-4fbf-b90b-b5c959ccc0e2" target="43ece124-3948-4fbf-b90b-b5c959ccc0e2" name="em_but_left/GEN(em_mv_left);">
+                <label id="ba699936-7eb8-4e30-a275-1c9a448c3433">
+                  <events>em_but_left</events>
+                  <transitionActions id="9c47300f-858c-4cd2-a094-50660a14ae34" code="GEN(em_mv_left)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="5aab043f-5135-44c1-ba34-afc97b7f7ecc" source="a12bf474-6bac-407d-89bb-66e4af0c233e" target="43ece124-3948-4fbf-b90b-b5c959ccc0e2" name="em_but_left/GEN(em_mv_left);em_pos_hor=0;">
+                <label id="a998d17b-e97e-4e55-b15c-e28207b9a091">
+                  <events>em_but_left</events>
+                  <transitionActions id="e6fb67c4-d267-4486-8ae7-d66832c66c4c" code="GEN(em_mv_left)"/>
+                  <transitionActions id="09a6a0c8-6164-4a69-ac83-737e9cb62258" code="em_pos_hor=0"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="1b6100ac-3041-478a-b12a-049b1df7d42e" source="6a0895e9-b276-402c-9f39-e43cf7cd6314" target="43ece124-3948-4fbf-b90b-b5c959ccc0e2" name="em_but_up/GEN(em_mv_up);em_pos_vert=0;">
+                <label id="a1e62c0c-829e-42f3-9cd7-f3a5821a51ee">
+                  <events>em_but_up</events>
+                  <transitionActions id="e0d0c209-43ed-48fe-8018-3fb176060b44" code="GEN(em_mv_up)"/>
+                  <transitionActions id="e5f05e99-a72b-486c-ac82-b283acfc19c7" code="em_pos_vert=0"/>
+                </label>
+              </incomingTransitions>
+            </initialStates>
+            <states id="e2d8f8b0-8127-42bc-be66-721d6b25b646" parent="2de3d2da-1b87-4425-81cc-2fb2bc64741f" name="em_top_left" outgoingTransitions="445d8375-6ab2-4668-8d77-3319a625e926 39a6760c-1f6e-46ce-824c-121d172b144c">
+              <incomingTransitions id="f795a9b3-760c-4041-9f5a-2ef433fb112f" source="90f020d8-dfdc-449d-b4f5-67237825085b" target="e2d8f8b0-8127-42bc-be66-721d6b25b646" name="em_pos_left/em_pos_hor=-1;">
+                <label id="2bb24f25-3c0c-4106-a0b0-337a57ba23d7">
+                  <events>em_pos_left</events>
+                  <transitionActions id="57170cb1-025a-4ab0-a6dc-0a808de6431a" code="em_pos_hor=-1"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="e1a140b3-b765-4047-b9ae-26331906707c" source="15b084e9-5009-4cf6-89ac-724483dbb1f5" target="e2d8f8b0-8127-42bc-be66-721d6b25b646" name="em_pos_top/em_pos_vert=1;">
+                <label id="8d1e8712-9e9e-460a-9e40-5608097c9313">
+                  <events>em_pos_top</events>
+                  <transitionActions id="454b44c6-0368-4bff-a513-b79c50a7fde4" code="em_pos_vert=1"/>
+                </label>
+              </incomingTransitions>
+            </states>
+            <states id="90f020d8-dfdc-449d-b4f5-67237825085b" parent="2de3d2da-1b87-4425-81cc-2fb2bc64741f" name="em_top" outgoingTransitions="f795a9b3-760c-4041-9f5a-2ef433fb112f bf65e4f2-0764-4fc9-ac1f-1c70fae17fb5 9d96a53f-8386-44df-b362-f66ce78ad14a 10004f72-0f49-4fb0-b716-74827c2560e8 9d10b04e-7b07-4e9f-b7eb-429748f01995">
+              <incomingTransitions id="445d8375-6ab2-4668-8d77-3319a625e926" source="e2d8f8b0-8127-42bc-be66-721d6b25b646" target="90f020d8-dfdc-449d-b4f5-67237825085b" name="em_but_right/GEN(em_mv_right);em_pos_hor=0;">
+                <label id="ec0cbb2f-5fb0-43ec-be49-28be6c75b678">
+                  <events>em_but_right</events>
+                  <transitionActions id="c0660446-dd6a-4341-aa4b-affcca5afc9e" code="GEN(em_mv_right)"/>
+                  <transitionActions id="ce531872-5445-4888-b1e0-a894fe7a6c1f" code="em_pos_hor=0"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="bf65e4f2-0764-4fc9-ac1f-1c70fae17fb5" source="90f020d8-dfdc-449d-b4f5-67237825085b" target="90f020d8-dfdc-449d-b4f5-67237825085b" name="em_but_right/GEN(em_mv_right);">
+                <label id="e5f7186b-bca9-4444-819e-135d4aff3614">
+                  <events>em_but_right</events>
+                  <transitionActions id="b279ef2f-0d31-4b08-a7b3-fbc3a3bb9c14" code="GEN(em_mv_right)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="9d96a53f-8386-44df-b362-f66ce78ad14a" source="90f020d8-dfdc-449d-b4f5-67237825085b" target="90f020d8-dfdc-449d-b4f5-67237825085b" name="em_but_left/GEN(em_mv_left);">
+                <label id="4e67dd7a-ab70-4d75-b1f1-8f76ac6315bd">
+                  <events>em_but_left</events>
+                  <transitionActions id="48487336-fab3-4448-96fd-07d8c72ffabc" code="GEN(em_mv_left)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="5de42e12-8969-49f8-b0e6-bb0e3ced30af" source="bb17e529-2e75-4aee-beed-a947177beb61" target="90f020d8-dfdc-449d-b4f5-67237825085b" name="em_but_left/GEN(em_mv_left);em_pos_hor=0;">
+                <label id="fe0b6c84-1618-4594-ab74-03e27e97d572">
+                  <events>em_but_left</events>
+                  <transitionActions id="76a84d16-f608-4167-a0cb-01e376381a2c" code="GEN(em_mv_left)"/>
+                  <transitionActions id="125a0398-4e18-4338-a631-40a62c3fb1b5" code="em_pos_hor=0"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="23cdf3ac-44b6-4227-a94e-85038d34dcc0" source="43ece124-3948-4fbf-b90b-b5c959ccc0e2" target="90f020d8-dfdc-449d-b4f5-67237825085b" name="em_pos_top/em_pos_vert=1;">
+                <label id="c6faaca4-b609-4394-ba65-029e01eb9fbc">
+                  <events>em_pos_top</events>
+                  <transitionActions id="9828cd14-b732-4f74-a190-79d57d4590f4" code="em_pos_vert=1"/>
+                </label>
+              </incomingTransitions>
+            </states>
+            <states id="bb17e529-2e75-4aee-beed-a947177beb61" parent="2de3d2da-1b87-4425-81cc-2fb2bc64741f" name="em_top_right" outgoingTransitions="5de42e12-8969-49f8-b0e6-bb0e3ced30af 36d205cd-c26f-403d-aa29-7dc438b25e0f">
+              <incomingTransitions id="10004f72-0f49-4fb0-b716-74827c2560e8" source="90f020d8-dfdc-449d-b4f5-67237825085b" target="bb17e529-2e75-4aee-beed-a947177beb61" name="em_pos_right/em_pos_hor=1;">
+                <label id="3f13c0ec-9d6a-45f7-acc6-07373b5d90ff">
+                  <events>em_pos_right</events>
+                  <transitionActions id="06dc2d94-ff87-4197-9733-817fabab98d2" code="em_pos_hor=1"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="011f4f94-a9c4-4582-a7b6-5b8cf886ea4e" source="a12bf474-6bac-407d-89bb-66e4af0c233e" target="bb17e529-2e75-4aee-beed-a947177beb61" name="em_pos_top/em_pos_vert=1;">
+                <label id="4bd2d36a-3983-41c8-8958-1b7d3afd83ab">
+                  <events>em_pos_top</events>
+                  <transitionActions id="7ab00664-dd0e-40f0-9349-cf2d094d56cb" code="em_pos_vert=1"/>
+                </label>
+              </incomingTransitions>
+            </states>
+            <states id="15b084e9-5009-4cf6-89ac-724483dbb1f5" parent="2de3d2da-1b87-4425-81cc-2fb2bc64741f" name="em_left" outgoingTransitions="e1a140b3-b765-4047-b9ae-26331906707c 46e05b9e-d6c0-439f-9e97-91e62b8474e2 d868dd42-15d7-43f5-87e4-7d3ba89026d0 2ff30fa6-e43f-4534-8251-17d84663c2a8 108d1cb6-acc1-4740-91bc-7dd764e19aa3">
+              <incomingTransitions id="39a6760c-1f6e-46ce-824c-121d172b144c" source="e2d8f8b0-8127-42bc-be66-721d6b25b646" target="15b084e9-5009-4cf6-89ac-724483dbb1f5" name="em_but_down/GEN(em_mv_down);em_pos_vert=0;">
+                <label id="3ce5cb32-a1df-4910-9140-391ed26658ba">
+                  <events>em_but_down</events>
+                  <transitionActions id="e51dd52e-ddb6-4312-adb4-c17b9e12ba97" code="GEN(em_mv_down)"/>
+                  <transitionActions id="29e43922-ac52-4664-b42e-b8c16a2ad2a6" code="em_pos_vert=0"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="46e05b9e-d6c0-439f-9e97-91e62b8474e2" source="15b084e9-5009-4cf6-89ac-724483dbb1f5" target="15b084e9-5009-4cf6-89ac-724483dbb1f5" name="em_but_up/GEN(em_mv_up);">
+                <label id="6e00bc19-69e7-4eff-904a-1eb59de5aacb">
+                  <events>em_but_up</events>
+                  <transitionActions id="b703df10-7574-4f0d-b3de-b3ac3cac7657" code="GEN(em_mv_up)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="d868dd42-15d7-43f5-87e4-7d3ba89026d0" source="15b084e9-5009-4cf6-89ac-724483dbb1f5" target="15b084e9-5009-4cf6-89ac-724483dbb1f5" name="em_but_down/GEN(em_mv_down);">
+                <label id="5bf1c807-b1ab-405c-bf83-0f0cfb3678df">
+                  <events>em_but_down</events>
+                  <transitionActions id="6aea0a82-ebd8-47c6-9afd-d4c3ce5796ea" code="GEN(em_mv_down)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="3ebdcb65-b0e9-4456-b018-887559e50ed1" source="43ece124-3948-4fbf-b90b-b5c959ccc0e2" target="15b084e9-5009-4cf6-89ac-724483dbb1f5" name="em_pos_left/em_pos_hor=-1;">
+                <label id="0e792ba1-7ad2-4dde-a11f-34a34e212eab">
+                  <events>em_pos_left</events>
+                  <transitionActions id="45ed0e7b-98ba-4102-8e5e-1990bba0960e" code="em_pos_hor=-1"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="45f2d0c6-85ad-4f32-b0eb-7149c5d9cd60" source="e0961baa-fb71-4682-a3bf-036f63892cb4" target="15b084e9-5009-4cf6-89ac-724483dbb1f5" name="em_but_up/GEN(em_mv_up);em_pos_vert=0;">
+                <label id="2e3af7e2-e706-4e87-9dcd-386f1a9dab7d">
+                  <events>em_but_up</events>
+                  <transitionActions id="9f91a418-cccf-431d-bb86-06daba646d44" code="GEN(em_mv_up)"/>
+                  <transitionActions id="72e1dc30-c257-49dd-8e40-c83968d57cdc" code="em_pos_vert=0"/>
+                </label>
+              </incomingTransitions>
+            </states>
+            <states id="a12bf474-6bac-407d-89bb-66e4af0c233e" parent="2de3d2da-1b87-4425-81cc-2fb2bc64741f" name="em_right" outgoingTransitions="011f4f94-a9c4-4582-a7b6-5b8cf886ea4e 5aab043f-5135-44c1-ba34-afc97b7f7ecc 2fed98f5-54c2-4b99-86cc-af9262d6cbb8 3c702848-2c58-436c-9baf-12a474e760dc 9ccdcc73-cdd5-4c3a-8b6c-3a3ca1d5a936">
+              <incomingTransitions id="36d205cd-c26f-403d-aa29-7dc438b25e0f" source="bb17e529-2e75-4aee-beed-a947177beb61" target="a12bf474-6bac-407d-89bb-66e4af0c233e" name="em_but_down/GEN(em_mv_down);em_pos_vert=0;">
+                <label id="0fceaf0e-b2fb-4da8-9d34-8128538bf102">
+                  <events>em_but_down</events>
+                  <transitionActions id="bd22b594-f629-4ffe-970f-f2d2fe267a3c" code="GEN(em_mv_down)"/>
+                  <transitionActions id="ee3940a6-e61a-47d1-bf9c-02d209d91937" code="em_pos_vert=0"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="d686c90f-1b38-4064-8a25-d227b7519081" source="43ece124-3948-4fbf-b90b-b5c959ccc0e2" target="a12bf474-6bac-407d-89bb-66e4af0c233e" name="em_pos_right/em_pos_hor=1;">
+                <label id="c1586e3e-99a0-4f84-96fc-12dff953f0ca">
+                  <events>em_pos_right</events>
+                  <transitionActions id="f0b1a547-7449-4ed6-b038-3403ecd88019" code="em_pos_hor=1"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="2fed98f5-54c2-4b99-86cc-af9262d6cbb8" source="a12bf474-6bac-407d-89bb-66e4af0c233e" target="a12bf474-6bac-407d-89bb-66e4af0c233e" name="em_but_up/GEN(em_mv_up);">
+                <label id="f49acfa2-cdf5-4212-ad73-7d0529bbeb12">
+                  <events>em_but_up</events>
+                  <transitionActions id="acb6f8e9-5627-46b9-8736-3e7f52b8a33c" code="GEN(em_mv_up)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="3c702848-2c58-436c-9baf-12a474e760dc" source="a12bf474-6bac-407d-89bb-66e4af0c233e" target="a12bf474-6bac-407d-89bb-66e4af0c233e" name="em_but_down/GEN(em_mv_down);">
+                <label id="b9d2e3e9-eacb-4a2a-b823-e05ff25c99fe">
+                  <events>em_but_down</events>
+                  <transitionActions id="557f26a1-5c04-4538-844b-c965b3f4397f" code="GEN(em_mv_down)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="e51f461e-6ac8-4333-b763-dd337f6c6962" source="77b6ad25-2690-4782-b9c0-c49a29c2680b" target="a12bf474-6bac-407d-89bb-66e4af0c233e" name="em_but_up/GEN(em_mv_up);em_pos_vert=0;">
+                <label id="9574516b-e592-40d8-b8cb-7b1780d47092">
+                  <events>em_but_up</events>
+                  <transitionActions id="6964c273-40e0-47c4-a624-d098468ada8c" code="GEN(em_mv_up)"/>
+                  <transitionActions id="887cb4b6-f8b8-4753-b30d-228d1f02d048" code="em_pos_vert=0"/>
+                </label>
+              </incomingTransitions>
+            </states>
+            <states id="e0961baa-fb71-4682-a3bf-036f63892cb4" parent="2de3d2da-1b87-4425-81cc-2fb2bc64741f" name="em_bottom_left" outgoingTransitions="45f2d0c6-85ad-4f32-b0eb-7149c5d9cd60 c5488fb5-3f8c-4841-9b9d-d4b0ff73c79c">
+              <incomingTransitions id="108d1cb6-acc1-4740-91bc-7dd764e19aa3" source="15b084e9-5009-4cf6-89ac-724483dbb1f5" target="e0961baa-fb71-4682-a3bf-036f63892cb4" name="em_pos_bottom/em_pos_vert=-1;">
+                <label id="6bed7c15-8347-4451-8312-00234d3e10e7">
+                  <events>em_pos_bottom</events>
+                  <transitionActions id="51f9bb29-36fa-441e-ba1e-7e3abe32e728" code="em_pos_vert=-1"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="e683ffda-710d-4445-b019-880fe2426539" source="6a0895e9-b276-402c-9f39-e43cf7cd6314" target="e0961baa-fb71-4682-a3bf-036f63892cb4" name="em_pos_left/em_pos_hor=-1;">
+                <label id="9dcd4430-fe14-45df-ae6d-21f8a6434ffd">
+                  <events>em_pos_left</events>
+                  <transitionActions id="4681ca50-3458-4522-8afa-8291bed8796e" code="em_pos_hor=-1"/>
+                </label>
+              </incomingTransitions>
+            </states>
+            <states id="6a0895e9-b276-402c-9f39-e43cf7cd6314" parent="2de3d2da-1b87-4425-81cc-2fb2bc64741f" name="em_bottom" outgoingTransitions="1b6100ac-3041-478a-b12a-049b1df7d42e e683ffda-710d-4445-b019-880fe2426539 ee0ae652-0779-4df4-8df1-850ab7ab00dd 227a6c8a-e22a-4d87-bbaf-fd3289a74fb7 878824dd-3a4e-49d9-a185-9dc026fb236e">
+              <incomingTransitions id="177bd7b3-d90c-47f5-9cdb-c174f26459d1" source="43ece124-3948-4fbf-b90b-b5c959ccc0e2" target="6a0895e9-b276-402c-9f39-e43cf7cd6314" name="em_pos_bottom/em_pos_vert=-1;">
+                <label id="354b8d46-0740-4e7a-8265-7f06e8837010">
+                  <events>em_pos_bottom</events>
+                  <transitionActions id="c9c6c99f-4548-4eaa-83b1-eae5110aa896" code="em_pos_vert=-1"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="c5488fb5-3f8c-4841-9b9d-d4b0ff73c79c" source="e0961baa-fb71-4682-a3bf-036f63892cb4" target="6a0895e9-b276-402c-9f39-e43cf7cd6314" name="em_but_right/GEN(em_mv_right);em_pos_hor=0;">
+                <label id="77fb5a09-50d1-41d2-b1e0-bbc29d7f7fe9">
+                  <events>em_but_right</events>
+                  <transitionActions id="04b0e214-e392-4804-908c-5489dc1f81a4" code="GEN(em_mv_right)"/>
+                  <transitionActions id="15dd3cb7-9011-4f71-b45a-44fdfa12a224" code="em_pos_hor=0"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="ee0ae652-0779-4df4-8df1-850ab7ab00dd" source="6a0895e9-b276-402c-9f39-e43cf7cd6314" target="6a0895e9-b276-402c-9f39-e43cf7cd6314" name="em_but_left/GEN(em_mv_left);">
+                <label id="107124f9-76f1-4b02-941c-9d4d6a264528">
+                  <events>em_but_left</events>
+                  <transitionActions id="d562032a-d260-4ad3-97d4-975435c34564" code="GEN(em_mv_left)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="227a6c8a-e22a-4d87-bbaf-fd3289a74fb7" source="6a0895e9-b276-402c-9f39-e43cf7cd6314" target="6a0895e9-b276-402c-9f39-e43cf7cd6314" name="em_but_right/GEN(em_mv_right);">
+                <label id="d40bc4d7-aecf-4968-9c39-e7b1cd52df04">
+                  <events>em_but_right</events>
+                  <transitionActions id="c48a9fdd-cf6d-457e-9abe-57caaba8b654" code="GEN(em_mv_right)"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="96300098-ed0a-48e7-8053-a63062f8adec" source="77b6ad25-2690-4782-b9c0-c49a29c2680b" target="6a0895e9-b276-402c-9f39-e43cf7cd6314" name="em_but_left/GEN(em_mv_left);em_pos_hor=0;">
+                <label id="da5f554b-4f3c-4168-89b0-389c980f0d27">
+                  <events>em_but_left</events>
+                  <transitionActions id="a7654b60-2881-4a2d-9ea5-58c53d54ccb1" code="GEN(em_mv_left)"/>
+                  <transitionActions id="1d84c1da-e1d6-4757-95b4-7589099e7e0e" code="em_pos_hor=0"/>
+                </label>
+              </incomingTransitions>
+            </states>
+            <states id="77b6ad25-2690-4782-b9c0-c49a29c2680b" parent="2de3d2da-1b87-4425-81cc-2fb2bc64741f" name="em_bottom_right" outgoingTransitions="e51f461e-6ac8-4333-b763-dd337f6c6962 96300098-ed0a-48e7-8053-a63062f8adec">
+              <incomingTransitions id="9ccdcc73-cdd5-4c3a-8b6c-3a3ca1d5a936" source="a12bf474-6bac-407d-89bb-66e4af0c233e" target="77b6ad25-2690-4782-b9c0-c49a29c2680b" name="em_pos_bottom/em_pos_vert=-1;">
+                <label id="e1c2a559-00a0-4c5c-8a51-26ada95866ea">
+                  <events>em_pos_bottom</events>
+                  <transitionActions id="58dc5c96-e6ed-4007-95e3-b9417077fafc" code="em_pos_vert=-1"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="878824dd-3a4e-49d9-a185-9dc026fb236e" source="6a0895e9-b276-402c-9f39-e43cf7cd6314" target="77b6ad25-2690-4782-b9c0-c49a29c2680b" name="em_pos_right/em_pos_hor=1;">
+                <label id="a92dd988-12ef-4175-9726-beb5291e2abd">
+                  <events>em_pos_right</events>
+                  <transitionActions id="f62419b1-a23a-4acc-9cbb-529f41d085b4" code="em_pos_hor=1"/>
+                </label>
+              </incomingTransitions>
+            </states>
+          </regions>
+        </initialStates>
+      </regions>
+      <regions id="c566b5ef-82b6-4308-ae69-3a14d490d6d5" parent="77bb92c6-3530-4a60-aa72-b421ffcab1e7" name="BCS_AutoPW">
+        <initialStates id="63e21fca-4a38-4dbe-a4b3-334b0b8e23aa" parent="c566b5ef-82b6-4308-ae69-3a14d490d6d5" name="AutoPW">
+          <regions id="36291b1b-a595-4363-9939-ef7a65d3ca68" parent="63e21fca-4a38-4dbe-a4b3-334b0b8e23aa" name="AutoPW">
+            <initialStates id="ac0f1ad9-2034-40fe-97dc-9782b0bfb2dd" parent="36291b1b-a595-4363-9939-ef7a65d3ca68" name="AutoPW_up" outgoingTransitions="0b8ff9b1-1c62-44a7-a2e5-6342f5af3020">
+              <incomingTransitions id="cc1b82aa-80ff-491e-b87f-e63f637f7bff" source="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" target="ac0f1ad9-2034-40fe-97dc-9782b0bfb2dd" name="[pw_pos==1&amp;&amp;pw_auto_mv==1]/pw_auto_mv=0;">
+                <label id="b089dc21-6341-41f1-bc09-4aac4d8c94ed">
+                  <conditions>pw_pos==1</conditions>
+                  <conditions>pw_auto_mv==1</conditions>
+                  <transitionActions id="8737748a-8b5e-425e-9bc0-66cf30a56852" code="pw_auto_mv=0"/>
+                </label>
+              </incomingTransitions>
+            </initialStates>
+            <states id="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" parent="36291b1b-a595-4363-9939-ef7a65d3ca68" name="AutoPW_pend" outgoingTransitions="cc1b82aa-80ff-491e-b87f-e63f637f7bff b8156ded-1837-491e-8d99-a550e63a6598 2823ee95-f6fc-4a8d-966c-9dd06150b2fe e6dff0f0-3499-45e0-8846-27711a5bd665 ae46be47-572a-43c9-aea8-6e6fee02fc79 18ad8867-b3e2-4397-92a0-81d118f35861">
+              <incomingTransitions id="0b8ff9b1-1c62-44a7-a2e5-6342f5af3020" source="ac0f1ad9-2034-40fe-97dc-9782b0bfb2dd" target="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" name="pw_but_dn[pw_enabled==true]/pw_auto_mv=-1;">
+                <label id="04de9bf0-db5e-4c27-8b9a-6f5c1d2ff63b">
+                  <events>pw_but_dn</events>
+                  <conditions>pw_enabled==true</conditions>
+                  <transitionActions id="092630cd-40e1-4d9a-a79c-2aa9bef4cafd" code="pw_auto_mv=-1"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="b8156ded-1837-491e-8d99-a550e63a6598" source="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" target="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" name="pw_but_up[pw_auto_mv==-1]/pw_auto_mv=0;">
+                <label id="8f9844f6-d419-4714-bc18-aa3cd087359e">
+                  <events>pw_but_up</events>
+                  <conditions>pw_auto_mv==-1</conditions>
+                  <transitionActions id="e69dab89-25fd-4ed3-9b1c-517837f855d1" code="pw_auto_mv=0"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="2823ee95-f6fc-4a8d-966c-9dd06150b2fe" source="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" target="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" name="pw_but_up[pw_auto_mv==0&amp;&amp;fp_on==false]/pw_auto_mv=1;">
+                <label id="edf532b9-de59-4618-af96-8ecd6d918408">
+                  <events>pw_but_up</events>
+                  <conditions>pw_auto_mv==0</conditions>
+                  <conditions>fp_on==false</conditions>
+                  <transitionActions id="298a9edc-12ec-4c46-afc6-e507fbf70881" code="pw_auto_mv=1"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="e6dff0f0-3499-45e0-8846-27711a5bd665" source="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" target="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" name="pw_but_dn[pw_auto_mv==0&amp;&amp;pw_enabled==true]/pw_auto_mv=-1;">
+                <label id="3c1adb94-ee41-4fb0-ac13-8f435b44e539">
+                  <events>pw_but_dn</events>
+                  <conditions>pw_auto_mv==0</conditions>
+                  <conditions>pw_enabled==true</conditions>
+                  <transitionActions id="d6b20a0c-f8b8-4a98-a9af-e4d26c0cd3f3" code="pw_auto_mv=-1"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="ae46be47-572a-43c9-aea8-6e6fee02fc79" source="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" target="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" name="pw_but_dn[pw_auto_mv==1&amp;&amp;pw_enabled==true]/pw_auto_mv=0;">
+                <label id="82f82b4c-b2db-4c26-839d-a78a2fbc040b">
+                  <events>pw_but_dn</events>
+                  <conditions>pw_auto_mv==1</conditions>
+                  <conditions>pw_enabled==true</conditions>
+                  <transitionActions id="abf2f27a-2aad-4707-9373-1956043b6021" code="pw_auto_mv=0"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="7679b093-dc49-45fd-934e-42f4cc1dfc2b" source="09bbd865-91b3-4bc5-a115-bc7df1cb224c" target="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" name="pw_but_up[fp_on==false]/pw_auto_mv=1;">
+                <label id="1cd1fca0-cc82-4cda-b59f-df71d74cc113">
+                  <events>pw_but_up</events>
+                  <conditions>fp_on==false</conditions>
+                  <transitionActions id="cbfbe53a-077c-4185-a3cc-c70662e41d40" code="pw_auto_mv=1"/>
+                </label>
+              </incomingTransitions>
+            </states>
+            <states id="09bbd865-91b3-4bc5-a115-bc7df1cb224c" parent="36291b1b-a595-4363-9939-ef7a65d3ca68" name="AutoPW_down" outgoingTransitions="7679b093-dc49-45fd-934e-42f4cc1dfc2b">
+              <incomingTransitions id="18ad8867-b3e2-4397-92a0-81d118f35861" source="80d31ad7-78da-4689-b4f2-92fb1f53dbf7" target="09bbd865-91b3-4bc5-a115-bc7df1cb224c" name="[pw_pos==-1&amp;&amp;pw_auto_mv==-1]/pw_auto_mv=0;">
+                <label id="e6e1d825-88f6-4b69-9d26-68aeb85cda44">
+                  <conditions>pw_pos==-1</conditions>
+                  <conditions>pw_auto_mv==-1</conditions>
+                  <transitionActions id="dd82ade3-4022-478b-b627-71590a733c32" code="pw_auto_mv=0"/>
+                </label>
+              </incomingTransitions>
+            </states>
+          </regions>
+        </initialStates>
+      </regions>
+      <regions id="fe0825c5-8472-47e8-8ee9-c55a6941ab2d" parent="77bb92c6-3530-4a60-aa72-b421ffcab1e7" name="BCS_CLS">
+        <initialStates id="fed8fda4-e6cd-40d2-93ac-ff305ba59353" parent="fe0825c5-8472-47e8-8ee9-c55a6941ab2d" name="CLS">
+          <regions id="82e0a2a7-0a57-4810-8033-47dcf8d56d33" parent="fed8fda4-e6cd-40d2-93ac-ff305ba59353" name="CLS">
+            <initialStates id="15a32457-0387-4728-9871-1e1d06fcb2cc" parent="82e0a2a7-0a57-4810-8033-47dcf8d56d33" name="CLS_unlock" outgoingTransitions="fd76f97d-11fa-411c-a28d-9ad1bace710f 660051a2-fceb-4a22-931e-910eadeb294c">
+              <incomingTransitions id="23ca6e9a-f31e-4c17-8087-14f12c3a9b55" source="597ac8f4-cab7-40ee-8d97-894c2520a76a" target="15a32457-0387-4728-9871-1e1d06fcb2cc" name="key_pos_unlock/cls_locked=false;pw_enabled=true;">
+                <label id="66ebb069-d563-4655-afff-4abfdfbed4f9">
+                  <events>key_pos_unlock</events>
+                  <transitionActions id="9a42ef5a-f0b9-4deb-9a63-815699ed4901" code="cls_locked=false"/>
+                  <transitionActions id="7c67438e-8900-4ee9-a471-466148185815" code="pw_enabled=true"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="2936f33c-bc40-463d-a565-131df37519f8" source="597ac8f4-cab7-40ee-8d97-894c2520a76a" target="15a32457-0387-4728-9871-1e1d06fcb2cc" name="rck_unlock/cls_locked=false;pw_enabled=true;">
+                <label id="6511ab32-428f-4392-8eb3-34e4c1da4a3e">
+                  <events>rck_unlock</events>
+                  <transitionActions id="9a1aaec6-68b5-4468-8ba9-ba19d1e2d034" code="cls_locked=false"/>
+                  <transitionActions id="cddf8513-9f8d-4994-85f3-45c10b6ad0e6" code="pw_enabled=true"/>
+                </label>
+              </incomingTransitions>
+            </initialStates>
+            <states id="597ac8f4-cab7-40ee-8d97-894c2520a76a" parent="82e0a2a7-0a57-4810-8033-47dcf8d56d33" name="CLS_lock" outgoingTransitions="23ca6e9a-f31e-4c17-8087-14f12c3a9b55 2936f33c-bc40-463d-a565-131df37519f8">
+              <incomingTransitions id="fd76f97d-11fa-411c-a28d-9ad1bace710f" source="15a32457-0387-4728-9871-1e1d06fcb2cc" target="597ac8f4-cab7-40ee-8d97-894c2520a76a" name="rck_lock/GEN(pw_but_up);cls_locked=true;pw_enabled=false;">
+                <label id="4af21eca-faf7-45f7-aeba-80f527787112">
+                  <events>rck_lock</events>
+                  <transitionActions id="575fbcd0-8cbc-4b34-a1e5-da72fa9d1000" code="GEN(pw_but_up)"/>
+                  <transitionActions id="d341a644-68a6-4ce6-8048-18dcd2ea4003" code="cls_locked=true"/>
+                  <transitionActions id="f1fd621a-ce84-4b0c-8ace-c4e7af47a269" code="pw_enabled=false"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="660051a2-fceb-4a22-931e-910eadeb294c" source="15a32457-0387-4728-9871-1e1d06fcb2cc" target="597ac8f4-cab7-40ee-8d97-894c2520a76a" name="key_pos_lock/GEN(pw_but_up);cls_locked=true;pw_enabled=false;">
+                <label id="ac743e71-1bb4-4fc0-915a-fa2701286c5f">
+                  <events>key_pos_lock</events>
+                  <transitionActions id="31fb2073-fd4d-4f51-9068-c644f97dd044" code="GEN(pw_but_up)"/>
+                  <transitionActions id="2e259fbe-48b6-41dc-802b-1ea5f4b88d01" code="cls_locked=true"/>
+                  <transitionActions id="db4421ca-10a5-4299-a9a7-88a2c4a1df7f" code="pw_enabled=false"/>
+                </label>
+              </incomingTransitions>
+            </states>
+          </regions>
+        </initialStates>
+      </regions>
+      <regions id="7ad158b7-70be-44a1-9976-0f9c74218661" parent="77bb92c6-3530-4a60-aa72-b421ffcab1e7" name="BCS_EM_Heat">
+        <initialStates id="4d7a68b5-7d98-462c-8568-0c2270f0248b" parent="7ad158b7-70be-44a1-9976-0f9c74218661" name="EM_heating">
+          <regions id="91c5af13-5d7a-4db4-9830-766619a5669f" parent="4d7a68b5-7d98-462c-8568-0c2270f0248b" name="EM_heating">
+            <initialStates id="897eeae7-180f-4996-aeeb-11eb285640f1" parent="91c5af13-5d7a-4db4-9830-766619a5669f" name="heating_off" outgoingTransitions="dc248199-f924-482d-8fe5-87e04b23d448">
+              <incomingTransitions id="f3bc18ad-1e82-4ef1-bda3-ff029be80b9b" source="025bcaf2-2ae4-4f22-ab73-1a334df3b8fd" target="897eeae7-180f-4996-aeeb-11eb285640f1" name="timeHeat_elapsed/heating=false;">
+                <label id="03081a0a-e1ca-4bd3-a2f4-2bfa614b0114">
+                  <events>timeHeat_elapsed</events>
+                  <transitionActions id="7d6628da-a120-4997-96fc-016218dd9184" code="heating=false"/>
+                </label>
+              </incomingTransitions>
+            </initialStates>
+            <states id="025bcaf2-2ae4-4f22-ab73-1a334df3b8fd" parent="91c5af13-5d7a-4db4-9830-766619a5669f" name="heating_on" outgoingTransitions="f3bc18ad-1e82-4ef1-bda3-ff029be80b9b">
+              <incomingTransitions id="dc248199-f924-482d-8fe5-87e04b23d448" source="897eeae7-180f-4996-aeeb-11eb285640f1" target="025bcaf2-2ae4-4f22-ab73-1a334df3b8fd" name="em_too_cold/heating=true;">
+                <label id="d8b18c7d-a207-431b-9ad9-443d205a4ebd">
+                  <events>em_too_cold</events>
+                  <transitionActions id="34d4b717-42ff-4dc0-918f-9ec6ddc1f6e2" code="heating=true"/>
+                </label>
+              </incomingTransitions>
+            </states>
+          </regions>
+        </initialStates>
+      </regions>
+      <regions id="1cc9a2d5-a694-4911-b5b0-abd351662747" parent="77bb92c6-3530-4a60-aa72-b421ffcab1e7" name="BCS_AS">
+        <initialStates id="93b33f95-a2bf-4829-b94c-96cc861edd3b" parent="1cc9a2d5-a694-4911-b5b0-abd351662747" name="AS">
+          <regions id="f7024b3d-7b04-45f4-b7ca-029f08a30c27" parent="93b33f95-a2bf-4829-b94c-96cc861edd3b" name="AS">
+            <initialStates id="97c485c2-7279-45f9-843a-051aaa0d1bed" parent="f7024b3d-7b04-45f4-b7ca-029f08a30c27" name="AS_off" outgoingTransitions="7da914b3-2514-468b-865d-7fbbd3a33655 dae87d29-86a7-4866-aa1b-e1b9cfe101a2">
+              <incomingTransitions id="66576865-39b4-492c-9283-7a580b3c66ef" source="7c8e8cba-a782-49ef-8393-873657aff29c" target="97c485c2-7279-45f9-843a-051aaa0d1bed" name="as_deactivated/as_active=false;">
+                <label id="c842378d-7dfb-428d-82e1-ef1bfd89e8e9">
+                  <events>as_deactivated</events>
+                  <transitionActions id="80874ce7-0db5-4b25-8440-51c8d6a7e17c" code="as_active=false"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="8e2697fa-f0e2-47d3-8b91-01f56a7fb137" source="7c8e8cba-a782-49ef-8393-873657aff29c" target="97c485c2-7279-45f9-843a-051aaa0d1bed" name="rck_unlock/as_active=false;">
+                <label id="35c1fa2f-ae27-4aa4-a7c2-67c792202f7c">
+                  <events>rck_unlock</events>
+                  <transitionActions id="6937c35e-18a5-42ce-9b0e-435ba1678ab9" code="as_active=false"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="230fa238-84b0-4786-86c4-9e46f06fe126" source="157e895e-72f6-49e4-85a9-3819e9e8eaca" target="97c485c2-7279-45f9-843a-051aaa0d1bed" name="as_deactivated/as_active=false;as_alarm=false;as_im_alarm=false;">
+                <label id="9bd961b0-f9d5-4ad6-87e7-6500560a4e02">
+                  <events>as_deactivated</events>
+                  <transitionActions id="e82960ca-724e-483f-bb18-74a13dd1c639" code="as_active=false"/>
+                  <transitionActions id="09905325-6ab7-44c5-9592-623d7d8256ea" code="as_alarm=false"/>
+                  <transitionActions id="5d9209f9-93d2-486f-94c3-9befd8dc7ae0" code="as_im_alarm=false"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="e1cdf1c2-faef-4840-be85-c3f55b83a5e1" source="157e895e-72f6-49e4-85a9-3819e9e8eaca" target="97c485c2-7279-45f9-843a-051aaa0d1bed" name="rck_unlock/as_active=false;as_alarm=false;as_im_alarm=false;">
+                <label id="f7546a3e-a890-43af-8b58-4f5b0d1987ea">
+                  <events>rck_unlock</events>
+                  <transitionActions id="0785120d-9133-4829-9c7f-7eb20235136b" code="as_active=false"/>
+                  <transitionActions id="90dd4816-ce96-4527-828d-a14dfb19ed64" code="as_alarm=false"/>
+                  <transitionActions id="72b71581-064d-4573-8a26-583afc47a8fa" code="as_im_alarm=false"/>
+                </label>
+              </incomingTransitions>
+            </initialStates>
+            <states id="7c8e8cba-a782-49ef-8393-873657aff29c" parent="f7024b3d-7b04-45f4-b7ca-029f08a30c27" name="AS_on" outgoingTransitions="66576865-39b4-492c-9283-7a580b3c66ef 79b20155-de86-48c1-b60c-39626f8dd516 8e2697fa-f0e2-47d3-8b91-01f56a7fb137 7eef24a0-098e-4c13-a7b0-a56dbcef94f1">
+              <incomingTransitions id="7da914b3-2514-468b-865d-7fbbd3a33655" source="97c485c2-7279-45f9-843a-051aaa0d1bed" target="7c8e8cba-a782-49ef-8393-873657aff29c" name="as_activated/as_active=true;">
+                <label id="d271169f-29d5-4c60-8ce9-9f6d49a66680">
+                  <events>as_activated</events>
+                  <transitionActions id="c277287b-3748-42af-a67b-ebb8e9e979a1" code="as_active=true"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="dae87d29-86a7-4866-aa1b-e1b9cfe101a2" source="97c485c2-7279-45f9-843a-051aaa0d1bed" target="7c8e8cba-a782-49ef-8393-873657aff29c" name="rck_lock/as_active=true;">
+                <label id="a9dd1dda-bda6-47c6-9af3-e3bd74526f5c">
+                  <events>rck_lock</events>
+                  <transitionActions id="479b16b2-575c-4db0-8d26-ee8dc19cbb8c" code="as_active=true"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="9c5b1ecb-faf7-4ccd-8285-c8f3c3af0d0b" source="157e895e-72f6-49e4-85a9-3819e9e8eaca" target="7c8e8cba-a782-49ef-8393-873657aff29c" name="timeAS_elapsed/as_alarm_was_detected=true;as_alarm=false;as_im_alarm=false;">
+                <label id="6546ebff-7ebf-47e3-be77-437e7a0b6179">
+                  <events>timeAS_elapsed</events>
+                  <transitionActions id="b949d16a-47bd-4b81-86ae-5436fc706599" code="as_alarm_was_detected=true"/>
+                  <transitionActions id="e3f30d96-7002-402a-a238-351769aba806" code="as_alarm=false"/>
+                  <transitionActions id="2915d2ce-4c2b-4134-9741-c435b7a91b08" code="as_im_alarm=false"/>
+                </label>
+              </incomingTransitions>
+            </states>
+            <states id="157e895e-72f6-49e4-85a9-3819e9e8eaca" parent="f7024b3d-7b04-45f4-b7ca-029f08a30c27" name="AS_alarm" outgoingTransitions="230fa238-84b0-4786-86c4-9e46f06fe126 9c5b1ecb-faf7-4ccd-8285-c8f3c3af0d0b e1cdf1c2-faef-4840-be85-c3f55b83a5e1">
+              <incomingTransitions id="79b20155-de86-48c1-b60c-39626f8dd516" source="7c8e8cba-a782-49ef-8393-873657aff29c" target="157e895e-72f6-49e4-85a9-3819e9e8eaca" name="as_alarm_detected/as_alarm=true;">
+                <label id="da680b69-44f2-445d-8c55-56bedacc47c2">
+                  <events>as_alarm_detected</events>
+                  <transitionActions id="1974f93b-06d9-4382-af2f-71f49803e784" code="as_alarm=true"/>
+                </label>
+              </incomingTransitions>
+              <incomingTransitions id="7eef24a0-098e-4c13-a7b0-a56dbcef94f1" source="7c8e8cba-a782-49ef-8393-873657aff29c" target="157e895e-72f6-49e4-85a9-3819e9e8eaca" name="im_alarm_detected/as_im_alarm=true;">
+                <label id="8f28c04d-40d1-48ec-905d-bb24fa6115f3">
+                  <events>im_alarm_detected</events>
+                  <transitionActions id="e8a7f384-3e63-48b7-a2f0-4710e1233441" code="as_im_alarm=true"/>
+                </label>
+              </incomingTransitions>
+            </states>
+          </regions>
+        </initialStates>
+      </regions>
+    </initialStates>
+  </rootRegion>
+</de.tu_bs.cs.isf.familymining.models:StateChart>

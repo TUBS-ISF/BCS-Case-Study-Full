@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.tu_bs.cs.isf.familymining.models.stateoriented/src-gen"
+    editDirectory="/de.tu_bs.cs.isf.familymining.models.stateoriented.edit/src-gen"
+    editorDirectory="/de.tu_bs.cs.isf.familymining.models.stateoriented.editor/src-gen"
+    modelPluginID="de.tu_bs.cs.isf.familymining.models.stateoriented" modelName="Statecharts"
+    editPluginClass="de.tu_bs.cs.isf.familymining.models.stateoriented.provider.StatechartsEditPlugin"
+    editorPluginClass="de.tu_bs.cs.isf.familymining.models.stateoriented.presentation.StatechartsEditorPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/de.tu_bs.cs.isf.familymining.models.stateoriented.tests/src-gen"
+    testSuiteClass="de.tu_bs.cs.isf.familymining.models.stateoriented.tests.StatechartsAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="de.tu_bs.cs.isf.familymining.models.stateoriented.edit" editorPluginID="de.tu_bs.cs.isf.familymining.models.stateoriented.editor"
+    usedGenPackages="../../de.tu_bs.cs.isf.familymining.models.base/model/base.genmodel#//base ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>statecharts.ecore</foreignModel>
+  <genPackages prefix="StateCharts" basePackage="de.tu_bs.cs.isf.familymining.models"
+      disposableProviderFactory="true" fileExtensions="statechart" ecorePackage="statecharts.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="statecharts.ecore#//HistoryOperator">
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//HistoryOperator/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//HistoryOperator/SHALLOW"/>
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//HistoryOperator/DEEP"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="statecharts.ecore#//TemporalOperator">
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//TemporalOperator/AFTER"/>
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//TemporalOperator/BEFORE"/>
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//TemporalOperator/EVERY"/>
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//TemporalOperator/AT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="statecharts.ecore#//TransitionType">
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//TransitionType/NORMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//TransitionType/WEAK"/>
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//TransitionType/STRONG"/>
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//TransitionType/SYNCHRO"/>
+      <genEnumLiterals ecoreEnumLiteral="statecharts.ecore#//TransitionType/RESUMING"/>
+    </genEnums>
+    <genClasses ecoreClass="statecharts.ecore#//StateChart">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//StateChart/stateCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//StateChart/regionCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//StateChart/transitionCount"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statecharts.ecore#//StateChart/rootRegion"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="statecharts.ecore#//AbstractState">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference statecharts.ecore#//AbstractState/parent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//AbstractState/stereotypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//AbstractState/name"/>
+      <genOperations ecoreOperation="statecharts.ecore#//AbstractState/isHierarchical"/>
+      <genOperations ecoreOperation="statecharts.ecore#//AbstractState/isParallel"/>
+    </genClasses>
+    <genClasses ecoreClass="statecharts.ecore#//InitialState"/>
+    <genClasses image="false" ecoreClass="statecharts.ecore#//EndState"/>
+    <genClasses ecoreClass="statecharts.ecore#//FinalState"/>
+    <genClasses ecoreClass="statecharts.ecore#//TerminationConnector"/>
+    <genClasses image="false" ecoreClass="statecharts.ecore#//IncomingState">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statecharts.ecore#//IncomingState/incomingTransitions"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="statecharts.ecore#//OutgoingState">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference statecharts.ecore#//OutgoingState/outgoingTransitions"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="statecharts.ecore#//State">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//State/history"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statecharts.ecore#//State/actions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statecharts.ecore#//State/regions"/>
+    </genClasses>
+    <genClasses ecoreClass="statecharts.ecore#//Region">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference statecharts.ecore#//Region/parent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statecharts.ecore#//Region/initialStates"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statecharts.ecore#//Region/states"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statecharts.ecore#//Region/endStates"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//Region/name"/>
+    </genClasses>
+    <genClasses ecoreClass="statecharts.ecore#//Transition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//Transition/priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//Transition/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//Transition/stereotypes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference statecharts.ecore#//Transition/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference statecharts.ecore#//Transition/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statecharts.ecore#//Transition/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//Transition/name"/>
+    </genClasses>
+    <genClasses ecoreClass="statecharts.ecore#//TransitionLabel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//TransitionLabel/uniqueId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//TransitionLabel/events"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//TransitionLabel/conditions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statecharts.ecore#//TransitionLabel/conditionActions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statecharts.ecore#//TransitionLabel/transitionActions"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="statecharts.ecore#//Action">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//Action/uniqueId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//Action/code"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="statecharts.ecore#//StateAction"/>
+    <genClasses ecoreClass="statecharts.ecore#//EntryAction"/>
+    <genClasses ecoreClass="statecharts.ecore#//ExitAction"/>
+    <genClasses ecoreClass="statecharts.ecore#//DuringAction"/>
+    <genClasses ecoreClass="statecharts.ecore#//BindAction"/>
+    <genClasses ecoreClass="statecharts.ecore#//OnAction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//OnAction/temporalValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statecharts.ecore#//OnAction/temporalOperator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="statecharts.ecore#//LabelAction"/>
+    <genClasses ecoreClass="statecharts.ecore#//ConditionAction"/>
+    <genClasses ecoreClass="statecharts.ecore#//TransitionAction"/>
+  </genPackages>
+</genmodel:GenModel>

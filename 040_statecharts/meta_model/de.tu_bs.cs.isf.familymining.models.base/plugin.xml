@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated base -->
+      <package
+            uri="http://www.tu-braunschweig.de/isf/familymining/base"
+            class="de.tu_bs.cs.isf.familymining.models.base.BasePackage"
+            genModel="model/base.genmodel"/>
+   </extension>
+
+</plugin>
