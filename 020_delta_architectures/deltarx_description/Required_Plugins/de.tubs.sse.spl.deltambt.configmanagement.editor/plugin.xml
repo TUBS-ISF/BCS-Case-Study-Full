@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+  <!-- EEF extensions -->
+  <extension
+         point="org.eclipse.emf.eef.runtime.PropertiesEditionProvider">
+      <PropertiesEditionComponentProvider
+            providerClass="de.tubs.sse.spl.deltambt.configmanagement.providers.ConfigmanagementPackagePropertiesEditionProvider">
+      </PropertiesEditionComponentProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.eef.runtime.PropertiesEditionPolicyProvider">
+      <PropertiesEditionPolicyProvider
+            providerClass="de.tubs.sse.spl.deltambt.configmanagement.providers.ConfigmanagementPackagePropertiesEditionPolicyProvider">
+      </PropertiesEditionPolicyProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.eef.runtime.PropertiesEditionPartProvider">
+      <PropertiesEditionPartProvider
+            providerClass="de.tubs.sse.spl.deltambt.configmanagement.providers.ConfigmanagementPropertiesEditionPartProvider">
+      </PropertiesEditionPartProvider>
+   </extension>
+
+   <!-- Tabbed properties views extension -->
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="de.tubs.sse.spl.deltambt.configmanagement.properties"
+            labelProvider="de.tubs.sse.spl.deltambt.configmanagement.providers.ConfigManagementLabelProvider">
+         <propertyCategory
+               category="default">
+         </propertyCategory>
+         <propertyCategory
+               category="extended">
+         </propertyCategory>
+         <propertyCategory
+               category="advanced">
+         </propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="de.tubs.sse.spl.deltambt.configmanagement.properties">
+         <propertyTab
+               label="Model"
+               category="default"
+               id="Base">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="de.tubs.sse.spl.deltambt.configmanagement.properties">
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="de.tubs.sse.spl.deltambt.configmanagement.section.ConfigurationRepository"
+               tab="Base">
+             <input
+                    type="de.tubs.sse.spl.deltambt.configmanagement.ConfigurationRepository">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="de.tubs.sse.spl.deltambt.configmanagement.section.Configuration"
+               tab="Base">
+             <input
+                    type="de.tubs.sse.spl.deltambt.configmanagement.Configuration">
+             </input>
+         </propertySection>
+      </propertySections>
+   </extension>
+   
+   
+   
+   
+   
+   
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="de.tubs.sse.spl.deltambt.configmanagement.presentation.ConfigmanagementEditorID"
+            name="%_UI_ConfigmanagementEditor_label"
+            icon="icons/full/obj16/ConfigmanagementModelFile.gif"
+            extensions="configmanagement"
+            class="de.tubs.sse.spl.deltambt.configmanagement.presentation.ConfigmanagementEditor"
+            contributorClass="de.tubs.sse.spl.deltambt.configmanagement.presentation.ConfigmanagementActionBarContributor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            id="de.tubs.sse.spl.deltambt.configmanagement.editor.editorContributionCreate.ID"
+            targetID="de.tubs.sse.spl.deltambt.configmanagement.presentation.ConfigmanagementEditorID">
+         <action
+               class="de.tubs.sse.spl.deltambt.configmanagement.presentation.action.CreateConfigurationAction"
+               id="de.tubs.sse.spl.deltambt.configmanagement.editor.actionCreate.ID"
+               label="Define new Configuration"
+               menubarPath="de.tubs.sse.spl.deltambt.configmanagementMenuID/additions"
+               style="push">
+         </action>
+      </editorContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="de.tubs.sse.spl.deltambt.configmanagement.editor.viewerContribution.ID"
+            targetID="de.tubs.sse.spl.deltambt.configmanagement.presentation.ConfigmanagementEditorID">
+         <action
+               class="de.tubs.sse.spl.deltambt.configmanagement.presentation.action.CreateConfigurationAction"
+               id="de.tubs.sse.spl.deltambt.configmanagement.editor.actionCreate.ID"
+               label="Define new Configuration"
+               menubarPath="additions">
+         </action>
+      </viewerContribution>
+   </extension>
+
+</plugin>

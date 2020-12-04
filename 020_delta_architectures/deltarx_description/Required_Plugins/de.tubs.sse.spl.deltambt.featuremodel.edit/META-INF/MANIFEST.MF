@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: de.tubs.sse.spl.deltambt.featuremodel.edit;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: src/
+Bundle-Activator: de.tubs.sse.spl.deltambt.featuremodel.provider.FeatureModelEditPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: de.tubs.sse.spl.deltambt.featuremodel.provider
+Require-Bundle: org.eclipse.core.runtime,
+ de.tubs.sse.spl.deltambt.featuremodel;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

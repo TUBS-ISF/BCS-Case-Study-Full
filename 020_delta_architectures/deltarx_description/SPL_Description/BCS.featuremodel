@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<de.tubs.sse.spl.deltambt.featuremodel:FeatureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:de.tubs.sse.spl.deltambt.featuremodel="http://de/tubs/sse/spl/deltambt/featuremodel" name="BCS FM" belongToSPL="Body Comfort System">
+  <root name="Body Comfort System">
+    <sub name="Human Machine Interface">
+      <sub name="Status LED" type="Optional" description="">
+        <or name="LED Central Locking System" type="Optional" require="//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']"/>
+        <or name="LED Power Window" type="Optional"/>
+        <or name="LED Exterior Mirror" type="Optional"/>
+        <or name="LED Heatable" type="Optional" require="//@root/@sub[name='Door%20System']/@sub[name='Exterior%20Mirror']/@sub[name='Heatable']"/>
+        <or name="LED Alarm System" type="Optional" require="//@root/@sub[name='Security']/@sub[name='Alarm%20System']"/>
+        <or name="LED Finger Protection" type="Optional"/>
+      </sub>
+    </sub>
+    <sub name="Door System">
+      <sub name="Exterior Mirror" description="">
+        <sub name="Electric" description=""/>
+        <sub name="Heatable" type="Optional" description=""/>
+      </sub>
+      <sub name="Power Window" description="">
+        <alternative name="Manual Power Window" exclude="//@root/@sub[name='Security']/@sub[name='Remote%20Control%20Key']/@sub[name='Control%20Automatic%20Power%20Window']" description=""/>
+        <alternative name="Automatic Power Window" description=""/>
+        <sub name="Finger Protection" description=""/>
+      </sub>
+    </sub>
+    <sub name="Security" type="Optional">
+      <sub name="Alarm System" type="Optional" description="">
+        <sub name="Interior Monitoring" type="Optional" description=""/>
+      </sub>
+      <sub name="Central Locking System" type="Optional" description="">
+        <sub name="Automatic Locking" type="Optional" description=""/>
+      </sub>
+      <sub name="Remote Control Key" type="Optional" require="//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']" description="">
+        <sub name="Control Alarm System" type="Optional" require="//@root/@sub[name='Security']/@sub[name='Alarm%20System']" description=""/>
+        <sub name="Safety Function" type="Optional" description=""/>
+		<sub name="Adjust Exterior Mirror" type="Optional" description=""/>
+        <sub name="Control Automatic Power Window" type="Optional" exclude="//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Manual%20Power%20Window']" description=""/>
+      </sub>
+    </sub>
+  </root>
+</de.tubs.sse.spl.deltambt.featuremodel:FeatureModel>
+

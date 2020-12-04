@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.tu_bs.cs.isf.splregtest.xtext.mapsCompSm/src-gen"
+    editDirectory="/de.tu_bs.cs.isf.splregtest.xtext.mapsCompSm.edit/src" editorDirectory="/de.tu_bs.cs.isf.splregtest.xtext.mapsCompSm.editor/src"
+    modelPluginID="de.tu_bs.cs.isf.splregtest.xtext.mapsCompSm" forceOverwrite="true"
+    modelName="MapsCompSm" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="de.tu_bs.cs.isf.splregtest.xtext.mapsCompSm.edit"
+    editorPluginID="de.tu_bs.cs.isf.splregtest.xtext.mapsCompSm.editor" runtimeVersion="2.11">
+  <genPackages prefix="MapsCompSm" basePackage="de.tu_bs.cs.isf.splregtest.xtext.mapping"
+      disposableProviderFactory="true" fileExtensions="mcsm" ecorePackage="MapsCompSm.ecore#/">
+    <genClasses ecoreClass="MapsCompSm.ecore#//Mapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MapsCompSm.ecore#//Mapping/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MapsCompSm.ecore#//Mapping/components"/>
+    </genClasses>
+    <genClasses ecoreClass="MapsCompSm.ecore#//Component">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MapsCompSm.ecore#//Component/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MapsCompSm.ecore#//Component/bsms"/>
+    </genClasses>
+    <genClasses ecoreClass="MapsCompSm.ecore#//BSM">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MapsCompSm.ecore#//BSM/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

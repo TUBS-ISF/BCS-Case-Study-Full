@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>featureImpactValues</comment>
+<entry key="LED Finger Protection">1</entry>
+<entry key="Adjust Exterior Mirror">1</entry>
+<entry key="Alarm System">5</entry>
+<entry key="Control Alarm System">1</entry>
+<entry key="Finger Protection">4</entry>
+<entry key="LED Heatable">1</entry>
+<entry key="Heatable">1</entry>
+<entry key="Door System">2</entry>
+<entry key="Security">5</entry>
+<entry key="Status LED">1</entry>
+<entry key="Control Automatic Power Window">3</entry>
+<entry key="Remote Control Key">3</entry>
+<entry key="Automatic Power Window">2</entry>
+<entry key="LED Power Window">1</entry>
+<entry key="Power Window">2</entry>
+<entry key="Human Machine Interface">1</entry>
+<entry key="LED Central Locking System">1</entry>
+<entry key="Exterior Mirror">1</entry>
+<entry key="Body Comfort System">1</entry>
+<entry key="LED Exterior Mirror">1</entry>
+<entry key="Electric">2</entry>
+<entry key="Central Locking System">3</entry>
+<entry key="Automatic Locking">3</entry>
+<entry key="Safety Function">5</entry>
+<entry key="Interior Monitoring">5</entry>
+<entry key="Manual Power Window">2</entry>
+<entry key="LED Alarm System">1</entry>
+</properties>

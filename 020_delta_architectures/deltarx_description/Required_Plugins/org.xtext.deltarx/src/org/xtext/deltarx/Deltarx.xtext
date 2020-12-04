@@ -1,0 +1,97 @@
+grammar org.xtext.deltarx.Deltarx with org.eclipse.xtext.common.Terminals
+
+generate deltarx "http://www.xtext.org/example/deltarx/Deltarx"
+
+Deltarx:
+	'architecture' name=ID 'for featuremodel' fmdir=STRING '{' ('signals' '{' (signals+=Signal)* '}')? & ('components' '{'
+	(components+=Component)* '}')? & ('connectors' '{' (connectors+=Connector)* '}')? & ('deltas' '{' (deltas+=Delta)*
+	'}')? & '}';
+
+Signal:
+	name=ID type=SignalType;
+
+Component:
+	name=ID '{' ('ports' '{' ports+=Port* '}')? ('connectors' '{' connectors+=Connector* '}')? ('subcomponents' '{'
+	subcomponents+=Component* '}')? '}';
+
+	//Ports haben keinen Typ, da Signale einen Typ besitzen
+Port:
+	direction=PortDirection name=ID (signal=[Signal])?;
+
+SignalType:
+	'boolean' | 'char' | 'int' | 'double';
+
+PortDirection:
+	'in' | 'out';
+
+EnvironmentMessage:
+	'envmsg';
+
+Connector:
+	name=ID type=(ConnectorTypeOne | ConnectorTypeTwo);
+
+ConnectorTypeOne:
+	'(' source=ID ',' portnameone=(ID | EnvironmentMessage) ',' signaltypeone=ID ',' signaltypetwo=ID
+	',' portnametwo=(ID | EnvironmentMessage) ',' destination=ID ')';
+
+ConnectorTypeTwo:
+	'(' source=ID ',' sourcesignal= ID ',' destinationsignal = ID ','
+	destination=ID ')';
+
+Delta:
+	name=ID ('after' after+=ID*)? 'when' appcon=STRING '{'
+	('removeconnector' '{' (removeConnector+=DeltaRemoveConnector)* '}')?
+	('removecomponent' '{' (removeComponent+=DeltaRemoveComponent)* '}')?
+	('removesignal' '{' (removeSignal+=[Signal])* '}')?
+	('removeport' '{' (removePort+=DeltaRemovePort)* '}')?
+	('addsignal' '{' (newSignal+=Signal)* '}')?
+	('addcomponent' '{' (newComponent+=DeltaAddComponent)* '}')?
+	('addconnector' '{' (newConnector+=DeltaAddConnector)* '}')?
+	('addport' '{' (newPort+=DeltaAddPort)* '}')?
+	
+	'}';
+
+DeltaAddPort:
+	port=Port 'in' portComponent=ID;
+
+DeltaRemovePort:
+	portName=ID 'in' portComponent=ID;
+
+DeltaAddComponent:
+	component=Component ('in' superComponent=ID)?;
+
+DeltaRemoveComponent:
+	component=ID ('in' superComponent=ID)?;
+
+DeltaAddConnector:
+	connector=Connector ('in' superComponent=ID)?;
+
+DeltaRemoveConnector:
+	connector=ID ('in' superComponent=ID)?;
+
+
+//Does not work properly yet...
+//AppCon:
+//	{AppCon} features+=Feature*;
+//
+//Feature returns STRING:
+//	value=PrimaryElement ({STRING.left=current} 'AND' right=PrimaryElement)*;
+//
+//PrimaryElement returns STRING:
+//	'(' Feature ')' | {STRING} ID | NotCon;
+//
+//NotCon returns STRING:
+//	{STRING} 'NOT' ID;
+	
+//2nd version:
+	
+//AppCon returns String:
+//	PrimaryElement ({AppCon.left=current} 'AND' right=PrimaryElement)*
+//;
+//
+//PrimaryElement returns String:
+//	'(' AppCon ')' | {Feature} value=ID | NotCon
+//;
+//NotCon returns String:
+//	'NOT'PrimaryElement
+//;

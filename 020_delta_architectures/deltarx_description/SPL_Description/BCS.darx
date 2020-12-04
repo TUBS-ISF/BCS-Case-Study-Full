@@ -1,0 +1,836 @@
+architecture BCS for featuremodel 'D:/projects/VaMoS 2017/Case Study/BCS_Deltarx/SPL_Description/BCS.featuremodel'{
+	signals {
+		pw_but_mv_dn boolean
+		pw_but_mv_up boolean
+		em_but_mv_left boolean
+		em_but_mv_right boolean
+		em_but_mv_up boolean
+		em_but_mv_dn boolean
+		
+		pw_but_up boolean
+		pw_but_dn boolean
+		em_but_right boolean
+		em_but_left boolean
+		em_but_up boolean
+		em_but_down boolean
+		
+		em_pos_left boolean
+		em_pos_right boolean
+		em_pos_top boolean
+		em_pos_bottom boolean
+		em_mv_left boolean
+		em_mv_right boolean
+		em_mv_up boolean
+		em_mv_down boolean
+		
+		finger_detected boolean
+		fp_on boolean
+		fp_off boolean
+		
+		pw_pos_up boolean
+		pw_pos_dn boolean
+		pw_mv_up boolean
+		pw_mv_dn boolean
+	}
+	components {
+		HMI {
+			ports {
+				in p_pw_but_mv_dn pw_but_mv_dn
+				in p_pw_but_mv_up pw_but_mv_up
+				in p_em_but_mv_left em_but_mv_left
+				in p_em_but_mv_right em_but_mv_right
+				in p_em_but_mv_up em_but_mv_up
+				in p_em_but_mv_bottom em_but_mv_up
+				
+				out p_pw_but_up pw_but_up
+				out p_pw_but_dn pw_but_dn
+				out p_em_but_right em_but_right
+				out p_em_but_left em_but_left
+				out p_em_but_up em_but_up
+				out p_em_but_down em_but_down
+			}
+		}
+		ManPW {
+			ports {
+				in p_pw_but_up pw_but_up
+				in p_pw_but_dn pw_but_dn
+				in p_pw_pos_up pw_pos_up
+				in p_pw_pos_dn pw_pos_dn
+				in p_fp_on fp_on
+				in p_fp_off fp_off
+				
+				out p_pw_mv_dn pw_mv_dn
+				out p_pw_mv_up pw_mv_up
+			}
+		}
+		
+		
+		FP {
+			ports {
+				in p_finger_detected finger_detected
+				in p_pw_but_dn pw_but_dn
+				
+				out p_fp_on fp_on
+				out p_fp_off fp_off
+			}
+		}
+		
+		EM {
+			ports {
+				in p_em_but_right em_but_right 
+				in p_em_but_left em_but_left 
+				in p_em_but_up em_but_up
+				in p_em_but_down em_but_down 
+				in p_em_pos_left em_pos_left 
+				in p_em_pos_right em_pos_right 
+				in p_em_pos_top em_pos_top 
+				in p_em_pos_bottom em_pos_bottom 
+				
+				out p_em_mv_left em_mv_left
+				out p_em_mv_right em_mv_right
+				out p_em_mv_up em_mv_up
+				out p_em_mv_dn em_mv_down
+			}
+		}
+	}
+	connectors {
+		hmi1(HMI,em_but_right,em_but_right,EM)
+		hmi2(HMI,em_but_left,em_but_left,EM)
+		hmi3(HMI,em_but_up,em_but_up,EM)	
+		hmi4(HMI,em_but_down,em_but_down,EM)
+		hmi5(HMI,pw_but_up,pw_but_up,ManPW)
+		hmi6(HMI,pw_but_dn,pw_but_dn,ManPW)
+		hmi7(HMI,pw_but_dn,pw_but_dn,FP)
+		
+		env1(ENV,pw_but_mv_dn,pw_but_mv_dn,HMI)	
+		env2(ENV,pw_but_mv_up,pw_but_mv_up,HMI)	
+		env3(ENV,em_but_mv_left,em_but_mv_left,HMI)		
+		env4(ENV,em_but_mv_right,em_but_mv_right,HMI)		
+		env5(ENV,em_but_mv_up,em_but_mv_up,HMI)		
+		env6(ENV,em_but_mv_dn,em_but_mv_dn,HMI)	
+		env7(ENV,em_pos_left,em_pos_left,EM)
+		env8(ENV,em_pos_right,em_pos_right,EM)
+		env9(ENV,em_pos_top,em_pos_top,EM)
+		env10(ENV,em_pos_bottom,em_pos_bottom,EM)
+		env11(ENV,finger_detected,finger_detected,FP)
+		env13(ENV,pw_pos_up,pw_pos_up,ManPW)
+		env14(ENV,pw_pos_dn,pw_pos_dn,ManPW)
+		
+		fp1(FP,fp_on,fp_on,ManPW)
+		fp2(FP,fp_off,fp_off,ManPW)
+		 
+		em1(EM,em_mv_left,em_mv_left,ENV)
+		em2(EM,em_mv_right,em_mv_right,ENV)
+		em3(EM,em_mv_up,em_mv_up,ENV)
+		em4(EM,em_mv_down,em_mv_down,ENV)
+		
+		pw1(ManPW,pw_mv_dn,pw_mv_dn,ENV)
+		pw2(ManPW,pw_mv_up,pw_mv_up,ENV)
+				
+	}
+	deltas {
+		//AutoPW
+		DAutomaticPW when 'Automatic Power Window' {
+			removeconnector{
+				fp1
+				fp2
+				pw1
+				pw2
+				hmi5
+				hmi6
+				env13
+				env14
+			}	
+			removecomponent {
+				ManPW
+			}
+			removesignal {
+				pw_mv_dn
+				pw_mv_up
+			}
+		
+			addsignal {
+				pw_auto_mv_up boolean
+				pw_auto_mv_dn boolean
+				pw_auto_mv_stop boolean
+			}
+
+			
+			addcomponent{
+				AutoPW{
+					
+				}
+			}
+			
+			addconnector{
+				fpautopw1(FP,fp_on,fp_on,AutoPW)
+				fpautopw2(FP,fp_off,fp_off,AutoPW)
+				hmiautopw1(HMI,pw_but_up,pw_but_up,AutoPW)
+				hmiautopw2(HMI,pw_but_dn,pw_but_dn,AutoPW)
+				autopwenv1(AutoPW,pw_auto_mv_up,pw_auto_mv_up,ENV)	
+				autopwenv2(AutoPW,pw_auto_mv_dn,pw_auto_mv_dn,ENV)	
+				autopwenv3(AutoPW,pw_auto_mv_stop,pw_auto_mv_stop,ENV)
+				envautopw1(ENV,pw_pos_up,pw_pos_up,AutoPW)
+				envautopw2(ENV,pw_pos_dn,pw_pos_dn,AutoPW)
+			}
+
+			
+		}
+		//EMH
+		DHeatable when 'Heatable' {
+			removeconnector {
+				em1
+				em2
+				em3
+				em4
+				hmi1
+				hmi2
+				hmi3
+				hmi4
+				env7
+				env8
+				env9
+				env10
+			}
+			
+			removecomponent {
+				EM
+			}
+			addsignal {
+				heating_on boolean
+				heating_off boolean
+				time_heating_elapsed boolean
+				em_too_cold boolean
+			}
+			
+			addcomponent {
+				EMH {
+					
+				}
+			}
+			addconnector {
+				emhenv1(EMH,em_mv_left,em_mv_left,ENV)
+				emhenv2(EMH,em_mv_right,em_mv_right,ENV)
+				emhenv3(EMH,em_mv_up,em_mv_up,ENV)
+				emhenv4(EMH,em_mv_down,em_mv_down,ENV)
+				emhenv5(EMH,heating_on,heating_on,ENV)
+				emhenv6(EMH,heating_off,heating_off,ENV)
+				envemh1(ENV,em_pos_right,em_pos_right,EMH)
+				envemh2(ENV,em_pos_top,em_pos_top,EMH)
+				envemh3(ENV,em_pos_bottom,em_pos_bottom,EMH)		
+				envemh4(ENV,em_too_cold,em_too_cold,EMH)	
+				envemh5(ENV,time_heating_elapsed,time_heating_elapsed,EMH)	
+				envemh6(ENV,em_pos_left,em_pos_left,EMH)
+						
+				hmiemh1(HMI,em_but_right,em_but_right,EMH)
+				hmiemh2(HMI,em_but_left,em_but_left,EMH)
+				hmiemh3(HMI,em_but_up,em_but_up,EMH)	
+				hmiemh4(HMI,em_but_down,em_but_down,EMH)
+			}
+		}
+
+		//AS
+		DAS when 'Alarm System' {
+			addsignal {
+				as_activated boolean
+				as_deactivated boolean
+				as_alarm_detected boolean
+				time_alarm_elapsed boolean
+				key_pos_lock boolean
+				key_pos_unlock boolean
+				as_active_on boolean
+				as_active_off boolean
+				as_alarm_on boolean
+				as_alarm_off boolean
+				activate_as boolean
+				deactivate_as boolean
+				as_alarm_was_detected boolean
+			}
+			
+			addcomponent {
+				AS {
+					
+				}
+			}
+			
+			addconnector {
+				envhm1(ENV,activate_as,activate_as,HMI)
+				envhm2(ENV,deactivate_as,deactivate_as,HMI)
+				hmias1(HMI,as_activated,as_activated,AS)
+				hmias1(HMI,as_deactivated,as_deactivated,AS)
+				
+				envas1(ENV,as_alarm_detected,as_alarm_detected,AS)
+				envas2(ENV,time_alarm_elapsed,time_alarm_elapsed,AS)
+				envas3(ENV,key_pos_lock,key_pos_lock,AS)
+				envas4(ENV,key_pos_unlock,key_pos_unlock,AS)
+				
+				asenv1(AS,as_active_on,as_active_on,ENV)
+				asenv2(AS,as_alarm_on,as_alarm_on,ENV)
+				asenv3(AS,as_active_off,as_active_off,ENV)
+				asenv4(AS,as_alarm_off,as_alarm_off,ENV)
+				asenv5(AS,as_alarm_was_detected,as_alarm_was_detected,ENV)
+			}
+			
+		}
+		//IM for AS
+		DASIM after DAS when 'Interior Monitoring' {
+			addsignal {
+				im_alarm_detected boolean
+				as_im_alarm_on boolean
+				as_im_alarm_off boolean
+			}
+			
+			addconnector {
+				envasim1(ENV,im_alarm_detected,im_alarm_detected,AS)
+				asimenv1(AS,as_im_alarm_on,as_im_alarm_on,ENV)
+				asimenv2(AS,as_im_alarm_off,as_im_alarm_off,ENV)
+			}
+		}
+		//CLS for Manual Power Window
+		DCLSM when 'Central Locking System AND Manual Power Window' {
+			addsignal {
+				key_pos_lock boolean
+				key_pos_unlock boolean
+				cls_lock boolean
+				cls_unlock boolean
+			}
+			addcomponent {
+				CLS {
+					
+				}
+			}
+			
+			addconnector {
+				envcls1(ENV,key_pos_lock,key_pos_lock,CLS)
+				envcls2(ENV,key_pos_unlock,key_pos_unlock,CLS)
+				clsenv1(CLS,cls_lock,cls_lock,ENV)
+				clsenv2(CLS,cls_unlock,cls_unlock,ENV) 
+				clsmanpw1(CLS,cls_lock,cls_lock,ManPW)
+				clsmanpw2(CLS,cls_unlock,cls_unlock,ManPW)
+			}
+		}
+		//CLS for Automatic Power Window
+		DCLSA when 'Central Locking System AND Automatic Power Window' {
+			addsignal {
+				key_pos_lock boolean
+				key_pos_unlock boolean
+				cls_unlock boolean
+				cls_lock boolean
+			}
+			addcomponent {
+				CLS {
+					
+				}
+			}
+			
+			addconnector {
+				envcls1(ENV,key_pos_lock,key_pos_lock,CLS)
+				envcls2(ENV,key_pos_unlock,key_pos_unlock,CLS)
+				clsenv1(CLS,cls_lock,cls_lock,ENV)
+				clsenv2(CLS,cls_unlock,cls_unlock,ENV)
+				clsautopw1(CLS,cls_lock,cls_lock,AutoPW)
+				clsautopw2(CLS,cls_unlock,cls_unlock,AutoPW)
+				
+			}
+		}
+		
+		//RCK_Ctrl for CLS with Automatic Power Window 
+		DRCKA after DCLSA when 'Remote Control Key AND Automatic Power Window' {
+			addsignal {
+				rck_but_lock boolean
+				rck_but_unlock boolean
+				rck_lock boolean
+				rck_unlock boolean
+			}
+			
+			addcomponent {
+				RCK_Ctrl {
+					
+				}
+			}
+			addconnector {
+				envrck1(ENV,rck_but_lock,rck_but_lock,RCK_Ctrl)
+				envrck2(ENV,rck_but_unlock,rck_but_unlock,RCK_Ctrl)
+				rckcls1(RCK_Ctrl,rck_lock,rck_lock,CLS)
+				rckcls2(RCK_Ctrl,rck_unlock,rck_unlock,CLS)
+			}
+		}
+		
+		//RCK_Ctrl for CLS with Manual Power Window 
+		DRCKM after DCLSM when 'Remote Control Key AND Manual Power Window' {
+			addsignal {
+				rck_but_lock boolean
+				rck_but_unlock boolean
+				rck_lock boolean
+				rck_unlock boolean
+			}
+			
+			addcomponent {
+				RCK_Ctrl {
+					
+				}
+			}
+			addconnector {
+				envrck1(ENV,rck_but_lock,rck_but_lock,RCK_Ctrl)
+				envrck2(ENV,rck_but_unlock,rck_but_unlock,RCK_Ctrl)
+				rckcls1(RCK_Ctrl,rck_lock,rck_lock,CLS)
+				rckcls2(RCK_Ctrl,rck_unlock,rck_unlock,CLS)
+			}
+		}
+		
+		//RCK SF
+		DRCKSFA after DRCKA when 'Safety Function AND Automatic Power Window' {
+			addsignal {
+				door_open boolean
+				time_rck_sf_elapsed boolean
+			}
+			addconnector {
+				envrcksf1(ENV,door_open,door_open,RCK_Ctrl)
+				envrcksf2(ENV,time_rck_sf_elapsed,time_rck_sf_elapsed,RCK_Ctrl)
+			}
+		}
+		DRCKSFM after DRCKM when 'Safety Function AND Manual Power Window' {
+			addsignal {
+				door_open boolean
+				time_rck_sf_elapsed boolean
+			}
+			addconnector {
+				envrcksf1(ENV,door_open,door_open,RCK_Ctrl)
+				envrcksf2(ENV,time_rck_sf_elapsed,time_rck_sf_elapsed,RCK_Ctrl)
+			}
+		}
+		
+		//CAP
+		DRCKCAP after DRCKA when 'Control Automatic Power Window AND Automatic Power Window' {
+			addsignal {
+				pw_rm_up boolean
+				pw_rm_dn boolean
+			}
+			addconnector {
+				envrckcap1(ENV,pw_rm_up,pw_rm_up,RCK_Ctrl)
+				envrckcap2(ENV,pw_rm_dn,pw_rm_dn,RCK_Ctrl)
+				rckcapautopw1(RCK_Ctrl,pw_but_up,pw_but_up, AutoPW)
+				rckcapautopw2(RCK_Ctrl,pw_but_dn,pw_but_dn, AutoPW)
+				rckcapfp1(RCK_Ctrl,pw_but_dn,pw_but_dn,FP)
+			}
+		}
+		//CAS
+		DCASM after DAS DRCKM when 'Control Alarm System AND Manual Power Window' {
+			addsignal{
+				rck_lock boolean
+				rck_unlock boolean
+			}
+			addconnector {
+				rckcasas1(RCK_Ctrl,rck_lock,rck_lock,AS)
+				rckcasas2(RCK_Ctrl,rck_unlock,rck_unlock,AS)
+			}
+		}
+		//CAS
+		DCASA after DAS DRCKA when 'Control Alarm System AND Automatic Power Window' {
+			addsignal{
+				rck_lock boolean
+				rck_unlock boolean
+			}
+			addconnector {
+				rckcasas1(RCK_Ctrl,rck_lock,rck_lock,AS)
+				rckcasas2(RCK_Ctrl,rck_unlock,rck_unlock,AS)
+			}
+		}
+		
+		//AL
+		DALA after DCLSA when 'Automatic Locking AND Automatic Power Window' {
+			addsignal {
+				door_open boolean
+				car_drives boolean
+				car_lock boolean
+				car_unlock boolean
+			}
+			addconnector {
+				envclsal1(ENV,car_drives,car_drives,CLS)
+				envclsal2(ENV,door_open,door_open,CLS)
+				clsalsenv1(CLS,car_lock,car_lock,ENV)
+				clsalsenv2(CLS,car_unlock,car_unlock,ENV)
+			}
+		}
+		//AL
+		DALM after DCLSM when 'Automatic Locking AND Manual Power Window' {
+			addsignal {
+				door_open boolean
+				car_drives boolean
+				car_lock boolean
+				car_unlock boolean
+			}
+			addconnector {
+				envclsal1(ENV,car_drives,car_drives,CLS)
+				envclsal2(ENV,door_open,door_open,CLS)
+				clsalsenv1(CLS,car_lock,car_lock,ENV)
+				clsalsenv2(CLS,car_unlock,car_unlock,ENV)
+			}
+		}
+		
+		//LED_EM
+		DLEDEM when 'LED Exterior Mirror AND NOT Heatable' {
+			addsignal {
+				em_pos_vert_bottom boolean
+				em_pos_vert_pend boolean
+				em_pos_vert_top boolean
+				
+				em_pos_hor_right boolean
+				em_pos_hor_pend boolean
+				em_pos_hor_left boolean
+				
+				led_em_bottom_on boolean
+				led_em_top_on boolean
+				led_em_right_on boolean
+				led_em_left_on boolean
+				
+				led_em_bottom_off boolean
+				led_em_top_off boolean
+				led_em_right_off boolean
+				led_em_left_off boolean
+			}
+			
+			addcomponent {
+				LED_EMB {
+					
+				}
+				LED_EMT {
+					
+				}
+				LED_EMR {
+					
+				}
+				LED_EML {
+					
+				}
+			}
+			
+			addconnector {
+				emledemb1(EM,em_pos_vert_bottom,em_pos_vert_bottom,LED_EMB)
+				emledemb2(EM,em_pos_vert_pend,em_pos_vert_pend,LED_EMB)
+				ledembenv1(LED_EMB,led_em_bottom_on,led_em_bottom_on,ENV)
+				ledembenv2(LED_EMB,led_em_bottom_off,led_em_bottom_off,ENV)
+				
+				emledemt1(EM,em_pos_vert_pend,em_pos_vert_pend,LED_EMT)
+				emledemt2(EM,em_pos_vert_top,em_pos_vert_top,LED_EMT)
+				ledemtenv1(LED_EMT,led_em_top_on,led_em_top_on,ENV)
+				ledemtenv2(LED_EMT,led_em_top_off,led_em_top_off,ENV)
+				
+				emledemr1(EM,em_pos_hor_right,em_pos_hor_right,LED_EMR)
+				emledemr2(EM,em_pos_hor_pend,em_pos_hor_pend,LED_EMR)
+				ledemrenv1(LED_EMR,led_em_right_on,led_em_right_on,ENV)
+				ledemrenv2(LED_EMR,led_em_right_off,led_em_right_off,ENV)
+				
+				emledeml1(EM,em_pos_hor_left,em_pos_hor_left,LED_EML)
+				emledeml2(EM,em_pos_hor_pend,em_pos_hor_pend,LED_EML)
+				ledemlenv1(LED_EML,led_em_left_on,led_em_left_on,ENV)
+				ledemlenv2(LED_EML,led_em_left_off,led_em_left_off,ENV)
+			}
+		}
+		
+				//LED_EM
+		DLEDEMWITHH after DHeatable when 'LED Exterior Mirror AND Heatable' {
+			addsignal {
+				em_pos_vert_bottom boolean
+				em_pos_vert_pend boolean
+				em_pos_vert_top boolean
+				
+				em_pos_hor_right boolean
+				em_pos_hor_pend boolean
+				em_pos_hor_left boolean
+				
+				led_em_bottom_on boolean
+				led_em_bottom_off boolean
+				led_em_top_on boolean
+				led_em_top_off boolean
+				led_em_right_on boolean
+				led_em_right_off boolean
+				led_em_left_on boolean
+				led_em_left_off boolean
+			}
+			
+			addcomponent {
+				LED_EMB {
+					
+				}
+				LED_EMT {
+					
+				}
+				LED_EMR {
+					
+				}
+				LED_EML {
+					
+				}
+			}
+			
+			addconnector {
+				emhledemb1(EMH,em_pos_vert_bottom,em_pos_vert_bottom,LED_EMB)
+				emhledemb2(EMH,em_pos_vert_pend,em_pos_vert_pend,LED_EMB)
+				ledembenv1(LED_EMB,led_em_bottom_on,led_em_bottom_on,ENV)
+				ledembenv2(LED_EMB,led_em_bottom_off,led_em_bottom_off,ENV)
+				
+				emhledemt1(EMH,em_pos_vert_pend,em_pos_vert_pend,LED_EMT)
+				emhledemt2(EMH,em_pos_vert_top,em_pos_vert_top,LED_EMT)
+				ledemtenv1(LED_EMT,led_em_top_on,led_em_top_on,ENV)
+				ledemtenv2(LED_EMT,led_em_top_off,led_em_top_off,ENV)
+				
+				emhledemr1(EMH,em_pos_hor_right,em_pos_hor_right,LED_EMR)
+				emhledemr2(EMH,em_pos_hor_pend,em_pos_hor_pend,LED_EMR)
+				ledemrenv1(LED_EMR,led_em_right_on,led_em_right_on,ENV)
+				ledemrenv2(LED_EMR,led_em_right_off,led_em_right_off,ENV)
+				
+				emhledeml1(EMH,em_pos_hor_left,em_pos_hor_left,LED_EML)
+				emhledeml2(EMH,em_pos_hor_pend,em_pos_hor_pend,LED_EML)
+				ledemlenv1(LED_EML,led_em_left_on,led_em_left_on,ENV)
+				ledemlenv2(LED_EML,led_em_left_off,led_em_left_off,ENV)
+			}
+		}
+		
+		//LED_EMH		
+		DLEDHeatable after DHeatable when 'LED Heatable' {
+			addsignal {
+				led_em_heating_on boolean
+				led_em_heating_off boolean
+			}
+			
+			addcomponent {
+				LED_EMH {
+					
+				}
+			}
+			addconnector {
+				emhled1(EMH,heating_on,heating_on,LED_EMH)
+				emhled2(EMH,heating_off,heating_off,LED_EMH)
+				ledemhenv1(LED_EMH,led_em_heating_on,led_em_heating_on,ENV)
+				ledemhenv2(LED_EMH,led_em_heating_off,led_em_heating_off,ENV)
+			}
+		}
+		// LED_FP
+		DLEDFingerProtection when 'LED Finger Protection' {
+			addsignal{
+				led_fp_on boolean
+				led_fp_off boolean
+			}
+			
+			addcomponent {
+				LED_FP {
+					
+				}
+			}
+			
+			addconnector {
+				fp3(FP,fp_on,fp_on,LED_FP)
+				fp4(FP,fp_off,fp_off,LED_FP)
+				ledfp1(LED_FP, led_fp_on,led_fp_on,ENV)
+				ledfp2(LED_FP, led_fp_off,led_fp_off,ENV)
+			}
+		}
+		//LED_CLS
+		DLEDCLSM after DCLSM when 'LED Central Locking System AND Manual Power Window' {
+			addsignal{
+				cls_lock boolean
+				cls_unlock boolean
+				led_cls_on boolean
+				led_cls_off boolean
+			}
+			addcomponent {
+				LED_CLS {
+					
+				}
+			}
+			addconnector {
+				clsledcls1(CLS,cls_lock,cls_lock,LED_CLS)
+				clsledcls2(CLS,cls_unlock,cls_unlock,LED_CLS)
+				ledclsenv1(LED_CLS,led_cls_on,led_cls_on,ENV)
+				ledclsenv2(LED_CLS,led_cls_off,led_cls_off,ENV)
+			}
+		}
+		
+		DLEDCLSA after DCLSA when 'LED Central Locking System AND Automatic Power Window' {
+			addsignal{
+				cls_lock boolean
+				cls_unlock boolean
+				led_cls_on boolean
+				led_cls_off boolean
+			}
+			addcomponent {
+				LED_CLS {
+					
+				}
+			}
+			addconnector {
+				clsledcls1(CLS,cls_lock,cls_lock,LED_CLS)
+				clsledcls2(CLS,cls_unlock,cls_unlock,LED_CLS)
+				ledclsenv1(LED_CLS,led_cls_on,led_cls_on,ENV)
+				ledclsenv2(LED_CLS,led_cls_off,led_cls_off,ENV)
+			}
+		}
+		
+		
+		
+		//LED AutoPW without CLS
+		DLEDAPW after DAutomaticPW when 'LED Power Window AND Automatic Power Window AND NOT Central Locking System' {
+			addsignal {
+				led_pw_up_on boolean
+				led_pw_up_off boolean
+				led_pw_dn_on boolean
+				led_pw_dn_off boolean
+				pw_auto_mv_up boolean
+				pw_auto_mv_dn boolean
+				pw_auto_mv_stop boolean
+			}
+			addcomponent {
+				LED_AutoPW {
+					
+				}
+			}
+			addconnector {
+				autopwledapw1(AutoPW,pw_auto_mv_dn,pw_auto_mv_dn,LED_AutoPW)
+				autopwledapw2(AutoPW,pw_auto_mv_up,pw_auto_mv_up,LED_AutoPW)
+				autopwledapw3(AutoPW,pw_auto_mv_stop,pw_auto_mv_stop,LED_AutoPW)
+				
+				ledapwenv1(LED_AutoPW,led_pw_up_on,led_pw_up_on,ENV)
+				ledapwenv2(LED_AutoPW,led_pw_up_off,led_pw_up_off,ENV)
+				ledapwenv3(LED_AutoPW,led_pw_dn_on,led_pw_dn_on,ENV)
+				ledapwenv4(LED_AutoPW,led_pw_dn_off,led_pw_dn_off,ENV)
+			}
+			
+		}
+		//LED_AutoPW with CLS
+		DLEDAPWCLS after DAutomaticPW when 'LED Power Window AND Automatic Power Window AND Central Locking System' {
+			addsignal {
+				led_pw_up_on boolean
+				led_pw_up_off boolean
+				led_pw_dn_on boolean
+				led_pw_dn_off boolean
+
+				led_pw_cls_up_on boolean
+				led_pw_cls_up_off boolean
+				
+			}
+			addcomponent {
+				LED_AutoPW {
+					
+				}
+			}
+			addconnector {
+				autopwledapw1(AutoPW,pw_auto_mv_dn,pw_auto_mv_dn,LED_AutoPW)
+				autopwledapw2(AutoPW,pw_auto_mv_up,pw_auto_mv_up,LED_AutoPW)
+				autopwledapw3(AutoPW,pw_auto_mv_stop,pw_auto_mv_stop,LED_AutoPW)
+				
+				clsledapw1(CLS,cls_lock,cls_lock,LED_AutoPW)
+				clsledapw2(CLS,cls_unlock,cls_unlock,LED_AutoPW)
+				
+				ledapwenv1(LED_AutoPW,led_pw_up_on,led_pw_up_on,ENV)
+				ledapwenv2(LED_AutoPW,led_pw_dn_on,led_pw_dn_on,ENV)
+				ledapwenv3(LED_AutoPW,led_pw_cls_up_on,led_pw_cls_up_on,ENV)
+				ledapwenv4(LED_AutoPW,led_pw_up_off,led_pw_up_off,ENV)
+				ledapwenv5(LED_AutoPW,led_pw_cls_up_off,led_pw_cls_up_off,ENV)
+				ledapwenv6(LED_AutoPW,led_pw_dn_off,led_pw_dn_off,ENV)
+			}
+			
+		}
+		//LED_MANPW
+		DLEDManPW when 'Manual Power Window AND LED Power Window' {
+			addsignal {
+				release_pw_but boolean
+				led_pw_up_on boolean
+				led_pw_up_off boolean
+				led_pw_dn_on boolean
+				led_pw_dn_off boolean
+				release_pw_but_dn boolean
+				release_pw_but_up boolean
+			}
+			addcomponent {
+				LED_ManPW {
+					
+				}
+			}
+			addconnector {
+				manpwledapw1(ManPW,pw_mv_dn,pw_mv_dn,LED_ManPW)
+				manpwledapw2(ManPW,pw_mv_up,pw_mv_up,LED_ManPW)
+				hmiledapw3(HMI,release_pw_but,release_pw_but,LED_ManPW)
+
+				envhmi1(ENV,release_pw_but_up,release_pw_but_up,HMI)
+				envhmi2(ENV,release_pw_but_dn,release_pw_but_dn,HMI)
+				
+				ledmanpwenv1(LED_ManPW,led_pw_up_on,led_pw_up_on,ENV)
+				ledmanpwenv2(LED_ManPW,led_pw_dn_on,led_pw_dn_on,ENV)
+				ledmanpwenv3(LED_ManPW,led_pw_up_off,led_pw_up_off,ENV)
+				ledmanpwenv4(LED_ManPW,led_pw_dn_off,led_pw_dn_off,ENV)
+			}
+		}
+		//LED_AS
+		DLEDAS after DAS when 'LED Alarm System' {		
+			removeconnector {
+				asenv5
+			}
+			
+			addsignal {
+				led_as_active_on boolean
+				led_as_active_off boolean
+				led_as_alarm_on boolean
+				led_as_alarm_off boolean
+				led_as_alarm_detected_on boolean
+				led_as_alarm_detected_off boolean
+				as_alarm_was_confirmed boolean
+				confirm_alarm boolean
+			}
+			
+			addcomponent {
+				LED_ASAD {
+					
+				}
+				LED_ASAC {
+					
+				}
+				LED_ASAL {
+					
+				}
+			}
+			
+			addconnector {
+				//ASAD
+				hmiledasad1(HMI,as_alarm_was_confirmed,as_alarm_was_confirmed,LED_ASAD)
+				asledasad1(AS,as_alarm_was_detected,as_alarm_was_detected,LED_ASAD)
+				ledasadenv1(LED_ASAD,led_as_alarm_detected_on,led_as_alarm_detected_on,ENV)
+				ledasadenv2(LED_ASAD,led_as_alarm_detected_off,led_as_alarm_detected_off,ENV)
+				//ASAL
+				asledasal1(AS,as_alarm_on,as_alarm_on,LED_ASAL)
+				asledasal2(AS,as_alarm_off,as_alarm_off,LED_ASAL)
+				ledasalenv1(LED_ASAL,led_as_alarm_on,led_as_alarm_on,ENV)
+				ledasalenv2(LED_ASAL,led_as_alarm_off,led_as_alarm_off,ENV)
+				//ASAC
+				asledasac1(AS,as_active_on,as_active_on,LED_ASAC)
+				asledasac2(AS,as_active_off,as_active_off,LED_ASAC)
+				ledasacenv1(LED_ASAC,led_as_active_on,led_as_active_on,ENV)
+				ledasacenv2(LED_ASAC,led_as_active_off,led_as_active_off,ENV)
+				//HMI
+				envhmi3(ENV,confirm_alarm,confirm_alarm,HMI)
+			}
+		}
+		//LED_ASIM
+		DLEDASIM after DAS DASIM when 'LED Alarm System AND Interior Monitoring' {
+			addsignal {
+				led_as_im_alarm_on boolean
+				led_as_im_alarm_off boolean
+			}
+			
+			addcomponent {
+				LED_ASIM {
+					
+				}
+			}
+			addconnector {
+				asledasim1(AS,as_im_alarm_on,as_im_alarm_on,LED_ASIM)
+				asledasim2(AS,as_im_alarm_off,as_im_alarm_off,LED_ASIM)
+				ledasimenv1(LED_ASIM,led_as_im_alarm_on,led_as_im_alarm_on,ENV)
+				ledasimenv2(LED_ASIM,led_as_im_alarm_off,led_as_im_alarm_off,ENV)
+			}
+		}
+		
+	}
+	
+	
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>MappingComponentToFeature</comment>
+<entry key="HMI">Human Machine Interface</entry>
+<entry key="env1(ENV,pw_but_mv_dn,pw_but_mv_dn,HMI)">Human Machine Interface</entry>
+<entry key="env2(ENV,pw_but_mv_up,pw_but_mv_up,HMI)">Human Machine Interface</entry>
+<entry key="env3(ENV,em_but_mv_left,em_but_mv_left,HMI)">Human Machine Interface</entry>
+<entry key="env4(ENV,em_but_mv_right,em_but_mv_right,HMI)">Human Machine Interface</entry>
+<entry key="env5(ENV,em_but_mv_up,em_but_mv_up,HMI)">Human Machine Interface</entry>
+<entry key="env6(ENV,em_but_mv_dn,em_but_mv_dn,HMI)">Human Machine Interface</entry>
+<entry key="EM">Exterior Mirror</entry>
+<entry key="em1(EM,em_mv_left,em_mv_left,ENV)">Exterior Mirror</entry>
+<entry key="em2(EM,em_mv_right,em_mv_right,ENV)">Exterior Mirror</entry>
+<entry key="em3(EM,em_mv_up,em_mv_up,ENV)">Exterior Mirror</entry>
+<entry key="em4(EM,em_mv_down,em_mv_down,ENV)">Exterior Mirror</entry>
+<entry key="env7(ENV,em_pos_left,em_pos_left,EM)">Exterior Mirror</entry>
+<entry key="env8(ENV,em_pos_right,em_pos_right,EM)">Exterior Mirror</entry>
+<entry key="env9(ENV,em_pos_top,em_pos_top,EM)">Exterior Mirror</entry>
+<entry key="env10(ENV,em_pos_bottom,em_pos_bottom,EM)">Exterior Mirror</entry>
+<entry key="FP">Finger Protection</entry>
+<entry key="env11(ENV,finger_detected,finger_detected,FP)">Finger Protection</entry>
+<entry key="ManPW">Manual Power Window</entry>
+<entry key="env13(ENV,pw_pos_up,pw_pos_up,ManPW)">Manual Power Window</entry>
+<entry key="env14(ENV,pw_pos_dn,pw_pos_dn,ManPW)">Manual Power Window</entry>
+<entry key="pw1(ManPW,pw_mv_dn,pw_mv_dn,ENV)">Manual Power Window</entry>
+<entry key="pw2(ManPW,pw_mv_up,pw_mv_up,ENV)">Manual Power Window</entry>
+<entry key="hmi1(HMI,em_but_right,em_but_right,EM)">Exterior Mirror,Human Machine Interface</entry>
+<entry key="hmi2(HMI,em_but_left,em_but_left,EM)">Exterior Mirror,Human Machine Interface</entry>
+<entry key="hmi3(HMI,em_but_up,em_but_up,EM)">Exterior Mirror,Human Machine Interface</entry>
+<entry key="hmi4(HMI,em_but_down,em_but_down,EM)">Exterior Mirror,Human Machine Interface</entry>
+<entry key="hmi5(HMI,pw_but_up,pw_but_up,ManPW)">Manual Power Window,Human Machine Interface</entry>
+<entry key="hmi6(HMI,pw_but_dn,pw_but_dn,ManPW)">Manual Power Window,Human Machine Interface</entry>
+<entry key="hmi7(HMI,pw_but_dn,pw_but_dn,FP)">Finger Protection,Human Machine Interface</entry>
+<entry key="fp1(FP,fp_on,fp_on,ManPW)">Manual Power Window,Finger Protection</entry>
+<entry key="fp2(FP,fp_off,fp_off,ManPW)">Manual Power Window,Finger Protection</entry>
+</properties>

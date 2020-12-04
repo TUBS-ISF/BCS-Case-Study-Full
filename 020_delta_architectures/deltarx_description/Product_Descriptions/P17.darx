@@ -1,0 +1,129 @@
+architecture P17 for featuremodel 'D:/Dokumente/Studium/TU Braunschweig/Masterarbeit/svn/Masterarbeit/case_study/BCS_Deltarx/SPL_Description/BCS.featuremodel' { 
+ 	 signals {
+	 	 pw_but_mv_dn boolean
+	 	 pw_but_mv_up boolean
+	 	 em_but_mv_left boolean
+	 	 em_but_mv_right boolean
+	 	 em_but_mv_up boolean
+	 	 em_but_mv_dn boolean
+	 	 pw_but_up boolean
+	 	 pw_but_dn boolean
+	 	 em_but_right boolean
+	 	 em_but_left boolean
+	 	 em_but_up boolean
+	 	 em_but_down boolean
+	 	 em_pos_left boolean
+	 	 em_pos_right boolean
+	 	 em_pos_top boolean
+	 	 em_pos_bottom boolean
+	 	 em_mv_left boolean
+	 	 em_mv_right boolean
+	 	 em_mv_up boolean
+	 	 em_mv_down boolean
+	 	 finger_detected boolean
+	 	 fp_on boolean
+	 	 fp_off boolean
+	 	 pw_pos_up boolean
+	 	 pw_pos_dn boolean
+	 	 pw_mv_up boolean
+	 	 pw_mv_dn boolean
+	 	 heating_on boolean
+	 	 heating_off boolean
+	 	 time_heating_elapsed boolean
+	 	 em_too_cold boolean
+	 } 
+	 connectors {
+	 	 hmi5 (HMI, pw_but_up, pw_but_up, ManPW) 
+	 	 hmi6 (HMI, pw_but_dn, pw_but_dn, ManPW) 
+	 	 hmi7 (HMI, pw_but_dn, pw_but_dn, FP) 
+	 	 env1 (ENV, pw_but_mv_dn, pw_but_mv_dn, HMI) 
+	 	 env2 (ENV, pw_but_mv_up, pw_but_mv_up, HMI) 
+	 	 env3 (ENV, em_but_mv_left, em_but_mv_left, HMI) 
+	 	 env4 (ENV, em_but_mv_right, em_but_mv_right, HMI) 
+	 	 env5 (ENV, em_but_mv_up, em_but_mv_up, HMI) 
+	 	 env6 (ENV, em_but_mv_dn, em_but_mv_dn, HMI) 
+	 	 env11 (ENV, finger_detected, finger_detected, FP) 
+	 	 env13 (ENV, pw_pos_up, pw_pos_up, ManPW) 
+	 	 env14 (ENV, pw_pos_dn, pw_pos_dn, ManPW) 
+	 	 fp1 (FP, fp_on, fp_on, ManPW) 
+	 	 fp2 (FP, fp_off, fp_off, ManPW) 
+	 	 pw1 (ManPW, pw_mv_dn, pw_mv_dn, ENV) 
+	 	 pw2 (ManPW, pw_mv_up, pw_mv_up, ENV) 
+	 	 emhenv1 (EMH, em_mv_left, em_mv_left, ENV) 
+	 	 emhenv2 (EMH, em_mv_right, em_mv_right, ENV) 
+	 	 emhenv3 (EMH, em_mv_up, em_mv_up, ENV) 
+	 	 emhenv4 (EMH, em_mv_down, em_mv_down, ENV) 
+	 	 emhenv5 (EMH, heating_on, heating_on, ENV) 
+	 	 emhenv6 (EMH, heating_off, heating_off, ENV) 
+	 	 envemh1 (ENV, em_pos_right, em_pos_right, EMH) 
+	 	 envemh2 (ENV, em_pos_top, em_pos_top, EMH) 
+	 	 envemh3 (ENV, em_pos_bottom, em_pos_bottom, EMH) 
+	 	 envemh4 (ENV, em_too_cold, em_too_cold, EMH) 
+	 	 envemh5 (ENV, time_heating_elapsed, time_heating_elapsed, EMH) 
+	 	 envemh6 (ENV, em_pos_left, em_pos_left, EMH) 
+	 	 hmiemh1 (HMI, em_but_right, em_but_right, EMH) 
+	 	 hmiemh2 (HMI, em_but_left, em_but_left, EMH) 
+	 	 hmiemh3 (HMI, em_but_up, em_but_up, EMH) 
+	 	 hmiemh4 (HMI, em_but_down, em_but_down, EMH) 
+	 } 
+	 components {
+	 	 HMI{ 
+	 	 	 ports {
+	 	 	 	in p_pw_but_mv_dn pw_but_mv_dn
+	 	 	 	in p_pw_but_mv_up pw_but_mv_up
+	 	 	 	in p_em_but_mv_left em_but_mv_left
+	 	 	 	in p_em_but_mv_right em_but_mv_right
+	 	 	 	in p_em_but_mv_up em_but_mv_up
+	 	 	 	in p_em_but_mv_bottom em_but_mv_up
+	 	 	 	out p_pw_but_up pw_but_up
+	 	 	 	out p_pw_but_dn pw_but_dn
+	 	 	 	out p_em_but_right em_but_right
+	 	 	 	out p_em_but_left em_but_left
+	 	 	 	out p_em_but_up em_but_up
+	 	 	 	out p_em_but_down em_but_down
+	 	 	 }
+	 	 }
+	 	 ManPW{ 
+	 	 	 ports {
+	 	 	 	in p_pw_but_up pw_but_up
+	 	 	 	in p_pw_but_dn pw_but_dn
+	 	 	 	in p_pw_pos_up pw_pos_up
+	 	 	 	in p_pw_pos_dn pw_pos_dn
+	 	 	 	in p_fp_on fp_on
+	 	 	 	in p_fp_off fp_off
+	 	 	 	out p_pw_mv_dn pw_mv_dn
+	 	 	 	out p_pw_mv_up pw_mv_up
+	 	 	 }
+	 	 }
+	 	 FP{ 
+	 	 	 ports {
+	 	 	 	in p_finger_detected finger_detected
+	 	 	 	in p_pw_but_dn pw_but_dn
+	 	 	 	out p_fp_on fp_on
+	 	 	 	out p_fp_off fp_off
+	 	 	 }
+	 	 }
+	 	 EMH{ 
+	 	 	 ports {
+	 	 	 	out p_em_mv_left em_mv_left
+	 	 	 	out p_em_mv_right em_mv_right
+	 	 	 	out p_em_mv_up em_mv_up
+	 	 	 	out p_em_mv_down em_mv_down
+	 	 	 	out p_heating_on heating_on
+	 	 	 	out p_heating_off heating_off
+	 	 	 	in p_em_pos_right em_pos_right
+	 	 	 	in p_em_pos_top em_pos_top
+	 	 	 	in p_em_pos_bottom em_pos_bottom
+	 	 	 	in p_em_too_cold em_too_cold
+	 	 	 	in p_time_heating_elapsed time_heating_elapsed
+	 	 	 	in p_em_pos_left em_pos_left
+	 	 	 	in p_em_but_right em_but_right
+	 	 	 	in p_em_but_left em_but_left
+	 	 	 	in p_em_but_up em_but_up
+	 	 	 	in p_em_but_down em_but_down
+	 	 	 }
+	 	 }
+
+ 	 } 
+ 
+}

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+  <!-- EEF extensions -->
+  <extension
+         point="org.eclipse.emf.eef.runtime.PropertiesEditionProvider">
+      <PropertiesEditionComponentProvider
+            providerClass="de.tubs.sse.spl.deltambt.featuremodel.providers.FeaturemodelPackagePropertiesEditionProvider">
+      </PropertiesEditionComponentProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.eef.runtime.PropertiesEditionPolicyProvider">
+      <PropertiesEditionPolicyProvider
+            providerClass="de.tubs.sse.spl.deltambt.featuremodel.providers.FeaturemodelPackagePropertiesEditionPolicyProvider">
+      </PropertiesEditionPolicyProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.eef.runtime.PropertiesEditionPartProvider">
+      <PropertiesEditionPartProvider
+            providerClass="de.tubs.sse.spl.deltambt.featuremodel.providers.FeaturemodelPropertiesEditionPartProvider">
+      </PropertiesEditionPartProvider>
+   </extension>
+
+   <!-- Tabbed properties views extension -->
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="de.tubs.sse.spl.deltambt.featuremodel.properties"
+            labelProvider="de.tubs.sse.spl.deltambt.featuremodel.providers.FeatureModelLabelProvider">
+         <propertyCategory
+               category="default">
+         </propertyCategory>
+         <propertyCategory
+               category="extended">
+         </propertyCategory>
+         <propertyCategory
+               category="advanced">
+         </propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="de.tubs.sse.spl.deltambt.featuremodel.properties">
+         <propertyTab
+               label="Model"
+               category="default"
+               id="Base">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="de.tubs.sse.spl.deltambt.featuremodel.properties">
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="de.tubs.sse.spl.deltambt.featuremodel.section.FeatureModel"
+               tab="Base">
+             <input
+                    type="de.tubs.sse.spl.deltambt.featuremodel.FeatureModel">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="de.tubs.sse.spl.deltambt.featuremodel.section.Feature"
+               tab="Base">
+             <input
+                    type="de.tubs.sse.spl.deltambt.featuremodel.Feature">
+             </input>
+         </propertySection>
+      </propertySections>
+   </extension>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="de.tubs.spl.deltambt.featuremodel.presentation.FeaturemodelEditorID"
+            name="%_UI_FeaturemodelEditor_label"
+            icon="icons/full/obj16/FeaturemodelModelFile.gif"
+            extensions="featuremodel"
+            class="de.tubs.sse.spl.deltambt.featuremodel.presentation.FeaturemodelEditor"
+            contributorClass="de.tubs.sse.spl.deltambt.featuremodel.presentation.FeaturemodelActionBarContributor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            id="de.tubs.sse.spl.deltambt.featuremodel.editor.editorContribution.ID"
+            targetID="de.tubs.spl.deltambt.featuremodel.presentation.FeaturemodelEditorID">
+         <action
+               class="de.tubs.sse.spl.deltambt.featuremodel.validation.BatchFeatureValidationDelegate"
+               id="de.tubs.sse.spl.deltambt.featuremodel.actionValidate"
+               label="Validate Feature Model"
+               menubarPath="de.tubs.sse.spl.deltambt.featuremodelMenuID/additions"
+               style="push">
+         </action>
+      </editorContribution>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <binding
+            category="de.tubs.sse.spl.deltambt.featuremodel.constraints.category.ID"
+            context="de.tubs.sse.spl.deltambt.featuremodel.featuremodelClientContext">
+      </binding>
+      <clientContext
+            default="false"
+            id="de.tubs.sse.spl.deltambt.featuremodel.featuremodelClientContext">
+         <selector
+               class="de.tubs.sse.spl.deltambt.featuremodel.validation.constraint.ValidationFeatureDelegateClientSelector">
+         </selector>
+      </clientContext>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="de.tubs.sse.spl.deltambt.featuremodel.constraints.category.ID"
+            name="Constraints">
+      </category>
+      <constraintProvider
+            cache="true">
+         <package
+               namespaceUri="http://de/tubs/sse/spl/deltambt/featuremodel">
+         </package>
+         <constraints
+               categories="de.tubs.sse.spl.deltambt.featuremodel.constraints.category.ID">
+            <constraint
+                  class="de.tubs.sse.spl.deltambt.featuremodel.validation.constraint.NonEmptyFeatureNamesConstraint"
+                  id="de.tubs.sse.spl.deltambt.featuremodel.NonEmptyFeatureNames"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Non-Empty Feature Names"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  A {0} has been found which has an empty name as identifier.
+               </message>
+               <description>
+                  All items in a feature model should have name as non empty identifier.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.tubs.sse.spl.deltambt.featuremodel.validation.constraint.MinTwoAlternativeChildConstraint"
+                  id="de.tubs.sse.spl.deltambt.featuremodel.MinTwoAlternativeChilds"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Min Two Alternative Childs"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  A {0} has been found which has less than two features as childs in an Alternative Group.
+               </message>
+               <description>
+                  All feature in a feature model should have more/equal than two childs in an alternative group if there is one.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.tubs.sse.spl.deltambt.featuremodel.validation.constraint.MinTwoOrChildsConstraint"
+                  id="de.tubs.sse.spl.deltambt.featuremodel.MinTwoOrChilds"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Min Two Or Childs"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  A {0} has been found which has less than two features as childs in an Or Group.
+               </message>
+               <description>
+                  All feature in a feature model should have more/equal than two childs in an or group if there is one.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.tubs.sse.spl.deltambt.featuremodel.validation.constraint.OptionalOrConstraint"
+                  id="de.tubs.sse.spl.deltambt.featuremodel.OptionalOr"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Optional Or Features"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  An Or {0} has been found which has not the type Optional.
+               </message>
+               <description>
+                  All Or features in a feature model should have the type Optional.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.tubs.sse.spl.deltambt.featuremodel.validation.constraint.MandatoryAlternativesConstraint"
+                  id="de.tubs.sse.spl.deltambt.featuremodel.MandatoryAlternatives"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Mandatory Alternative Features"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  An Alternative {0} has been found which has not the type Mandatory.
+               </message>
+               <description>
+                  All Alternative features in a feature model should have the type Mandatory.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.tubs.sse.spl.deltambt.featuremodel.validation.constraint.BidirectionalExcludeConstraint"
+                  id="de.tubs.sse.spl.deltambt.featuremodel.BidirectionalExclude"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Bidirectional Exclude"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  The exclude relation between the Features {0} and {1} are not bidirectional.
+               </message>
+               <description>
+                  All exclude relations between two Features have to be bidirectional.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.tubs.sse.spl.deltambt.featuremodel.validation.constraint.UniqueFeatureNamesConstraint"
+                  id="de.tubs.sse.spl.deltambt.featuremodel.UniqueNames"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Unique Names"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  The Feature {0} has not a unique name.
+                  
+               </message>
+               <description>
+                  All Features have got a unique name.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.tubs.sse.spl.deltambt.featuremodel.validation.constraint.NoSelfExcludeConstraint"
+                  id="de.tubs.sse.spl.deltambt.featuremodel.NoSelfExclude"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="No self exclude"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  The Feature {0} exclude itself.
+               </message>
+               <description>
+                  No feature is allowed to exclude itself.
+               </description>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+   </extension>
+
+</plugin>

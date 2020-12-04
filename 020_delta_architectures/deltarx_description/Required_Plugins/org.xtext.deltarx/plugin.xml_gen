@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.xtext.org/example/deltarx/Deltarx" 
+       class = "org.xtext.deltarx.deltarx.DeltarxPackage"
+       genModel = "org/xtext/deltarx/Deltarx.genmodel" /> 
+	
+  </extension>
+
+
+
+
+</plugin>

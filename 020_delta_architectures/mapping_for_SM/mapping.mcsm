@@ -1,0 +1,82 @@
+Mapping BCSMapping{
+	component HMI {
+		bsm BCS_HMI, bsm HMI_Controller	
+}
+
+component FP{
+		bsm BCS_FP, bsm FP_BSM
+}
+
+component LED_FP{
+		bsm BSM_LED_FP
+	}
+
+component ManPW{
+		bsm BCS_ManPW, bsm BSM_ManPW
+}
+
+component LED_ManPW{
+		bsm BSM_LED_ManPW
+	}
+
+component EM{
+		bsm BCS_EM, bsm EM_Electric
+	}
+	
+component EMH{
+		bsm BCS_EM, bsm EM_Electric, bsm BCS_EM_Heat, bsm BSM_Status_Heatable
+	}
+	
+	component CLS{
+		bsm BCS_CLS, bsm BSM_CLS
+	}
+	
+	component LED_CLS{
+		bsm BSM_LED_CLS
+	}
+	
+	component AutoPW{
+		bsm BCS_AutoPW, bsm BSM_AutoPW
+	}
+	
+	component RCK_Ctrl {
+		bsm BCS_RCK_Ctrl, bsm BSM_RCK, bsm BCS_RCK_SF, bsm BSM_RCK_CAP, bsm BSM_CAP	
+	}
+	
+	component LED_AutoPW{
+		bsm BSM_LED_AutoPW, bsm BSM_LED_AutoPW_Up, bsm BSM_LED_AutoPW_Down, bsm BSM_LED_PW
+	}
+	component LED_EMB{
+		bsm BSM_LED_EM_Bottom
+	}
+	component LED_EMT{
+		bsm BSM_LED_EM_Top
+	}
+	component LED_EMR{
+		bsm BSM_LED_EM_Right
+	}
+	component LED_EML{
+		bsm BSM_LED_EM_Left
+	}
+	component LED_EMH{
+		bsm BSM_LED_Heatable
+	}
+	component AS{
+		bsm BCS_AS, bsm BSM_AS
+	}
+	component LED_ASAD{
+		bsm BSM_LED_AS_Alarm_Detected
+	}
+	component LED_ASAL{
+		bsm BSM_LED_AS_Alarm
+	}
+	component LED_ASAC{
+		bsm BSM_LED_AS_Active
+	}
+	component LED_ASIM{
+		bsm BSM_LED_AS_IM
+	}
+	component ENV{
+		bsm null
+	}
+}

@@ -1,0 +1,369 @@
+architecture P5 for featuremodel 'D:/Dokumente/Studium/TU Braunschweig/Masterarbeit/svn/Masterarbeit/case_study/BCS_Deltarx/SPL_Description/BCS.featuremodel' { 
+ 	 signals {
+	 	 pw_but_mv_dn boolean
+	 	 pw_but_mv_up boolean
+	 	 em_but_mv_left boolean
+	 	 em_but_mv_right boolean
+	 	 em_but_mv_up boolean
+	 	 em_but_mv_dn boolean
+	 	 pw_but_up boolean
+	 	 pw_but_dn boolean
+	 	 em_but_right boolean
+	 	 em_but_left boolean
+	 	 em_but_up boolean
+	 	 em_but_down boolean
+	 	 em_pos_left boolean
+	 	 em_pos_right boolean
+	 	 em_pos_top boolean
+	 	 em_pos_bottom boolean
+	 	 em_mv_left boolean
+	 	 em_mv_right boolean
+	 	 em_mv_up boolean
+	 	 em_mv_down boolean
+	 	 finger_detected boolean
+	 	 fp_on boolean
+	 	 fp_off boolean
+	 	 pw_pos_up boolean
+	 	 pw_pos_dn boolean
+	 	 pw_mv_up boolean
+	 	 pw_mv_dn boolean
+	 	 heating_on boolean
+	 	 heating_off boolean
+	 	 time_heating_elapsed boolean
+	 	 em_too_cold boolean
+	 	 as_activated boolean
+	 	 as_deactivated boolean
+	 	 as_alarm_detected boolean
+	 	 time_alarm_elapsed boolean
+	 	 key_pos_lock boolean
+	 	 key_pos_unlock boolean
+	 	 as_active_on boolean
+	 	 as_active_off boolean
+	 	 as_alarm_on boolean
+	 	 as_alarm_off boolean
+	 	 activate_as boolean
+	 	 deactivate_as boolean
+	 	 as_alarm_was_detected boolean
+	 	 led_fp_on boolean
+	 	 led_fp_off boolean
+	 	 release_pw_but boolean
+	 	 led_pw_up_on boolean
+	 	 led_pw_up_off boolean
+	 	 led_pw_dn_on boolean
+	 	 led_pw_dn_off boolean
+	 	 release_pw_but_dn boolean
+	 	 release_pw_but_up boolean
+	 	 im_alarm_detected boolean
+	 	 as_im_alarm_on boolean
+	 	 as_im_alarm_off boolean
+	 	 em_pos_vert_bottom boolean
+	 	 em_pos_vert_pend boolean
+	 	 em_pos_vert_top boolean
+	 	 em_pos_hor_right boolean
+	 	 em_pos_hor_pend boolean
+	 	 em_pos_hor_left boolean
+	 	 led_em_bottom_on boolean
+	 	 led_em_bottom_off boolean
+	 	 led_em_top_on boolean
+	 	 led_em_top_off boolean
+	 	 led_em_right_on boolean
+	 	 led_em_right_off boolean
+	 	 led_em_left_on boolean
+	 	 led_em_left_off boolean
+	 	 led_em_heating_on boolean
+	 	 led_em_heating_off boolean
+	 	 led_as_active_on boolean
+	 	 led_as_active_off boolean
+	 	 led_as_alarm_on boolean
+	 	 led_as_alarm_off boolean
+	 	 led_as_alarm_detected_on boolean
+	 	 led_as_alarm_detected_off boolean
+	 	 as_alarm_was_confirmed boolean
+	 	 confirm_alarm boolean
+	 	 led_as_im_alarm_on boolean
+	 	 led_as_im_alarm_off boolean
+	 } 
+	 connectors {
+	 	 hmi5 (HMI, pw_but_up, pw_but_up, ManPW) 
+	 	 hmi6 (HMI, pw_but_dn, pw_but_dn, ManPW) 
+	 	 hmi7 (HMI, pw_but_dn, pw_but_dn, FP) 
+	 	 env1 (ENV, pw_but_mv_dn, pw_but_mv_dn, HMI) 
+	 	 env2 (ENV, pw_but_mv_up, pw_but_mv_up, HMI) 
+	 	 env3 (ENV, em_but_mv_left, em_but_mv_left, HMI) 
+	 	 env4 (ENV, em_but_mv_right, em_but_mv_right, HMI) 
+	 	 env5 (ENV, em_but_mv_up, em_but_mv_up, HMI) 
+	 	 env6 (ENV, em_but_mv_dn, em_but_mv_dn, HMI) 
+	 	 env11 (ENV, finger_detected, finger_detected, FP) 
+	 	 env13 (ENV, pw_pos_up, pw_pos_up, ManPW) 
+	 	 env14 (ENV, pw_pos_dn, pw_pos_dn, ManPW) 
+	 	 fp1 (FP, fp_on, fp_on, ManPW) 
+	 	 fp2 (FP, fp_off, fp_off, ManPW) 
+	 	 pw1 (ManPW, pw_mv_dn, pw_mv_dn, ENV) 
+	 	 pw2 (ManPW, pw_mv_up, pw_mv_up, ENV) 
+	 	 emhenv1 (EMH, em_mv_left, em_mv_left, ENV) 
+	 	 emhenv2 (EMH, em_mv_right, em_mv_right, ENV) 
+	 	 emhenv3 (EMH, em_mv_up, em_mv_up, ENV) 
+	 	 emhenv4 (EMH, em_mv_down, em_mv_down, ENV) 
+	 	 emhenv5 (EMH, heating_on, heating_on, ENV) 
+	 	 emhenv6 (EMH, heating_off, heating_off, ENV) 
+	 	 envemh1 (ENV, em_pos_right, em_pos_right, EMH) 
+	 	 envemh2 (ENV, em_pos_top, em_pos_top, EMH) 
+	 	 envemh3 (ENV, em_pos_bottom, em_pos_bottom, EMH) 
+	 	 envemh4 (ENV, em_too_cold, em_too_cold, EMH) 
+	 	 envemh5 (ENV, time_heating_elapsed, time_heating_elapsed, EMH) 
+	 	 envemh6 (ENV, em_pos_left, em_pos_left, EMH) 
+	 	 hmiemh1 (HMI, em_but_right, em_but_right, EMH) 
+	 	 hmiemh2 (HMI, em_but_left, em_but_left, EMH) 
+	 	 hmiemh3 (HMI, em_but_up, em_but_up, EMH) 
+	 	 hmiemh4 (HMI, em_but_down, em_but_down, EMH) 
+	 	 envhm1 (ENV, activate_as, activate_as, HMI) 
+	 	 envhm2 (ENV, deactivate_as, deactivate_as, HMI) 
+	 	 hmias1 (HMI, as_activated, as_activated, AS) 
+	 	 hmias1 (HMI, as_deactivated, as_deactivated, AS) 
+	 	 envas1 (ENV, as_alarm_detected, as_alarm_detected, AS) 
+	 	 envas2 (ENV, time_alarm_elapsed, time_alarm_elapsed, AS) 
+	 	 envas3 (ENV, key_pos_lock, key_pos_lock, AS) 
+	 	 envas4 (ENV, key_pos_unlock, key_pos_unlock, AS) 
+	 	 asenv1 (AS, as_active_on, as_active_on, ENV) 
+	 	 asenv2 (AS, as_alarm_on, as_alarm_on, ENV) 
+	 	 asenv3 (AS, as_active_off, as_active_off, ENV) 
+	 	 asenv4 (AS, as_alarm_off, as_alarm_off, ENV) 
+	 	 fp3 (FP, fp_on, fp_on, LED_FP) 
+	 	 fp4 (FP, fp_off, fp_off, LED_FP) 
+	 	 ledfp1 (LED_FP, led_fp_on, led_fp_on, ENV) 
+	 	 ledfp2 (LED_FP, led_fp_off, led_fp_off, ENV) 
+	 	 manpwledapw1 (ManPW, pw_mv_dn, pw_mv_dn, LED_ManPW) 
+	 	 manpwledapw2 (ManPW, pw_mv_up, pw_mv_up, LED_ManPW) 
+	 	 hmiledapw3 (HMI, release_pw_but, release_pw_but, LED_ManPW) 
+	 	 envhmi1 (ENV, release_pw_but_up, release_pw_but_up, HMI) 
+	 	 envhmi2 (ENV, release_pw_but_dn, release_pw_but_dn, HMI) 
+	 	 ledmanpwenv1 (LED_ManPW, led_pw_up_on, led_pw_up_on, ENV) 
+	 	 ledmanpwenv2 (LED_ManPW, led_pw_dn_on, led_pw_dn_on, ENV) 
+	 	 ledmanpwenv3 (LED_ManPW, led_pw_up_off, led_pw_up_off, ENV) 
+	 	 ledmanpwenv4 (LED_ManPW, led_pw_dn_off, led_pw_dn_off, ENV) 
+	 	 envasim1 (ENV, im_alarm_detected, im_alarm_detected, AS) 
+	 	 asimenv1 (AS, as_im_alarm_on, as_im_alarm_on, ENV) 
+	 	 asimenv2 (AS, as_im_alarm_off, as_im_alarm_off, ENV) 
+	 	 emhledemb1 (EMH, em_pos_vert_bottom, em_pos_vert_bottom, LED_EMB) 
+	 	 emhledemb2 (EMH, em_pos_vert_pend, em_pos_vert_pend, LED_EMB) 
+	 	 ledembenv1 (LED_EMB, led_em_bottom_on, led_em_bottom_on, ENV) 
+	 	 ledembenv2 (LED_EMB, led_em_bottom_off, led_em_bottom_off, ENV) 
+	 	 emhledemt1 (EMH, em_pos_vert_pend, em_pos_vert_pend, LED_EMT) 
+	 	 emhledemt2 (EMH, em_pos_vert_top, em_pos_vert_top, LED_EMT) 
+	 	 ledemtenv1 (LED_EMT, led_em_top_on, led_em_top_on, ENV) 
+	 	 ledemtenv2 (LED_EMT, led_em_top_off, led_em_top_off, ENV) 
+	 	 emhledemr1 (EMH, em_pos_hor_right, em_pos_hor_right, LED_EMR) 
+	 	 emhledemr2 (EMH, em_pos_hor_pend, em_pos_hor_pend, LED_EMR) 
+	 	 ledemrenv1 (LED_EMR, led_em_right_on, led_em_right_on, ENV) 
+	 	 ledemrenv2 (LED_EMR, led_em_right_off, led_em_right_off, ENV) 
+	 	 emhledeml1 (EMH, em_pos_hor_left, em_pos_hor_left, LED_EML) 
+	 	 emhledeml2 (EMH, em_pos_hor_pend, em_pos_hor_pend, LED_EML) 
+	 	 ledemlenv1 (LED_EML, led_em_left_on, led_em_left_on, ENV) 
+	 	 ledemlenv2 (LED_EML, led_em_left_off, led_em_left_off, ENV) 
+	 	 emhled1 (EMH, heating_on, heating_on, LED_EMH) 
+	 	 emhled2 (EMH, heating_off, heating_off, LED_EMH) 
+	 	 ledemhenv1 (LED_EMH, led_em_heating_on, led_em_heating_on, ENV) 
+	 	 ledemhenv2 (LED_EMH, led_em_heating_off, led_em_heating_off, ENV) 
+	 	 hmiledasad1 (HMI, as_alarm_was_confirmed, as_alarm_was_confirmed, LED_ASAD) 
+	 	 asledasad1 (AS, as_alarm_was_detected, as_alarm_was_detected, LED_ASAD) 
+	 	 ledasadenv1 (LED_ASAD, led_as_alarm_detected_on, led_as_alarm_detected_on, ENV) 
+	 	 ledasadenv2 (LED_ASAD, led_as_alarm_detected_off, led_as_alarm_detected_off, ENV) 
+	 	 asledasal1 (AS, as_alarm_on, as_alarm_on, LED_ASAL) 
+	 	 asledasal2 (AS, as_alarm_off, as_alarm_off, LED_ASAL) 
+	 	 ledasalenv1 (LED_ASAL, led_as_alarm_on, led_as_alarm_on, ENV) 
+	 	 ledasalenv2 (LED_ASAL, led_as_alarm_off, led_as_alarm_off, ENV) 
+	 	 asledasac1 (AS, as_active_on, as_active_on, LED_ASAC) 
+	 	 asledasac2 (AS, as_active_off, as_active_off, LED_ASAC) 
+	 	 ledasacenv1 (LED_ASAC, led_as_active_on, led_as_active_on, ENV) 
+	 	 ledasacenv2 (LED_ASAC, led_as_active_off, led_as_active_off, ENV) 
+	 	 envhmi3 (ENV, confirm_alarm, confirm_alarm, HMI) 
+	 	 asledasim1 (AS, as_im_alarm_on, as_im_alarm_on, LED_ASIM) 
+	 	 asledasim2 (AS, as_im_alarm_off, as_im_alarm_off, LED_ASIM) 
+	 	 ledasimenv1 (LED_ASIM, led_as_im_alarm_on, led_as_im_alarm_on, ENV) 
+	 	 ledasimenv2 (LED_ASIM, led_as_im_alarm_off, led_as_im_alarm_off, ENV) 
+	 } 
+	 components {
+	 	 HMI{ 
+	 	 	 ports {
+	 	 	 	in p_pw_but_mv_dn pw_but_mv_dn
+	 	 	 	in p_pw_but_mv_up pw_but_mv_up
+	 	 	 	in p_em_but_mv_left em_but_mv_left
+	 	 	 	in p_em_but_mv_right em_but_mv_right
+	 	 	 	in p_em_but_mv_up em_but_mv_up
+	 	 	 	in p_em_but_mv_bottom em_but_mv_up
+	 	 	 	out p_pw_but_up pw_but_up
+	 	 	 	out p_pw_but_dn pw_but_dn
+	 	 	 	out p_em_but_right em_but_right
+	 	 	 	out p_em_but_left em_but_left
+	 	 	 	out p_em_but_up em_but_up
+	 	 	 	out p_em_but_down em_but_down
+	 	 	 	in p_activate_as activate_as
+	 	 	 	in p_deactivate_as deactivate_as
+	 	 	 	out p_as_activated as_activated
+	 	 	 	out p_as_deactivated as_deactivated
+	 	 	 	out p_release_pw_but release_pw_but
+	 	 	 	in p_release_pw_but_up release_pw_but_up
+	 	 	 	in p_release_pw_but_dn release_pw_but_dn
+	 	 	 	out p_as_alarm_was_confirmed as_alarm_was_confirmed
+	 	 	 	in p_confirm_alarm confirm_alarm
+	 	 	 }
+	 	 }
+	 	 ManPW{ 
+	 	 	 ports {
+	 	 	 	in p_pw_but_up pw_but_up
+	 	 	 	in p_pw_but_dn pw_but_dn
+	 	 	 	in p_pw_pos_up pw_pos_up
+	 	 	 	in p_pw_pos_dn pw_pos_dn
+	 	 	 	in p_fp_on fp_on
+	 	 	 	in p_fp_off fp_off
+	 	 	 	out p_pw_mv_dn pw_mv_dn
+	 	 	 	out p_pw_mv_up pw_mv_up
+	 	 	 }
+	 	 }
+	 	 FP{ 
+	 	 	 ports {
+	 	 	 	in p_finger_detected finger_detected
+	 	 	 	in p_pw_but_dn pw_but_dn
+	 	 	 	out p_fp_on fp_on
+	 	 	 	out p_fp_off fp_off
+	 	 	 }
+	 	 }
+	 	 EMH{ 
+	 	 	 ports {
+	 	 	 	out p_em_mv_left em_mv_left
+	 	 	 	out p_em_mv_right em_mv_right
+	 	 	 	out p_em_mv_up em_mv_up
+	 	 	 	out p_em_mv_down em_mv_down
+	 	 	 	out p_heating_on heating_on
+	 	 	 	out p_heating_off heating_off
+	 	 	 	in p_em_pos_right em_pos_right
+	 	 	 	in p_em_pos_top em_pos_top
+	 	 	 	in p_em_pos_bottom em_pos_bottom
+	 	 	 	in p_em_too_cold em_too_cold
+	 	 	 	in p_time_heating_elapsed time_heating_elapsed
+	 	 	 	in p_em_pos_left em_pos_left
+	 	 	 	in p_em_but_right em_but_right
+	 	 	 	in p_em_but_left em_but_left
+	 	 	 	in p_em_but_up em_but_up
+	 	 	 	in p_em_but_down em_but_down
+	 	 	 	out p_em_pos_vert_bottom em_pos_vert_bottom
+	 	 	 	out p_em_pos_vert_pend em_pos_vert_pend
+	 	 	 	out p_em_pos_vert_top em_pos_vert_top
+	 	 	 	out p_em_pos_hor_right em_pos_hor_right
+	 	 	 	out p_em_pos_hor_pend em_pos_hor_pend
+	 	 	 	out p_em_pos_hor_left em_pos_hor_left
+	 	 	 }
+	 	 }
+	 	 AS{ 
+	 	 	 ports {
+	 	 	 	in p_as_activated as_activated
+	 	 	 	in p_as_deactivated as_deactivated
+	 	 	 	in p_as_alarm_detected as_alarm_detected
+	 	 	 	in p_time_alarm_elapsed time_alarm_elapsed
+	 	 	 	in p_key_pos_lock key_pos_lock
+	 	 	 	in p_key_pos_unlock key_pos_unlock
+	 	 	 	out p_as_active_on as_active_on
+	 	 	 	out p_as_alarm_on as_alarm_on
+	 	 	 	out p_as_active_off as_active_off
+	 	 	 	out p_as_alarm_off as_alarm_off
+	 	 	 	out p_as_alarm_was_detected as_alarm_was_detected
+	 	 	 	in p_im_alarm_detected im_alarm_detected
+	 	 	 	out p_as_im_alarm_on as_im_alarm_on
+	 	 	 	out p_as_im_alarm_off as_im_alarm_off
+	 	 	 }
+	 	 }
+	 	 LED_FP{ 
+	 	 	 ports {
+	 	 	 	in p_fp_on fp_on
+	 	 	 	in p_fp_off fp_off
+	 	 	 	out p_led_fp_on led_fp_on
+	 	 	 	out p_led_fp_off led_fp_off
+	 	 	 }
+	 	 }
+	 	 LED_ManPW{ 
+	 	 	 ports {
+	 	 	 	in p_pw_mv_dn pw_mv_dn
+	 	 	 	in p_pw_mv_up pw_mv_up
+	 	 	 	in p_release_pw_but release_pw_but
+	 	 	 	out p_led_pw_up_on led_pw_up_on
+	 	 	 	out p_led_pw_dn_on led_pw_dn_on
+	 	 	 	out p_led_pw_up_off led_pw_up_off
+	 	 	 	out p_led_pw_dn_off led_pw_dn_off
+	 	 	 }
+	 	 }
+	 	 LED_EMB{ 
+	 	 	 ports {
+	 	 	 	in p_em_pos_vert_bottom em_pos_vert_bottom
+	 	 	 	in p_em_pos_vert_pend em_pos_vert_pend
+	 	 	 	out p_led_em_bottom_on led_em_bottom_on
+	 	 	 	out p_led_em_bottom_off led_em_bottom_off
+	 	 	 }
+	 	 }
+	 	 LED_EMT{ 
+	 	 	 ports {
+	 	 	 	in p_em_pos_vert_pend em_pos_vert_pend
+	 	 	 	in p_em_pos_vert_top em_pos_vert_top
+	 	 	 	out p_led_em_top_on led_em_top_on
+	 	 	 	out p_led_em_top_off led_em_top_off
+	 	 	 }
+	 	 }
+	 	 LED_EMR{ 
+	 	 	 ports {
+	 	 	 	in p_em_pos_hor_right em_pos_hor_right
+	 	 	 	in p_em_pos_hor_pend em_pos_hor_pend
+	 	 	 	out p_led_em_right_on led_em_right_on
+	 	 	 	out p_led_em_right_off led_em_right_off
+	 	 	 }
+	 	 }
+	 	 LED_EML{ 
+	 	 	 ports {
+	 	 	 	in p_em_pos_hor_left em_pos_hor_left
+	 	 	 	in p_em_pos_hor_pend em_pos_hor_pend
+	 	 	 	out p_led_em_left_on led_em_left_on
+	 	 	 	out p_led_em_left_off led_em_left_off
+	 	 	 }
+	 	 }
+	 	 LED_EMH{ 
+	 	 	 ports {
+	 	 	 	in p_heating_on heating_on
+	 	 	 	in p_heating_off heating_off
+	 	 	 	out p_led_em_heating_on led_em_heating_on
+	 	 	 	out p_led_em_heating_off led_em_heating_off
+	 	 	 }
+	 	 }
+	 	 LED_ASAD{ 
+	 	 	 ports {
+	 	 	 	in p_as_alarm_was_confirmed as_alarm_was_confirmed
+	 	 	 	in p_as_alarm_was_detected as_alarm_was_detected
+	 	 	 	out p_led_as_alarm_detected_on led_as_alarm_detected_on
+	 	 	 	out p_led_as_alarm_detected_off led_as_alarm_detected_off
+	 	 	 }
+	 	 }
+	 	 LED_ASAC{ 
+	 	 	 ports {
+	 	 	 	in p_as_active_on as_active_on
+	 	 	 	in p_as_active_off as_active_off
+	 	 	 	out p_led_as_active_on led_as_active_on
+	 	 	 	out p_led_as_active_off led_as_active_off
+	 	 	 }
+	 	 }
+	 	 LED_ASAL{ 
+	 	 	 ports {
+	 	 	 	in p_as_alarm_on as_alarm_on
+	 	 	 	in p_as_alarm_off as_alarm_off
+	 	 	 	out p_led_as_alarm_on led_as_alarm_on
+	 	 	 	out p_led_as_alarm_off led_as_alarm_off
+	 	 	 }
+	 	 }
+	 	 LED_ASIM{ 
+	 	 	 ports {
+	 	 	 	in p_as_im_alarm_on as_im_alarm_on
+	 	 	 	in p_as_im_alarm_off as_im_alarm_off
+	 	 	 	out p_led_as_im_alarm_on led_as_im_alarm_on
+	 	 	 	out p_led_as_im_alarm_off led_as_im_alarm_off
+	 	 	 }
+	 	 }
+
+ 	 } 
+ 
+}

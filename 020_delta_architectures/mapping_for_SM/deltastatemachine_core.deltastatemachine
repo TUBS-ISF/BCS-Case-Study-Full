@@ -1,0 +1,1309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<de.tubs.sse.spl.deltambt.deltastatemachine:DeltaRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:de.tubs.sse.spl.deltambt.deltastatemachine="http://de/tubs/sse/spl/deltambt/deltastatemachine" name="BCS Delta Repository" belongToSPL="Body Comfort System">
+  <linkedToFM href="BCS.featuremodel#/"/>
+  <cores name="BCS_Core">
+    <config href="ConfigBCS.configmanagement#//@configs.0"/>
+    <bsms name="BCS" intialState="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']">
+      <states name="Root"/>
+    </bsms>
+    <bsms name="BCS_HMI" intialState="//@cores[name='BCS_Core']/@bsms[name='BCS_HMI']/@states[name='HMI']">
+      <states name="HMI"/>
+    </bsms>
+    <bsms name="HMI_Controller" intialState="//@cores[name='BCS_Core']/@bsms[name='HMI_Controller']/@states[name='Controller']">
+      <states name="Controller"/>
+    </bsms>
+    <bsms name="BCS_ManPW" intialState="//@cores[name='BCS_Core']/@bsms[name='BCS_ManPW']/@states[name='ManPW']">
+      <states name="ManPW"/>
+    </bsms>
+    <bsms name="BSM_ManPW" intialState="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_up']">
+      <states name="pw_up"/>
+      <states name="pw_pend"/>
+      <states name="pw_dn"/>
+      <transitions name="ManPW_Up_Pend" source="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_up']" target="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_pend']">
+        <trigger name="pw_but_dn"/>
+        <broadcast name="pw_mv_dn"/>
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm">
+          <var name="pw_enabled" initValue="true"/>
+          <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+        </guard>
+      </transitions>
+      <transitions name="ManPW_Pend_Up" source="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_pend']" target="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_up']">
+        <trigger name="pw_but_up"/>
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm">
+          <var name="pw_pos" initValue="1"/>
+          <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+        </guard>
+      </transitions>
+      <transitions name="ManPW_Pend_Pend_dn" source="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_pend']" target="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_pend']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@broadcast[name='pw_mv_dn']">
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundExpression">
+          <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral"/>
+          </term>
+          <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+          </term>
+        </guard>
+      </transitions>
+      <transitions name="ManPW_Pend_Pend_up" source="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_pend']" target="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_pend']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@trigger">
+        <broadcast name="pw_mv_up"/>
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundExpression">
+          <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral"/>
+          </term>
+          <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm">
+            <var name="fp_on"/>
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral"/>
+          </term>
+        </guard>
+      </transitions>
+      <transitions name="ManPW_Pend_dn" source="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_pend']" target="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_dn']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@trigger">
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@guard/@var">
+          <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="-1"/>
+        </guard>
+      </transitions>
+      <transitions name="ManPW_Dn_Pend" source="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_dn']" target="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@states[name='pw_pend']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Pend_up']/@broadcast[name='pw_mv_up']">
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Pend_up']/@guard/@term.1/@var">
+          <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral"/>
+        </guard>
+      </transitions>
+    </bsms>
+    <bsms name="BCS_FP" intialState="//@cores[name='BCS_Core']/@bsms[name='BCS_FP']/@states[name='FP']">
+      <states name="FP"/>
+    </bsms>
+    <bsms name="FP_BSM" intialState="//@cores[name='BCS_Core']/@bsms[name='FP_BSM']/@states[name='FP_off']">
+      <states name="FP_off"/>
+      <states name="FP_on"/>
+      <transitions name="FP_ManPW_off_on" source="//@cores[name='BCS_Core']/@bsms[name='FP_BSM']/@states[name='FP_off']" target="//@cores[name='BCS_Core']/@bsms[name='FP_BSM']/@states[name='FP_on']">
+        <trigger name="fp_finger_detected"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Pend_up']/@guard/@term.1/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+      </transitions>
+      <transitions name="FP_on_off" source="//@cores[name='BCS_Core']/@bsms[name='FP_BSM']/@states[name='FP_on']" target="//@cores[name='BCS_Core']/@bsms[name='FP_BSM']/@states[name='FP_off']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Pend_up']/@guard/@term.1/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+        </assignment>
+      </transitions>
+    </bsms>
+    <bsms name="BCS_EM" intialState="//@cores[name='BCS_Core']/@bsms[name='BCS_EM']/@states[name='EM']">
+      <states name="EM"/>
+    </bsms>
+    <bsms name="EM_Electric" intialState="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']">
+      <states name="em_top_left"/>
+      <states name="em_top"/>
+      <states name="em_top_right"/>
+      <states name="em_left"/>
+      <states name="em_pending"/>
+      <states name="em_right"/>
+      <states name="em_bottom_left"/>
+      <states name="em_bottom"/>
+      <states name="em_bottom_right"/>
+      <transitions name="EM_topLeft_top" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top_left']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top']">
+        <trigger name="em_but_right"/>
+        <broadcast name="em_mv_right"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment">
+          <var name="em_pos_hor"/>
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_top_topLeft" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top_left']">
+        <trigger name="em_pos_left"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="-1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_top_top_right" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@broadcast[name='em_mv_right']"/>
+      <transitions name="EM_top_top_left" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top']">
+        <trigger name="em_but_left"/>
+        <broadcast name="em_mv_left"/>
+      </transitions>
+      <transitions name="EM_top_topRight" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top_right']">
+        <trigger name="em_pos_right"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_topRight_top" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top_right']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_top_left']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_top_left']/@broadcast[name='em_mv_left']">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_topLeft_left" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top_left']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_left']">
+        <trigger name="em_but_down"/>
+        <broadcast name="em_mv_down"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment">
+          <var name="em_pos_vert"/>
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_left_topLeft" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_left']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top_left']">
+        <trigger name="em_pos_top"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_top_pending" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@broadcast[name='em_mv_down']">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_pending_top" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_topLeft']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_topRight_right" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top_right']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_right']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@broadcast[name='em_mv_down']">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_right_topRight" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_right']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_top_right']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_topLeft']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_left_left_up" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_left']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_left']">
+        <trigger name="em_but_up"/>
+        <broadcast name="em_mv_up"/>
+      </transitions>
+      <transitions name="EM_left_left_down" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_left']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_left']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@broadcast[name='em_mv_down']"/>
+      <transitions name="EM_left_pending" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_left']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@broadcast[name='em_mv_right']">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_pending_left" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_left']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_topLeft']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="-1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_pending_pending_up" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_left_up']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_left_up']/@broadcast[name='em_mv_up']"/>
+      <transitions name="EM_pending_pending_right" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@broadcast[name='em_mv_right']"/>
+      <transitions name="EM_pending_pending_down" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@broadcast[name='em_mv_down']"/>
+      <transitions name="EM_pending_pending_left" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_top_left']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_top_left']/@broadcast[name='em_mv_left']"/>
+      <transitions name="EM_pending_right" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_right']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_topRight']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_right_pending" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_right']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_top_left']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_top_left']/@broadcast[name='em_mv_left']">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_right_right_up" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_right']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_right']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_left_up']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_left_up']/@broadcast[name='em_mv_up']"/>
+      <transitions name="EM_right_right_down" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_right']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_right']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@broadcast[name='em_mv_down']"/>
+      <transitions name="EM_left_bottomLeft" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_left']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom_left']">
+        <trigger name="em_pos_bottom"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="-1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_bottomLeft_left" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom_left']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_left']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_left_up']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_left_up']/@broadcast[name='em_mv_up']">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_pending_bottom" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_bottomLeft']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="-1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_bottom_pending" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_pending']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_left_up']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_left_up']/@broadcast[name='em_mv_up']">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_right_bottomRight" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_right']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom_right']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_bottomLeft']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="-1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_bottomRight_right" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom_right']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_right']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_left_up']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_left_left_up']/@broadcast[name='em_mv_up']">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_bottomLeft_bottom" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom_left']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@broadcast[name='em_mv_right']">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_bottom_bottomLeft" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom_left']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_topLeft']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="-1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_bottom_bottom_left" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_top_left']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_top_left']/@broadcast[name='em_mv_left']"/>
+      <transitions name="EM_bottom_bottom_right" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@broadcast[name='em_mv_right']"/>
+      <transitions name="EM_bottom_bottomRight" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom_right']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_topRight']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="1"/>
+        </assignment>
+      </transitions>
+      <transitions name="EM_bottomRight_bottom" source="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom_right']" target="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@states[name='em_bottom']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_top_left']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_top_top_left']/@broadcast[name='em_mv_left']">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+      </transitions>
+    </bsms>
+    <hierarchies name="Root_BCS_HMI" state="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']" bsm="//@cores[name='BCS_Core']/@bsms[name='BCS_HMI']"/>
+    <hierarchies name="HMI_HMI_Controller" state="//@cores[name='BCS_Core']/@bsms[name='BCS_HMI']/@states[name='HMI']" bsm="//@cores[name='BCS_Core']/@bsms[name='HMI_Controller']"/>
+    <hierarchies name="Root_BCS_ManPW" state="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']" bsm="//@cores[name='BCS_Core']/@bsms[name='BCS_ManPW']"/>
+    <hierarchies name="ManPW_ManualPW" state="//@cores[name='BCS_Core']/@bsms[name='BCS_ManPW']/@states[name='ManPW']" bsm="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']"/>
+    <hierarchies name="Root_BCS_FP" state="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']" bsm="//@cores[name='BCS_Core']/@bsms[name='BCS_FP']"/>
+    <hierarchies name="FP_FP_BSM" state="//@cores[name='BCS_Core']/@bsms[name='BCS_FP']/@states[name='FP']" bsm="//@cores[name='BCS_Core']/@bsms[name='FP_BSM']"/>
+    <hierarchies name="Root_BCS_EM" state="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']" bsm="//@cores[name='BCS_Core']/@bsms[name='BCS_EM']"/>
+    <hierarchies name="EM_emElectric" state="//@cores[name='BCS_Core']/@bsms[name='BCS_EM']/@states[name='EM']" bsm="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']"/>
+  </cores>
+  <deltas name="DAddRCKCtrl" applyTo="//@cores[name='BCS_Core']/@bsms[name='BCS']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Remote%20Control%20Key']"/>
+    </when>
+    <addPart>
+      <bsms name="BCS_RCK_Ctrl" intialState="//@deltas[name='DAddRCKCtrl']/@addPart/@bsms[name='BCS_RCK_Ctrl']/@states[name='RCK_Root']">
+        <states name="RCK_Root"/>
+      </bsms>
+      <hierarchies name="Root_BCSRCKCtrl" state="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']" bsm="//@deltas[name='DAddRCKCtrl']/@addPart/@bsms[name='BCS_RCK_Ctrl']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddRCKCtrlBSM" applyTo="//@deltas[name='DAddRCKCtrl']/@addPart/@bsms[name='BCS_RCK_Ctrl']" after="//@deltas[name='DAddRCKCtrl']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Remote%20Control%20Key']"/>
+    </when>
+    <addPart>
+      <bsms name="BSM_RCK" intialState="//@deltas[name='DAddRCKCtrlBSM']/@addPart/@bsms[name='BSM_RCK']/@states[name='RCK_Controller']">
+        <states name="RCK_Controller"/>
+      </bsms>
+      <hierarchies name="RCKRoot_BSMRCK" state="//@deltas[name='DAddRCKCtrl']/@addPart/@bsms[name='BCS_RCK_Ctrl']/@states[name='RCK_Root']" bsm="//@deltas[name='DAddRCKCtrlBSM']/@addPart/@bsms[name='BSM_RCK']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLED" applyTo="//@cores[name='BCS_Core']/@bsms[name='BCS_HMI']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']"/>
+    </when>
+    <addPart>
+      <bsms name="BSM_LED" intialState="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']/@states[name='LED']">
+        <states name="LED"/>
+      </bsms>
+      <hierarchies name="HMI_BSMLED" state="//@cores[name='BCS_Core']/@bsms[name='BCS_HMI']/@states[name='HMI']" bsm="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDCLS" applyTo="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']" after="//@deltas[name='DAddStatusLED']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Central%20Locking%20System']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_Status_CLS" intialState="//@deltas[name='DAddStatusLEDCLS']/@addPart/@bsms[name='BSM_Status_CLS']/@states[name='LED_CLS']">
+        <states name="LED_CLS"/>
+      </bsms>
+      <hierarchies name="LED_LEDCLS" state="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']/@states[name='LED']" bsm="//@deltas[name='DAddStatusLEDCLS']/@addPart/@bsms[name='BSM_Status_CLS']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDCLSBSM" applyTo="//@deltas[name='DAddStatusLEDCLS']/@addPart/@bsms[name='BSM_Status_CLS']" after="//@deltas[name='DAddStatusLEDCLS']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Central%20Locking%20System']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_LED_CLS" intialState="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@states[name='CLS_led_off']">
+        <states name="CLS_led_off"/>
+        <states name="CLS_led_on"/>
+        <transitions name="CLS_ledOff_On" source="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@states[name='CLS_led_off']" target="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@states[name='CLS_led_on']">
+          <broadcast name="led_cls_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm">
+            <var name="cls_locked"/>
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+          </guard>
+        </transitions>
+        <transitions name="CLS_ledOn_off" source="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@states[name='CLS_led_on']" target="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@states[name='CLS_led_off']">
+          <broadcast name="led_cls_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@transitions[name='CLS_ledOff_On']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <hierarchies name="LEDCLS_BSMLEDCLS" state="//@deltas[name='DAddStatusLEDCLS']/@addPart/@bsms[name='BSM_Status_CLS']/@states[name='LED_CLS']" bsm="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDFP" applyTo="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']" after="//@deltas[name='DAddStatusLED']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Finger%20Protection']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@sub[name='Finger%20Protection']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_Status_FP" intialState="//@deltas[name='DAddStatusLEDFP']/@addPart/@bsms[name='BSM_Status_FP']/@states[name='LED_FP']">
+        <states name="LED_FP"/>
+      </bsms>
+      <hierarchies name="LED_FPLED" state="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']/@states[name='LED']" bsm="//@deltas[name='DAddStatusLEDFP']/@addPart/@bsms[name='BSM_Status_FP']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDFPBSM" applyTo="//@deltas[name='DAddStatusLEDFP']/@addPart/@bsms[name='BSM_Status_FP']" after="//@deltas[name='DAddStatusLEDFP']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Finger%20Protection']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@sub[name='Finger%20Protection']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_LED_FP" intialState="//@deltas[name='DAddStatusLEDFPBSM']/@addPart/@bsms[name='BSM_LED_FP']/@states[name='FP_on_LED_off']">
+        <states name="FP_on_LED_off"/>
+        <states name="FP_on_LED_on"/>
+        <transitions name="FP_ledOff_on" source="//@deltas[name='DAddStatusLEDFPBSM']/@addPart/@bsms[name='BSM_LED_FP']/@states[name='FP_on_LED_off']" target="//@deltas[name='DAddStatusLEDFPBSM']/@addPart/@bsms[name='BSM_LED_FP']/@states[name='FP_on_LED_on']">
+          <broadcast name="led_fp_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Pend_up']/@guard/@term.1/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+          </guard>
+        </transitions>
+        <transitions name="FP_ledOn_off" source="//@deltas[name='DAddStatusLEDFPBSM']/@addPart/@bsms[name='BSM_LED_FP']/@states[name='FP_on_LED_on']" target="//@deltas[name='DAddStatusLEDFPBSM']/@addPart/@bsms[name='BSM_LED_FP']/@states[name='FP_on_LED_off']">
+          <broadcast name="led_fp_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Pend_up']/@guard/@term.1/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <hierarchies name="LEDFP_BSMLEDFP" state="//@deltas[name='DAddStatusLEDFP']/@addPart/@bsms[name='BSM_Status_FP']/@states[name='LED_FP']" bsm="//@deltas[name='DAddStatusLEDFPBSM']/@addPart/@bsms[name='BSM_LED_FP']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDEMheatable" applyTo="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']" after="//@deltas[name='DAddStatusLED']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Heatable']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Exterior%20Mirror']/@sub[name='Heatable']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_Status_Heatable" intialState="//@deltas[name='DAddStatusLEDEMheatable']/@addPart/@bsms[name='BSM_Status_Heatable']/@states[name='LED_EM_heating']">
+        <states name="LED_EM_heating"/>
+      </bsms>
+      <hierarchies name="LED_BSMHeatable" state="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']/@states[name='LED']" bsm="//@deltas[name='DAddStatusLEDEMheatable']/@addPart/@bsms[name='BSM_Status_Heatable']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDEMheatableBSM" applyTo="//@deltas[name='DAddStatusLEDEMheatable']/@addPart/@bsms[name='BSM_Status_Heatable']" after="//@deltas[name='DAddStatusLEDEMheatable']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Heatable']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Exterior%20Mirror']/@sub[name='Heatable']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_LED_Heatable" intialState="//@deltas[name='DAddStatusLEDEMheatableBSM']/@addPart/@bsms[name='BSM_LED_Heatable']/@states[name='EM_heating_LED_off']">
+        <states name="EM_heating_LED_off"/>
+        <states name="EM_heating_LED_on"/>
+        <transitions name="Heating_ledOff_on" source="//@deltas[name='DAddStatusLEDEMheatableBSM']/@addPart/@bsms[name='BSM_LED_Heatable']/@states[name='EM_heating_LED_off']" target="//@deltas[name='DAddStatusLEDEMheatableBSM']/@addPart/@bsms[name='BSM_LED_Heatable']/@states[name='EM_heating_LED_on']">
+          <broadcast name="led_em_heating_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm">
+            <var name="heating"/>
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+          </guard>
+        </transitions>
+        <transitions name="Heating_ledOn_off" source="//@deltas[name='DAddStatusLEDEMheatableBSM']/@addPart/@bsms[name='BSM_LED_Heatable']/@states[name='EM_heating_LED_on']" target="//@deltas[name='DAddStatusLEDEMheatableBSM']/@addPart/@bsms[name='BSM_LED_Heatable']/@states[name='EM_heating_LED_off']">
+          <broadcast name="led_em_heating_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@deltas[name='DAddStatusLEDEMheatableBSM']/@addPart/@bsms[name='BSM_LED_Heatable']/@transitions[name='Heating_ledOff_on']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <hierarchies name="LEDEMHeating_BSMLEDHeatable" state="//@deltas[name='DAddStatusLEDEMheatable']/@addPart/@bsms[name='BSM_Status_Heatable']/@states[name='LED_EM_heating']" bsm="//@deltas[name='DAddStatusLEDEMheatableBSM']/@addPart/@bsms[name='BSM_LED_Heatable']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDAS" applyTo="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']" after="//@deltas[name='DAddStatusLED']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Alarm%20System']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Alarm%20System']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_Status_AS" intialState="//@deltas[name='DAddStatusLEDAS']/@addPart/@bsms[name='BSM_Status_AS']/@states[name='LED_AS']">
+        <states name="LED_AS"/>
+      </bsms>
+      <hierarchies name="LED_LEDAS" state="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']/@states[name='LED']" bsm="//@deltas[name='DAddStatusLEDAS']/@addPart/@bsms[name='BSM_Status_AS']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDASBSM" applyTo="//@deltas[name='DAddStatusLEDAS']/@addPart/@bsms[name='BSM_Status_AS']" after="//@deltas[name='DAddStatusLEDAS']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Alarm%20System']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Alarm%20System']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_LED_AS_Active" intialState="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@states[name='AS_active_LED_off']">
+        <states name="AS_active_LED_off"/>
+        <states name="AS_active_LED_on"/>
+        <transitions name="AS_active_ledOff_on" source="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@states[name='AS_active_LED_off']" target="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@states[name='AS_active_LED_on']">
+          <broadcast name="led_as_active_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm">
+            <var name="as_active"/>
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+          </guard>
+        </transitions>
+        <transitions name="AS_active_ledOn_off" source="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@states[name='AS_active_LED_on']" target="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@states[name='AS_active_LED_off']">
+          <broadcast name="led_as_active_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@transitions[name='AS_active_ledOff_on']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <bsms name="BSM_LED_AS_Alarm" intialState="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm']/@states[name='AS_alarm_LED_off']">
+        <states name="AS_alarm_LED_off"/>
+        <states name="AS_alarm_LED_on"/>
+        <transitions name="AS_Alarm_ledOff_on" source="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm']/@states[name='AS_alarm_LED_off']" target="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm']/@states[name='AS_alarm_LED_on']">
+          <broadcast name="led_as_alarm_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm">
+            <var name="as_alarm"/>
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+          </guard>
+        </transitions>
+        <transitions name="AS_Alarm_ledOn_off" source="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm']/@states[name='AS_alarm_LED_on']" target="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm']/@states[name='AS_alarm_LED_off']">
+          <broadcast name="led_as_alarm_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm']/@transitions[name='AS_Alarm_ledOff_on']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <bsms name="BSM_LED_AS_Alarm_Detected" intialState="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm_Detected']/@states[name='AS_alarm_detected_LED_off']">
+        <states name="AS_alarm_detected_LED_off"/>
+        <states name="AS_alarm_detected_LED_on"/>
+        <transitions name="AS_alarm_detected_ledOff_on" source="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm_Detected']/@states[name='AS_alarm_detected_LED_off']" target="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm_Detected']/@states[name='AS_alarm_detected_LED_on']">
+          <broadcast name="led_as_alarm_detected"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm">
+            <var name="as_alarm_was_detected"/>
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <hierarchies name="LEDAS_BSMLEDASActive" state="//@deltas[name='DAddStatusLEDAS']/@addPart/@bsms[name='BSM_Status_AS']/@states[name='LED_AS']" bsm="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']"/>
+      <hierarchies name="LEDAS_BSMLEDASAlarmDetected" state="//@deltas[name='DAddStatusLEDAS']/@addPart/@bsms[name='BSM_Status_AS']/@states[name='LED_AS']" bsm="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm_Detected']"/>
+      <hierarchies name="LEDAS_BSMLEDASAlarm" state="//@deltas[name='DAddStatusLEDAS']/@addPart/@bsms[name='BSM_Status_AS']/@states[name='LED_AS']" bsm="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDASBSMIM" applyTo="//@deltas[name='DAddStatusLEDAS']/@addPart/@bsms[name='BSM_Status_AS']" after="//@deltas[name='DAddStatusLEDAS']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Alarm%20System']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Alarm%20System']/@sub[name='Interior%20Monitoring']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_LED_AS_IM" intialState="//@deltas[name='DAddStatusLEDASBSMIM']/@addPart/@bsms[name='BSM_LED_AS_IM']/@states[name='AS_IM_alarm_off']">
+        <states name="AS_IM_alarm_off"/>
+        <states name="AS_IM_alarm_on"/>
+        <transitions name="AS_IM_alarm_ledOff_on" source="//@deltas[name='DAddStatusLEDASBSMIM']/@addPart/@bsms[name='BSM_LED_AS_IM']/@states[name='AS_IM_alarm_off']" target="//@deltas[name='DAddStatusLEDASBSMIM']/@addPart/@bsms[name='BSM_LED_AS_IM']/@states[name='AS_IM_alarm_on']">
+          <broadcast name="led_as_im_alarm_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm">
+            <var name="as_im_alarm"/>
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+          </guard>
+        </transitions>
+        <transitions name="AS_IM_alarm_ledOn_off" source="//@deltas[name='DAddStatusLEDASBSMIM']/@addPart/@bsms[name='BSM_LED_AS_IM']/@states[name='AS_IM_alarm_on']" target="//@deltas[name='DAddStatusLEDASBSMIM']/@addPart/@bsms[name='BSM_LED_AS_IM']/@states[name='AS_IM_alarm_off']">
+          <broadcast name="led_as_im_alarm_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@deltas[name='DAddStatusLEDASBSMIM']/@addPart/@bsms[name='BSM_LED_AS_IM']/@transitions[name='AS_IM_alarm_ledOff_on']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <hierarchies name="LEDAS_BSMLESASIM" state="//@deltas[name='DAddStatusLEDAS']/@addPart/@bsms[name='BSM_Status_AS']/@states[name='LED_AS']" bsm="//@deltas[name='DAddStatusLEDASBSMIM']/@addPart/@bsms[name='BSM_LED_AS_IM']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDEM" applyTo="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']" after="//@deltas[name='DAddStatusLED']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Exterior%20Mirror']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Exterior%20Mirror']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_Status_EM" intialState="//@deltas[name='DAddStatusLEDEM']/@addPart/@bsms[name='BSM_Status_EM']/@states[name='LED_EM']">
+        <states name="LED_EM"/>
+      </bsms>
+      <hierarchies name="LED_BSMStatusEM" state="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']/@states[name='LED']" bsm="//@deltas[name='DAddStatusLEDEM']/@addPart/@bsms[name='BSM_Status_EM']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDEMBSM" applyTo="//@deltas[name='DAddStatusLEDEM']/@addPart/@bsms[name='BSM_Status_EM']" after="//@deltas[name='DAddStatusLEDEM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Exterior%20Mirror']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Exterior%20Mirror']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_LED_EM_Left" intialState="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Left']/@states[name='EM_LED_left_off']">
+        <states name="EM_LED_left_off"/>
+        <states name="EM_LED_left_on"/>
+        <transitions name="EM_LED_leftOff_on" source="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Left']/@states[name='EM_LED_left_off']" target="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Left']/@states[name='EM_LED_left_on']">
+          <broadcast name="led_em_left_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="-1"/>
+          </guard>
+        </transitions>
+        <transitions name="EM_LED_leftOn_off" source="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Left']/@states[name='EM_LED_left_on']" target="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Left']/@states[name='EM_LED_left_off']">
+          <broadcast name="led_em_left_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var" operator="NOT_EQUAL">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="-1"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <bsms name="BSM_LED_EM_Top" intialState="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Top']/@states[name='EM_LED_top_off']">
+        <states name="EM_LED_top_off"/>
+        <states name="EM_LED_top_on"/>
+        <transitions name="EM_top_ledOff_on" source="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Top']/@states[name='EM_LED_top_off']" target="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Top']/@states[name='EM_LED_top_on']">
+          <broadcast name="led_em_top_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+          </guard>
+        </transitions>
+        <transitions name="EM_top_ledOn_off" source="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Top']/@states[name='EM_LED_top_on']" target="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Top']/@states[name='EM_LED_top_off']">
+          <broadcast name="led_em_top_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var" operator="NOT_EQUAL">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <bsms name="BSM_LED_EM_Right" intialState="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Right']/@states[name='EM_LED_right_off']">
+        <states name="EM_LED_right_off"/>
+        <states name="EM_LED_right_on"/>
+        <transitions name="EM_right_ledOff_on" source="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Right']/@states[name='EM_LED_right_off']" target="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Right']/@states[name='EM_LED_right_on']">
+          <broadcast name="led_em_right_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+          </guard>
+        </transitions>
+        <transitions name="EM_right_ledOn_off" source="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Right']/@states[name='EM_LED_right_on']" target="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Right']/@states[name='EM_LED_right_off']">
+          <broadcast name="led_em_right_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_top']/@assignment.0/@var" operator="NOT_EQUAL">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <bsms name="BSM_LED_EM_Bottom" intialState="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Bottom']/@states[name='EM_LED_bottom_off']">
+        <states name="EM_LED_bottom_off"/>
+        <states name="EM_LED_bottom_on"/>
+        <transitions name="EM_bottom_ledOff_on" source="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Bottom']/@states[name='EM_LED_bottom_off']" target="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Bottom']/@states[name='EM_LED_bottom_on']">
+          <broadcast name="led_em_bottom_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="-1"/>
+          </guard>
+        </transitions>
+        <transitions name="EM_bottom_ledOn_off" source="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Bottom']/@states[name='EM_LED_bottom_on']" target="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Bottom']/@states[name='EM_LED_bottom_off']">
+          <broadcast name="led_em_bottom_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='EM_Electric']/@transitions[name='EM_topLeft_left']/@assignment.0/@var" operator="NOT_EQUAL">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="-1"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <hierarchies name="LEDEM_BSMLEDEMBottom" state="//@deltas[name='DAddStatusLEDEM']/@addPart/@bsms[name='BSM_Status_EM']/@states[name='LED_EM']" bsm="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Bottom']"/>
+      <hierarchies name="LEDEM_BSMLEDEMRight" state="//@deltas[name='DAddStatusLEDEM']/@addPart/@bsms[name='BSM_Status_EM']/@states[name='LED_EM']" bsm="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Right']"/>
+      <hierarchies name="LEDEM_BSMLEDEMLeft" state="//@deltas[name='DAddStatusLEDEM']/@addPart/@bsms[name='BSM_Status_EM']/@states[name='LED_EM']" bsm="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Left']"/>
+      <hierarchies name="LEDEM_BSMLEDEMTop" state="//@deltas[name='DAddStatusLEDEM']/@addPart/@bsms[name='BSM_Status_EM']/@states[name='LED_EM']" bsm="//@deltas[name='DAddStatusLEDEMBSM']/@addPart/@bsms[name='BSM_LED_EM_Top']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDPW" applyTo="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']" after="//@deltas[name='DAddStatusLED']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Power%20Window']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_LED_PW" intialState="//@deltas[name='DAddStatusLEDPW']/@addPart/@bsms[name='BSM_LED_PW']/@states[name='LED_PW']">
+        <states name="LED_PW"/>
+      </bsms>
+      <hierarchies name="LED_BSMLEDPW" state="//@deltas[name='DAddStatusLED']/@addPart/@bsms[name='BSM_LED']/@states[name='LED']" bsm="//@deltas[name='DAddStatusLEDPW']/@addPart/@bsms[name='BSM_LED_PW']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDManPW" applyTo="//@deltas[name='DAddStatusLEDPW']/@addPart/@bsms[name='BSM_LED_PW']" after="//@deltas[name='DAddStatusLEDPW']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Power%20Window']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Manual%20Power%20Window']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_LED_ManPW" intialState="//@deltas[name='DAddStatusLEDManPW']/@addPart/@bsms[name='BSM_LED_ManPW']/@states[name='LED_ManPW']">
+        <states name="LED_ManPW"/>
+        <transitions name="ManPW_led_up" source="//@deltas[name='DAddStatusLEDManPW']/@addPart/@bsms[name='BSM_LED_ManPW']/@states[name='LED_ManPW']" target="//@deltas[name='DAddStatusLEDManPW']/@addPart/@bsms[name='BSM_LED_ManPW']/@states[name='LED_ManPW']">
+          <trigger name="pw_mv_up"/>
+          <broadcast name="led_pw_up"/>
+        </transitions>
+        <transitions name="ManPW_led_down" source="//@deltas[name='DAddStatusLEDManPW']/@addPart/@bsms[name='BSM_LED_ManPW']/@states[name='LED_ManPW']" target="//@deltas[name='DAddStatusLEDManPW']/@addPart/@bsms[name='BSM_LED_ManPW']/@states[name='LED_ManPW']">
+          <trigger name="pw_mv_dn"/>
+          <broadcast name="led_pw_dn"/>
+        </transitions>
+      </bsms>
+      <hierarchies name="LEDPW_BSMLEDManPW" state="//@deltas[name='DAddStatusLEDPW']/@addPart/@bsms[name='BSM_LED_PW']/@states[name='LED_PW']" bsm="//@deltas[name='DAddStatusLEDManPW']/@addPart/@bsms[name='BSM_LED_ManPW']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDAutoPW" applyTo="//@deltas[name='DAddStatusLEDPW']/@addPart/@bsms[name='BSM_LED_PW']" after="//@deltas[name='DAddStatusLEDPW']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Power%20Window']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_LED_AutoPW" intialState="//@deltas[name='DAddStatusLEDAutoPW']/@addPart/@bsms[name='BSM_LED_AutoPW']/@states[name='LED_AutoPW']">
+        <states name="LED_AutoPW"/>
+      </bsms>
+      <hierarchies name="LEDPW_BSMLEDAutoPW" state="//@deltas[name='DAddStatusLEDPW']/@addPart/@bsms[name='BSM_LED_PW']/@states[name='LED_PW']" bsm="//@deltas[name='DAddStatusLEDAutoPW']/@addPart/@bsms[name='BSM_LED_AutoPW']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDAutoPWBSM" applyTo="//@deltas[name='DAddStatusLEDAutoPW']/@addPart/@bsms[name='BSM_LED_AutoPW']" after="//@deltas[name='DAddStatusLEDAutoPW']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Power%20Window']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_LED_AutoPW_Down" intialState="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@states[name='AutoPW_down_LED_off']">
+        <states name="AutoPW_down_LED_off"/>
+        <states name="AutoPW_down_LED_on"/>
+        <transitions name="AutoPW_down_ledOff_On" source="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@states[name='AutoPW_down_LED_off']" target="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@states[name='AutoPW_down_LED_on']">
+          <broadcast name="led_pw_dn_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm">
+            <var name="pw_auto_mv"/>
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="-1"/>
+          </guard>
+        </transitions>
+        <transitions name="AutoPW_down_ledOn_off" source="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@states[name='AutoPW_down_LED_on']" target="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@states[name='AutoPW_down_LED_off']">
+          <broadcast name="led_pw_dn_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var" operator="NOT_EQUAL">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="-1"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <bsms name="BSM_LED_AutoPW_Up" intialState="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Up']/@states[name='AutoPW_up_LED_off']">
+        <states name="AutoPW_up_LED_off"/>
+        <states name="AutoPW_up_LED_on"/>
+        <transitions name="AutoPW_up_ledOff_on" source="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Up']/@states[name='AutoPW_up_LED_off']" target="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Up']/@states[name='AutoPW_up_LED_on']">
+          <broadcast name="led_pw_up_on"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundExpression">
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+            </term>
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+            </term>
+          </guard>
+        </transitions>
+        <transitions name="AutoPW_up_ledOn_off" source="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Up']/@states[name='AutoPW_up_LED_on']" target="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Up']/@states[name='AutoPW_up_LED_off']">
+          <broadcast name="led_pw_up_off"/>
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var" operator="NOT_EQUAL">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+          </guard>
+        </transitions>
+      </bsms>
+      <hierarchies name="LEDAutoPW_BSMAutoPWDown" state="//@deltas[name='DAddStatusLEDAutoPW']/@addPart/@bsms[name='BSM_LED_AutoPW']/@states[name='LED_AutoPW']" bsm="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']"/>
+      <hierarchies name="LEDAutoPW_BSMAutoPWUp" state="//@deltas[name='DAddStatusLEDAutoPW']/@addPart/@bsms[name='BSM_LED_AutoPW']/@states[name='LED_AutoPW']" bsm="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Up']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddStatusLEDAutoPWCLS" applyTo="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Up']" after="//@deltas[name='DAddStatusLEDAutoPWBSM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Human%20Machine%20Interface']/@sub[name='Status%20LED']/@or[name='LED%20Power%20Window']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+        <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+          <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+        </term>
+        <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+          <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']"/>
+        </term>
+      </term>
+    </when>
+    <addPart>
+      <states name="AutoPW_up_CLS_LED_on"/>
+      <transitions name="AutoPW_up_CLS_ledOn_off" source="//@deltas[name='DAddStatusLEDAutoPWCLS']/@addPart/@states[name='AutoPW_up_CLS_LED_on']" target="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Up']/@states[name='AutoPW_up_LED_off']">
+        <broadcast name="led_pw_cls_up_off"/>
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var" operator="NOT_EQUAL">
+          <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+        </guard>
+      </transitions>
+      <transitions name="AutoPW_up_CLS_ledOff_on" source="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Up']/@states[name='AutoPW_up_LED_off']" target="//@deltas[name='DAddStatusLEDAutoPWCLS']/@addPart/@states[name='AutoPW_up_CLS_LED_on']">
+        <broadcast name="led_pw_cls_up_on"/>
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundExpression">
+          <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+          </term>
+          <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral"/>
+          </term>
+        </guard>
+      </transitions>
+    </addPart>
+  </deltas>
+  <deltas name="DAddRCKCAP" applyTo="//@cores[name='BCS_Core']/@bsms[name='BCS']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Remote%20Control%20Key']/@sub[name='Control%20Automatic%20Power%20Window']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_RCK_CAP" intialState="//@deltas[name='DAddRCKCAP']/@addPart/@bsms[name='BSM_RCK_CAP']/@states[name='RCK_CAP']">
+        <states name="RCK_CAP"/>
+      </bsms>
+      <hierarchies name="Root_BSMRCKCAP" state="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']" bsm="//@deltas[name='DAddRCKCAP']/@addPart/@bsms[name='BSM_RCK_CAP']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddRCKCAPBSM" applyTo="//@deltas[name='DAddRCKCAP']/@addPart/@bsms[name='BSM_RCK_CAP']" after="//@deltas[name='DAddRCKCAP']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Remote%20Control%20Key']/@sub[name='Control%20Automatic%20Power%20Window']"/>
+      </term>
+    </when>
+    <addPart>
+      <bsms name="BSM_CAP" intialState="//@deltas[name='DAddRCKCAPBSM']/@addPart/@bsms[name='BSM_CAP']/@states[name='CAP']">
+        <states name="CAP"/>
+        <transitions name="CAP_up" source="//@deltas[name='DAddRCKCAPBSM']/@addPart/@bsms[name='BSM_CAP']/@states[name='CAP']" target="//@deltas[name='DAddRCKCAPBSM']/@addPart/@bsms[name='BSM_CAP']/@states[name='CAP']" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@trigger">
+          <trigger name="pw_rm_up"/>
+        </transitions>
+        <transitions name="CAP_down" source="//@deltas[name='DAddRCKCAPBSM']/@addPart/@bsms[name='BSM_CAP']/@states[name='CAP']" target="//@deltas[name='DAddRCKCAPBSM']/@addPart/@bsms[name='BSM_CAP']/@states[name='CAP']" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@trigger">
+          <trigger name="pw_rm_dn"/>
+        </transitions>
+      </bsms>
+      <hierarchies name="RCKCAP_BSMCAP" state="//@deltas[name='DAddRCKCAP']/@addPart/@bsms[name='BSM_RCK_CAP']/@states[name='RCK_CAP']" bsm="//@deltas[name='DAddRCKCAPBSM']/@addPart/@bsms[name='BSM_CAP']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddAS" applyTo="//@cores[name='BCS_Core']/@bsms[name='BCS']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Alarm%20System']"/>
+    </when>
+    <addPart>
+      <bsms name="BCS_AS" intialState="//@deltas[name='DAddAS']/@addPart/@bsms[name='BCS_AS']/@states[name='AS']">
+        <states name="AS"/>
+      </bsms>
+      <hierarchies name="Root_BCSAS" state="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']" bsm="//@deltas[name='DAddAS']/@addPart/@bsms[name='BCS_AS']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddASBSM" applyTo="//@deltas[name='DAddAS']/@addPart/@bsms[name='BCS_AS']" after="//@deltas[name='DAddAS']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Alarm%20System']"/>
+    </when>
+    <addPart>
+      <bsms name="BSM_AS" intialState="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_off']">
+        <states name="AS_off"/>
+        <states name="AS_on"/>
+        <states name="AS_alarm"/>
+        <transitions name="AS_off_on" source="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_off']" target="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_on']">
+          <trigger name="as_activated"/>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@transitions[name='AS_active_ledOff_on']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+          </assignment>
+        </transitions>
+        <transitions name="AS_on_off" source="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_on']" target="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_off']">
+          <trigger name="as_deactivated"/>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@transitions[name='AS_active_ledOff_on']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+          </assignment>
+        </transitions>
+        <transitions name="AS_on_alarm" source="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_on']" target="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_alarm']">
+          <trigger name="as_alarm_detected"/>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm']/@transitions[name='AS_Alarm_ledOff_on']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+          </assignment>
+        </transitions>
+        <transitions name="AS_alarm_off" source="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_alarm']" target="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_off']" referencedTrigger="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@transitions[name='AS_on_off']/@trigger">
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@transitions[name='AS_active_ledOff_on']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+          </assignment>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm']/@transitions[name='AS_Alarm_ledOff_on']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+          </assignment>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSMIM']/@addPart/@bsms[name='BSM_LED_AS_IM']/@transitions[name='AS_IM_alarm_ledOff_on']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+          </assignment>
+        </transitions>
+        <transitions name="AS_alarm_on" source="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_alarm']" target="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_on']">
+          <trigger name="timeAS_elapsed"/>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm_Detected']/@transitions[name='AS_alarm_detected_ledOff_on']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+          </assignment>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm']/@transitions[name='AS_Alarm_ledOff_on']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+          </assignment>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSMIM']/@addPart/@bsms[name='BSM_LED_AS_IM']/@transitions[name='AS_IM_alarm_ledOff_on']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+          </assignment>
+        </transitions>
+      </bsms>
+      <hierarchies name="AS_BSMAS" state="//@deltas[name='DAddAS']/@addPart/@bsms[name='BCS_AS']/@states[name='AS']" bsm="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddASBSMIM" applyTo="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']" after="//@deltas[name='DAddASBSM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Alarm%20System']/@sub[name='Interior%20Monitoring']"/>
+    </when>
+    <addPart>
+      <transitions name="AS_IM_on_alarm" source="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_on']" target="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_alarm']">
+        <trigger name="im_alarm_detected"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSMIM']/@addPart/@bsms[name='BSM_LED_AS_IM']/@transitions[name='AS_IM_alarm_ledOff_on']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+      </transitions>
+    </addPart>
+  </deltas>
+  <deltas name="DAddASBSMCAS" applyTo="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']" after="//@deltas[name='DAddASBSM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Alarm%20System']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Remote%20Control%20Key']/@sub[name='Control%20Alarm%20System']"/>
+      </term>
+    </when>
+    <addPart>
+      <transitions name="AS_CAS_off_on" source="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_off']" target="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_on']">
+        <trigger name="rck_lock"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@transitions[name='AS_active_ledOff_on']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+      </transitions>
+      <transitions name="AS_CAS_on_off" source="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_on']" target="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_off']">
+        <trigger name="rck_unlock"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@transitions[name='AS_active_ledOff_on']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="AS_CAS_alarm_off" source="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_alarm']" target="//@deltas[name='DAddASBSM']/@addPart/@bsms[name='BSM_AS']/@states[name='AS_off']" referencedTrigger="//@deltas[name='DAddASBSMCAS']/@addPart/@transitions[name='AS_CAS_on_off']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Active']/@transitions[name='AS_active_ledOff_on']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+        </assignment>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSM']/@addPart/@bsms[name='BSM_LED_AS_Alarm']/@transitions[name='AS_Alarm_ledOff_on']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+        </assignment>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDASBSMIM']/@addPart/@bsms[name='BSM_LED_AS_IM']/@transitions[name='AS_IM_alarm_ledOff_on']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+        </assignment>
+      </transitions>
+    </addPart>
+  </deltas>
+  <deltas name="DAddEMHeat" applyTo="//@cores[name='BCS_Core']/@bsms[name='BCS']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Exterior%20Mirror']/@sub[name='Heatable']"/>
+    </when>
+    <addPart>
+      <bsms name="BCS_EM_Heat" intialState="//@deltas[name='DAddEMHeat']/@addPart/@bsms[name='BCS_EM_Heat']/@states[name='EM_heating']">
+        <states name="EM_heating"/>
+      </bsms>
+      <hierarchies name="Root_BCSEMHeat" state="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']" bsm="//@deltas[name='DAddEMHeat']/@addPart/@bsms[name='BCS_EM_Heat']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddEMHeatBSM" applyTo="//@deltas[name='DAddEMHeat']/@addPart/@bsms[name='BCS_EM_Heat']" after="//@deltas[name='DAddEMHeat']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Exterior%20Mirror']/@sub[name='Heatable']"/>
+    </when>
+    <addPart>
+      <bsms name="BSM_EM_Heat" intialState="//@deltas[name='DAddEMHeatBSM']/@addPart/@bsms[name='BSM_EM_Heat']/@states[name='heating_off']">
+        <states name="heating_off"/>
+        <states name="heating_on"/>
+        <transitions name="EM_heat_off_on" source="//@deltas[name='DAddEMHeatBSM']/@addPart/@bsms[name='BSM_EM_Heat']/@states[name='heating_off']" target="//@deltas[name='DAddEMHeatBSM']/@addPart/@bsms[name='BSM_EM_Heat']/@states[name='heating_on']">
+          <trigger name="em_too_cold"/>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDEMheatableBSM']/@addPart/@bsms[name='BSM_LED_Heatable']/@transitions[name='Heating_ledOff_on']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+          </assignment>
+        </transitions>
+        <transitions name="EM_heat_on_off" source="//@deltas[name='DAddEMHeatBSM']/@addPart/@bsms[name='BSM_EM_Heat']/@states[name='heating_on']" target="//@deltas[name='DAddEMHeatBSM']/@addPart/@bsms[name='BSM_EM_Heat']/@states[name='heating_off']">
+          <trigger name="timeHeat_elapsed"/>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDEMheatableBSM']/@addPart/@bsms[name='BSM_LED_Heatable']/@transitions[name='Heating_ledOff_on']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+          </assignment>
+        </transitions>
+      </bsms>
+      <hierarchies name="EM_heating_BSMEMHeat" state="//@deltas[name='DAddEMHeat']/@addPart/@bsms[name='BCS_EM_Heat']/@states[name='EM_heating']" bsm="//@deltas[name='DAddEMHeatBSM']/@addPart/@bsms[name='BSM_EM_Heat']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddRCKSF" applyTo="//@cores[name='BCS_Core']/@bsms[name='BCS']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Remote%20Control%20Key']/@sub[name='Safety%20Function']"/>
+    </when>
+    <addPart>
+      <bsms name="BCS_RCK_SF" intialState="//@deltas[name='DAddRCKSF']/@addPart/@bsms[name='BCS_RCK_SF']/@states[name='RCK_SF']">
+        <states name="RCK_SF"/>
+      </bsms>
+      <hierarchies name="Root_BCSRCKSF" state="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']" bsm="//@deltas[name='DAddRCKSF']/@addPart/@bsms[name='BCS_RCK_SF']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddRCKSFBSM" applyTo="//@deltas[name='DAddRCKSF']/@addPart/@bsms[name='BCS_RCK_SF']" after="//@deltas[name='DAddRCKSF']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Remote%20Control%20Key']/@sub[name='Safety%20Function']"/>
+    </when>
+    <addPart>
+      <bsms name="BSM_RCK_SF" intialState="//@deltas[name='DAddRCKSFBSM']/@addPart/@bsms[name='BSM_RCK_SF']/@states[name='SF_off']">
+        <states name="SF_off"/>
+        <states name="SF_on"/>
+        <transitions name="SF_off_on" source="//@deltas[name='DAddRCKSFBSM']/@addPart/@bsms[name='BSM_RCK_SF']/@states[name='SF_off']" target="//@deltas[name='DAddRCKSFBSM']/@addPart/@bsms[name='BSM_RCK_SF']/@states[name='SF_on']" referencedTrigger="//@deltas[name='DAddASBSMCAS']/@addPart/@transitions[name='AS_CAS_on_off']/@trigger"/>
+        <transitions name="SF_door_on_off" source="//@deltas[name='DAddRCKSFBSM']/@addPart/@bsms[name='BSM_RCK_SF']/@states[name='SF_on']" target="//@deltas[name='DAddRCKSFBSM']/@addPart/@bsms[name='BSM_RCK_SF']/@states[name='SF_off']">
+          <trigger name="door_open"/>
+        </transitions>
+        <transitions name="SF_time_on_off" source="//@deltas[name='DAddRCKSFBSM']/@addPart/@bsms[name='BSM_RCK_SF']/@states[name='SF_on']" target="//@deltas[name='DAddRCKSFBSM']/@addPart/@bsms[name='BSM_RCK_SF']/@states[name='SF_off']" referencedBroadcast="//@deltas[name='DAddASBSMCAS']/@addPart/@transitions[name='AS_CAS_off_on']/@trigger">
+          <trigger name="timeSF_elapsed"/>
+        </transitions>
+      </bsms>
+      <hierarchies name="BCSRCKSF_BSMRCKSF" state="//@deltas[name='DAddRCKSF']/@addPart/@bsms[name='BCS_RCK_SF']/@states[name='RCK_SF']" bsm="//@deltas[name='DAddRCKSFBSM']/@addPart/@bsms[name='BSM_RCK_SF']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddCLS" applyTo="//@cores[name='BCS_Core']/@bsms[name='BCS']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']"/>
+    </when>
+    <addPart>
+      <bsms name="BCS_CLS" intialState="//@deltas[name='DAddCLS']/@addPart/@bsms[name='BCS_CLS']/@states[name='CLS']">
+        <states name="CLS"/>
+      </bsms>
+      <hierarchies name="Root_BCSCLS" state="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']" bsm="//@deltas[name='DAddCLS']/@addPart/@bsms[name='BCS_CLS']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddCLSBSM" applyTo="//@deltas[name='DAddCLS']/@addPart/@bsms[name='BCS_CLS']" after="//@deltas[name='DAddCLS']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']"/>
+    </when>
+    <addPart>
+      <bsms name="BSM_CLS" intialState="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_unlock']">
+        <states name="CLS_unlock"/>
+        <states name="CLS_lock"/>
+        <transitions name="CLS_lock_unlock" source="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_lock']" target="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_unlock']">
+          <trigger name="key_pos_unlock"/>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@transitions[name='CLS_ledOff_On']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+          </assignment>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+          </assignment>
+        </transitions>
+      </bsms>
+      <hierarchies name="CLS_BSMCLS" state="//@deltas[name='DAddCLS']/@addPart/@bsms[name='BCS_CLS']/@states[name='CLS']" bsm="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddCLSBSMAutoPW" applyTo="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']" after="//@deltas[name='DAddCLSBSM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+      </term>
+    </when>
+    <addPart>
+      <transitions name="CLS_AutoPW_unlock_lock" source="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_unlock']" target="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_lock']" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@trigger">
+        <trigger name="key_pos_lock"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@transitions[name='CLS_ledOff_On']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+        </assignment>
+      </transitions>
+    </addPart>
+  </deltas>
+  <deltas name="DAddCLSBSMAL" applyTo="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']" after="//@deltas[name='DAddCLSBSM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']/@sub[name='Automatic%20Locking']"/>
+    </when>
+    <addPart>
+      <transitions name="CLS_AL_unlock_lock" source="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_unlock']" target="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_lock']">
+        <trigger name="car_drives"/>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@transitions[name='CLS_ledOff_On']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+      </transitions>
+    </addPart>
+  </deltas>
+  <deltas name="DAddCLSBSMManPW" applyTo="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']" after="//@deltas[name='DAddCLSBSM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Manual%20Power%20Window']"/>
+      </term>
+    </when>
+    <addPart>
+      <transitions name="CLS_ManPW_unlock_lock_1" source="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_unlock']" target="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_lock']" referencedTrigger="//@deltas[name='DAddCLSBSMAutoPW']/@addPart/@transitions[name='CLS_AutoPW_unlock_lock']/@trigger">
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@guard/@var">
+          <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+        </guard>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@transitions[name='CLS_ledOff_On']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="CLS_ManPW_unlock_lock_2" source="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_unlock']" target="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_lock']" referencedTrigger="//@deltas[name='DAddCLSBSMAutoPW']/@addPart/@transitions[name='CLS_AutoPW_unlock_lock']/@trigger">
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@guard/@var" operator="NOT_EQUAL">
+          <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+        </guard>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@transitions[name='CLS_ledOff_On']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+      </transitions>
+    </addPart>
+  </deltas>
+  <deltas name="DAddCLSBSMManPWRCK" applyTo="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']" after="//@deltas[name='DAddCLSBSM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+        <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+          <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Manual%20Power%20Window']"/>
+        </term>
+        <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+          <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Remote%20Control%20Key']"/>
+        </term>
+      </term>
+    </when>
+    <addPart>
+      <transitions name="CLS_ManPW_RCK_unlock_lock_1" source="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_unlock']" target="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_lock']" referencedTrigger="//@deltas[name='DAddASBSMCAS']/@addPart/@transitions[name='AS_CAS_off_on']/@trigger">
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@guard/@var">
+          <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+        </guard>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@transitions[name='CLS_ledOff_On']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+        </assignment>
+      </transitions>
+      <transitions name="CLS_ManPW_RCK_unlock_lock_2" source="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_unlock']" target="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_lock']" referencedTrigger="//@deltas[name='DAddASBSMCAS']/@addPart/@transitions[name='AS_CAS_off_on']/@trigger">
+        <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@guard/@var" operator="NOT_EQUAL">
+          <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+        </guard>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@transitions[name='CLS_ledOff_On']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+      </transitions>
+    </addPart>
+  </deltas>
+  <deltas name="DAddCLSBSMAutoPWRCK" applyTo="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']" after="//@deltas[name='DAddCLSBSM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+        <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+          <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+        </term>
+        <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+          <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Remote%20Control%20Key']"/>
+        </term>
+      </term>
+    </when>
+    <addPart>
+      <transitions name="CLS_AutoPW_RCK_unlock_lock" source="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_unlock']" target="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_lock']" referencedTrigger="//@deltas[name='DAddASBSMCAS']/@addPart/@transitions[name='AS_CAS_off_on']/@trigger" referencedBroadcast="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@transitions[name='CLS_ledOff_On']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+        </assignment>
+      </transitions>
+    </addPart>
+  </deltas>
+  <deltas name="DAddCLSBSMRCK" applyTo="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']" after="//@deltas[name='DAddCLSBSM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundFeatureCondition">
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Central%20Locking%20System']"/>
+      </term>
+      <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+        <feature href="BCS.featuremodel#//@root/@sub[name='Security']/@sub[name='Remote%20Control%20Key']"/>
+      </term>
+    </when>
+    <addPart>
+      <transitions name="CLS_RCK_lock_unlock" source="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_lock']" target="//@deltas[name='DAddCLSBSM']/@addPart/@bsms[name='BSM_CLS']/@states[name='CLS_unlock']" referencedTrigger="//@deltas[name='DAddASBSMCAS']/@addPart/@transitions[name='AS_CAS_on_off']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@deltas[name='DAddStatusLEDCLSBSM']/@addPart/@bsms[name='BSM_LED_CLS']/@transitions[name='CLS_ledOff_On']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression"/>
+        </assignment>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+      </transitions>
+    </addPart>
+  </deltas>
+  <deltas name="DRemFPTransManPWAddTransAutoPW" applyTo="//@cores[name='BCS_Core']/@bsms[name='FP_BSM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+    </when>
+    <addPart>
+      <transitions name="FP_AutoPW_off_on" source="//@cores[name='BCS_Core']/@bsms[name='FP_BSM']/@states[name='FP_off']" target="//@cores[name='BCS_Core']/@bsms[name='FP_BSM']/@states[name='FP_on']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='FP_BSM']/@transitions[name='FP_ManPW_off_on']/@trigger">
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+        </assignment>
+        <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanAssignment" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Pend_up']/@guard/@term.1/@var">
+          <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTermAssignmentExpression" value="true"/>
+        </assignment>
+      </transitions>
+    </addPart>
+    <removePart transitions="//@cores[name='BCS_Core']/@bsms[name='FP_BSM']/@transitions[name='FP_ManPW_off_on']"/>
+  </deltas>
+  <deltas name="DRemManPWBSM" applyTo="//@cores[name='BCS_Core']/@bsms[name='BCS_ManPW']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+    </when>
+    <removePart bsms="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']" hierarchies="//@cores[name='BCS_Core']/@hierarchies[name='ManPW_ManualPW']"/>
+  </deltas>
+  <deltas name="DRemManPW" applyTo="//@cores[name='BCS_Core']/@bsms[name='BCS']" after="//@deltas[name='DRemManPWBSM']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+    </when>
+    <removePart bsms="//@cores[name='BCS_Core']/@bsms[name='BCS_ManPW']" hierarchies="//@cores[name='BCS_Core']/@hierarchies[name='Root_BCS_ManPW']"/>
+  </deltas>
+  <deltas name="DAddAutoPW" applyTo="//@cores[name='BCS_Core']/@bsms[name='BCS']" after="//@deltas[name='DRemManPW']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+    </when>
+    <addPart>
+      <bsms name="BCS_AutoPW" intialState="//@deltas[name='DAddAutoPW']/@addPart/@bsms[name='BCS_AutoPW']/@states[name='AutoPW']">
+        <states name="AutoPW"/>
+      </bsms>
+      <hierarchies name="Root_BCS_AutoPW" state="//@cores[name='BCS_Core']/@bsms[name='BCS']/@states[name='Root']" bsm="//@deltas[name='DAddAutoPW']/@addPart/@bsms[name='BCS_AutoPW']"/>
+    </addPart>
+  </deltas>
+  <deltas name="DAddAutoPWBSM" applyTo="//@deltas[name='DAddAutoPW']/@addPart/@bsms[name='BCS_AutoPW']" after="//@deltas[name='DAddAutoPW']">
+    <when xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:SingleFeatureCondition">
+      <feature href="BCS.featuremodel#//@root/@sub[name='Door%20System']/@sub[name='Power%20Window']/@alternative[name='Automatic%20Power%20Window']"/>
+    </when>
+    <addPart>
+      <bsms name="BSM_AutoPW" intialState="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_up']">
+        <states name="AutoPW_up"/>
+        <states name="AutoPW_pend"/>
+        <states name="AutoPW_down"/>
+        <transitions name="AutoPW_up_pend" source="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_up']" target="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@trigger">
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+          </guard>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="-1"/>
+          </assignment>
+        </transitions>
+        <transitions name="AutoPW_pend_up" source="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" target="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_up']">
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundExpression">
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@guard/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+            </term>
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+            </term>
+          </guard>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+          </assignment>
+        </transitions>
+        <transitions name="AutoPW_pend_pend_up_single_guard" source="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" target="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@trigger">
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="-1"/>
+          </guard>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+          </assignment>
+        </transitions>
+        <transitions name="AutoPW_pend_pend_up_double_guard" source="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" target="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@trigger">
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundExpression">
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral"/>
+            </term>
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Pend_up']/@guard/@term.1/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral"/>
+            </term>
+          </guard>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="1"/>
+          </assignment>
+        </transitions>
+        <transitions name="AutoPW_pend_pend_dn_1" source="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" target="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@trigger">
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundExpression">
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral"/>
+            </term>
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+            </term>
+          </guard>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="-1"/>
+          </assignment>
+        </transitions>
+        <transitions name="AutoPW_pend_pend_dn_2" source="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" target="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@trigger">
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundExpression">
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="1"/>
+            </term>
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Up_Pend']/@guard/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral" value="true"/>
+            </term>
+          </guard>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+          </assignment>
+        </transitions>
+        <transitions name="AutoPW_pend_dn" source="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" target="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_down']">
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:CompoundExpression">
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@guard/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="-1"/>
+            </term>
+            <term xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticTerm" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+              <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerLiteral" value="-1"/>
+            </term>
+          </guard>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression"/>
+          </assignment>
+        </transitions>
+        <transitions name="AutoPW_dn_pend" source="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_down']" target="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']/@states[name='AutoPW_pend']" referencedTrigger="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Up']/@trigger">
+          <guard xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanTerm" refVar="//@cores[name='BCS_Core']/@bsms[name='BSM_ManPW']/@transitions[name='ManPW_Pend_Pend_up']/@guard/@term.1/@var">
+            <literal xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:BooleanLiteral"/>
+          </guard>
+          <assignment xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:ArithmeticAssignment" refVar="//@deltas[name='DAddStatusLEDAutoPWBSM']/@addPart/@bsms[name='BSM_LED_AutoPW_Down']/@transitions[name='AutoPW_down_ledOff_On']/@guard/@var">
+            <expression xsi:type="de.tubs.sse.spl.deltambt.deltastatemachine:IntegerArithmeticAssignmentExpression" value="1"/>
+          </assignment>
+        </transitions>
+      </bsms>
+      <hierarchies name="AutoPW_BSMAutoPW" state="//@deltas[name='DAddAutoPW']/@addPart/@bsms[name='BCS_AutoPW']/@states[name='AutoPW']" bsm="//@deltas[name='DAddAutoPWBSM']/@addPart/@bsms[name='BSM_AutoPW']"/>
+    </addPart>
+  </deltas>
+</de.tubs.sse.spl.deltambt.deltastatemachine:DeltaRepository>

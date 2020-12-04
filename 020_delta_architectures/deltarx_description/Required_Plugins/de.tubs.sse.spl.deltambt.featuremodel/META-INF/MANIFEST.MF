@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: de.tubs.sse.spl.deltambt.featuremodel;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: src/
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: de.tubs.sse.spl.deltambt.featuremodel,
+ de.tubs.sse.spl.deltambt.featuremodel.impl,
+ de.tubs.sse.spl.deltambt.featuremodel.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

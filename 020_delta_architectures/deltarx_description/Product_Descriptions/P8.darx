@@ -1,0 +1,250 @@
+architecture P8 for featuremodel 'D:/Dokumente/Studium/TU Braunschweig/Masterarbeit/svn/Masterarbeit/case_study/BCS_Deltarx/SPL_Description/BCS.featuremodel' { 
+ 	 signals {
+	 	 pw_but_mv_dn boolean
+	 	 pw_but_mv_up boolean
+	 	 em_but_mv_left boolean
+	 	 em_but_mv_right boolean
+	 	 em_but_mv_up boolean
+	 	 em_but_mv_dn boolean
+	 	 pw_but_up boolean
+	 	 pw_but_dn boolean
+	 	 em_but_right boolean
+	 	 em_but_left boolean
+	 	 em_but_up boolean
+	 	 em_but_down boolean
+	 	 em_pos_left boolean
+	 	 em_pos_right boolean
+	 	 em_pos_top boolean
+	 	 em_pos_bottom boolean
+	 	 em_mv_left boolean
+	 	 em_mv_right boolean
+	 	 em_mv_up boolean
+	 	 em_mv_down boolean
+	 	 finger_detected boolean
+	 	 fp_on boolean
+	 	 fp_off boolean
+	 	 pw_pos_up boolean
+	 	 pw_pos_dn boolean
+	 	 pw_auto_mv_up boolean
+	 	 pw_auto_mv_dn boolean
+	 	 pw_auto_mv_stop boolean
+	 	 heating_on boolean
+	 	 heating_off boolean
+	 	 time_heating_elapsed boolean
+	 	 em_too_cold boolean
+	 	 led_fp_on boolean
+	 	 led_fp_off boolean
+	 	 em_pos_vert_bottom boolean
+	 	 em_pos_vert_pend boolean
+	 	 em_pos_vert_top boolean
+	 	 em_pos_hor_right boolean
+	 	 em_pos_hor_pend boolean
+	 	 em_pos_hor_left boolean
+	 	 led_em_bottom_on boolean
+	 	 led_em_bottom_off boolean
+	 	 led_em_top_on boolean
+	 	 led_em_top_off boolean
+	 	 led_em_right_on boolean
+	 	 led_em_right_off boolean
+	 	 led_em_left_on boolean
+	 	 led_em_left_off boolean
+	 	 led_em_heating_on boolean
+	 	 led_em_heating_off boolean
+	 	 led_pw_up_on boolean
+	 	 led_pw_up_off boolean
+	 	 led_pw_dn_on boolean
+	 	 led_pw_dn_off boolean
+	 } 
+	 connectors {
+	 	 hmi7 (HMI, pw_but_dn, pw_but_dn, FP) 
+	 	 env1 (ENV, pw_but_mv_dn, pw_but_mv_dn, HMI) 
+	 	 env2 (ENV, pw_but_mv_up, pw_but_mv_up, HMI) 
+	 	 env3 (ENV, em_but_mv_left, em_but_mv_left, HMI) 
+	 	 env4 (ENV, em_but_mv_right, em_but_mv_right, HMI) 
+	 	 env5 (ENV, em_but_mv_up, em_but_mv_up, HMI) 
+	 	 env6 (ENV, em_but_mv_dn, em_but_mv_dn, HMI) 
+	 	 env11 (ENV, finger_detected, finger_detected, FP) 
+	 	 fpautopw1 (FP, fp_on, fp_on, AutoPW) 
+	 	 fpautopw2 (FP, fp_off, fp_off, AutoPW) 
+	 	 hmiautopw1 (HMI, pw_but_up, pw_but_up, AutoPW) 
+	 	 hmiautopw2 (HMI, pw_but_dn, pw_but_dn, AutoPW) 
+	 	 autopwenv1 (AutoPW, pw_auto_mv_up, pw_auto_mv_up, ENV) 
+	 	 autopwenv2 (AutoPW, pw_auto_mv_dn, pw_auto_mv_dn, ENV) 
+	 	 autopwenv3 (AutoPW, pw_auto_mv_stop, pw_auto_mv_stop, ENV) 
+	 	 envautopw1 (ENV, pw_pos_up, pw_pos_up, AutoPW) 
+	 	 envautopw2 (ENV, pw_pos_dn, pw_pos_dn, AutoPW) 
+	 	 emhenv1 (EMH, em_mv_left, em_mv_left, ENV) 
+	 	 emhenv2 (EMH, em_mv_right, em_mv_right, ENV) 
+	 	 emhenv3 (EMH, em_mv_up, em_mv_up, ENV) 
+	 	 emhenv4 (EMH, em_mv_down, em_mv_down, ENV) 
+	 	 emhenv5 (EMH, heating_on, heating_on, ENV) 
+	 	 emhenv6 (EMH, heating_off, heating_off, ENV) 
+	 	 envemh1 (ENV, em_pos_right, em_pos_right, EMH) 
+	 	 envemh2 (ENV, em_pos_top, em_pos_top, EMH) 
+	 	 envemh3 (ENV, em_pos_bottom, em_pos_bottom, EMH) 
+	 	 envemh4 (ENV, em_too_cold, em_too_cold, EMH) 
+	 	 envemh5 (ENV, time_heating_elapsed, time_heating_elapsed, EMH) 
+	 	 envemh6 (ENV, em_pos_left, em_pos_left, EMH) 
+	 	 hmiemh1 (HMI, em_but_right, em_but_right, EMH) 
+	 	 hmiemh2 (HMI, em_but_left, em_but_left, EMH) 
+	 	 hmiemh3 (HMI, em_but_up, em_but_up, EMH) 
+	 	 hmiemh4 (HMI, em_but_down, em_but_down, EMH) 
+	 	 fp3 (FP, fp_on, fp_on, LED_FP) 
+	 	 fp4 (FP, fp_off, fp_off, LED_FP) 
+	 	 ledfp1 (LED_FP, led_fp_on, led_fp_on, ENV) 
+	 	 ledfp2 (LED_FP, led_fp_off, led_fp_off, ENV) 
+	 	 emhledemb1 (EMH, em_pos_vert_bottom, em_pos_vert_bottom, LED_EMB) 
+	 	 emhledemb2 (EMH, em_pos_vert_pend, em_pos_vert_pend, LED_EMB) 
+	 	 ledembenv1 (LED_EMB, led_em_bottom_on, led_em_bottom_on, ENV) 
+	 	 ledembenv2 (LED_EMB, led_em_bottom_off, led_em_bottom_off, ENV) 
+	 	 emhledemt1 (EMH, em_pos_vert_pend, em_pos_vert_pend, LED_EMT) 
+	 	 emhledemt2 (EMH, em_pos_vert_top, em_pos_vert_top, LED_EMT) 
+	 	 ledemtenv1 (LED_EMT, led_em_top_on, led_em_top_on, ENV) 
+	 	 ledemtenv2 (LED_EMT, led_em_top_off, led_em_top_off, ENV) 
+	 	 emhledemr1 (EMH, em_pos_hor_right, em_pos_hor_right, LED_EMR) 
+	 	 emhledemr2 (EMH, em_pos_hor_pend, em_pos_hor_pend, LED_EMR) 
+	 	 ledemrenv1 (LED_EMR, led_em_right_on, led_em_right_on, ENV) 
+	 	 ledemrenv2 (LED_EMR, led_em_right_off, led_em_right_off, ENV) 
+	 	 emhledeml1 (EMH, em_pos_hor_left, em_pos_hor_left, LED_EML) 
+	 	 emhledeml2 (EMH, em_pos_hor_pend, em_pos_hor_pend, LED_EML) 
+	 	 ledemlenv1 (LED_EML, led_em_left_on, led_em_left_on, ENV) 
+	 	 ledemlenv2 (LED_EML, led_em_left_off, led_em_left_off, ENV) 
+	 	 emhled1 (EMH, heating_on, heating_on, LED_EMH) 
+	 	 emhled2 (EMH, heating_off, heating_off, LED_EMH) 
+	 	 ledemhenv1 (LED_EMH, led_em_heating_on, led_em_heating_on, ENV) 
+	 	 ledemhenv2 (LED_EMH, led_em_heating_off, led_em_heating_off, ENV) 
+	 	 autopwledapw1 (AutoPW, pw_auto_mv_dn, pw_auto_mv_dn, LED_AutoPW) 
+	 	 autopwledapw2 (AutoPW, pw_auto_mv_up, pw_auto_mv_up, LED_AutoPW) 
+	 	 autopwledapw3 (AutoPW, pw_auto_mv_stop, pw_auto_mv_stop, LED_AutoPW) 
+	 	 ledapwenv1 (LED_AutoPW, led_pw_up_on, led_pw_up_on, ENV) 
+	 	 ledapwenv2 (LED_AutoPW, led_pw_up_off, led_pw_up_off, ENV) 
+	 	 ledapwenv3 (LED_AutoPW, led_pw_dn_on, led_pw_dn_on, ENV) 
+	 	 ledapwenv4 (LED_AutoPW, led_pw_dn_off, led_pw_dn_off, ENV) 
+	 } 
+	 components {
+	 	 HMI{ 
+	 	 	 ports {
+	 	 	 	in p_pw_but_mv_dn pw_but_mv_dn
+	 	 	 	in p_pw_but_mv_up pw_but_mv_up
+	 	 	 	in p_em_but_mv_left em_but_mv_left
+	 	 	 	in p_em_but_mv_right em_but_mv_right
+	 	 	 	in p_em_but_mv_up em_but_mv_up
+	 	 	 	in p_em_but_mv_bottom em_but_mv_up
+	 	 	 	out p_pw_but_up pw_but_up
+	 	 	 	out p_pw_but_dn pw_but_dn
+	 	 	 	out p_em_but_right em_but_right
+	 	 	 	out p_em_but_left em_but_left
+	 	 	 	out p_em_but_up em_but_up
+	 	 	 	out p_em_but_down em_but_down
+	 	 	 }
+	 	 }
+	 	 FP{ 
+	 	 	 ports {
+	 	 	 	in p_finger_detected finger_detected
+	 	 	 	in p_pw_but_dn pw_but_dn
+	 	 	 	out p_fp_on fp_on
+	 	 	 	out p_fp_off fp_off
+	 	 	 }
+	 	 }
+	 	 AutoPW{ 
+	 	 	 ports {
+	 	 	 	in p_fp_on fp_on
+	 	 	 	in p_fp_off fp_off
+	 	 	 	in p_pw_but_up pw_but_up
+	 	 	 	in p_pw_but_dn pw_but_dn
+	 	 	 	out p_pw_auto_mv_up pw_auto_mv_up
+	 	 	 	out p_pw_auto_mv_dn pw_auto_mv_dn
+	 	 	 	out p_pw_auto_mv_stop pw_auto_mv_stop
+	 	 	 	in p_pw_pos_up pw_pos_up
+	 	 	 	in p_pw_pos_dn pw_pos_dn
+	 	 	 }
+	 	 }
+	 	 EMH{ 
+	 	 	 ports {
+	 	 	 	out p_em_mv_left em_mv_left
+	 	 	 	out p_em_mv_right em_mv_right
+	 	 	 	out p_em_mv_up em_mv_up
+	 	 	 	out p_em_mv_down em_mv_down
+	 	 	 	out p_heating_on heating_on
+	 	 	 	out p_heating_off heating_off
+	 	 	 	in p_em_pos_right em_pos_right
+	 	 	 	in p_em_pos_top em_pos_top
+	 	 	 	in p_em_pos_bottom em_pos_bottom
+	 	 	 	in p_em_too_cold em_too_cold
+	 	 	 	in p_time_heating_elapsed time_heating_elapsed
+	 	 	 	in p_em_pos_left em_pos_left
+	 	 	 	in p_em_but_right em_but_right
+	 	 	 	in p_em_but_left em_but_left
+	 	 	 	in p_em_but_up em_but_up
+	 	 	 	in p_em_but_down em_but_down
+	 	 	 	out p_em_pos_vert_bottom em_pos_vert_bottom
+	 	 	 	out p_em_pos_vert_pend em_pos_vert_pend
+	 	 	 	out p_em_pos_vert_top em_pos_vert_top
+	 	 	 	out p_em_pos_hor_right em_pos_hor_right
+	 	 	 	out p_em_pos_hor_pend em_pos_hor_pend
+	 	 	 	out p_em_pos_hor_left em_pos_hor_left
+	 	 	 }
+	 	 }
+	 	 LED_FP{ 
+	 	 	 ports {
+	 	 	 	in p_fp_on fp_on
+	 	 	 	in p_fp_off fp_off
+	 	 	 	out p_led_fp_on led_fp_on
+	 	 	 	out p_led_fp_off led_fp_off
+	 	 	 }
+	 	 }
+	 	 LED_EMB{ 
+	 	 	 ports {
+	 	 	 	in p_em_pos_vert_bottom em_pos_vert_bottom
+	 	 	 	in p_em_pos_vert_pend em_pos_vert_pend
+	 	 	 	out p_led_em_bottom_on led_em_bottom_on
+	 	 	 	out p_led_em_bottom_off led_em_bottom_off
+	 	 	 }
+	 	 }
+	 	 LED_EMT{ 
+	 	 	 ports {
+	 	 	 	in p_em_pos_vert_pend em_pos_vert_pend
+	 	 	 	in p_em_pos_vert_top em_pos_vert_top
+	 	 	 	out p_led_em_top_on led_em_top_on
+	 	 	 	out p_led_em_top_off led_em_top_off
+	 	 	 }
+	 	 }
+	 	 LED_EMR{ 
+	 	 	 ports {
+	 	 	 	in p_em_pos_hor_right em_pos_hor_right
+	 	 	 	in p_em_pos_hor_pend em_pos_hor_pend
+	 	 	 	out p_led_em_right_on led_em_right_on
+	 	 	 	out p_led_em_right_off led_em_right_off
+	 	 	 }
+	 	 }
+	 	 LED_EML{ 
+	 	 	 ports {
+	 	 	 	in p_em_pos_hor_left em_pos_hor_left
+	 	 	 	in p_em_pos_hor_pend em_pos_hor_pend
+	 	 	 	out p_led_em_left_on led_em_left_on
+	 	 	 	out p_led_em_left_off led_em_left_off
+	 	 	 }
+	 	 }
+	 	 LED_EMH{ 
+	 	 	 ports {
+	 	 	 	in p_heating_on heating_on
+	 	 	 	in p_heating_off heating_off
+	 	 	 	out p_led_em_heating_on led_em_heating_on
+	 	 	 	out p_led_em_heating_off led_em_heating_off
+	 	 	 }
+	 	 }
+	 	 LED_AutoPW{ 
+	 	 	 ports {
+	 	 	 	in p_pw_auto_mv_dn pw_auto_mv_dn
+	 	 	 	in p_pw_auto_mv_up pw_auto_mv_up
+	 	 	 	in p_pw_auto_mv_stop pw_auto_mv_stop
+	 	 	 	out p_led_pw_up_on led_pw_up_on
+	 	 	 	out p_led_pw_up_off led_pw_up_off
+	 	 	 	out p_led_pw_dn_on led_pw_dn_on
+	 	 	 	out p_led_pw_dn_off led_pw_dn_off
+	 	 	 }
+	 	 }
+
+ 	 } 
+ 
+}

@@ -1,0 +1,17 @@
+grammar de.tu_bs.cs.isf.splregtest.xtext.mapping.MapsCompSm with org.eclipse.xtext.common.Terminals
+
+generate mapsCompSm "http://www.tu_bs.de/cs/isf/splregtest/xtext/mapping/MapsCompSm"
+
+Mapping:
+	'Mapping' name=ID '{' components+=Component* '}'
+;
+
+Component:
+	'component' name=ID '{'
+		bsms += BSM*
+	'}'
+;
+
+BSM:
+	'bsm' name=ID ','?
+;
