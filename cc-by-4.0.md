@@ -1,0 +1,1 @@
+ [BusyBox Variabilitymodels and Analysis](https://github.com/TUBS-ISF/busybox-data) by [ISF @ Technical University Braunschweig](https://www.tu-braunschweig.de/isf) is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). To view a copy of this license, visit <http://creativecommons.org/licenses/by/4.0/>
